@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "安全中心";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section head{
+    <link rel="stylesheet" href="~/Assets/web/css/personal.css">
+}
+
+<!-- 内容 -->
+<div class="rtcon rtsecurity">
+    <div class="title">安全中心</div>
+    <div class="doccon">
+        <div class="tip"><i class="red">*</i>为必填信息</div>
+        <dl>
+            <dt><i class="red">*</i>原始密码：</dt>
+            <dd>
+                <input type="password" class="inputtxt oldpwdtxt" placeholder="请输入您的原始密码" id="oldPwd"  readonly onfocus="this.removeAttribute('readonly');" >
+            </dd>
+        </dl>
+        <dl>
+            <dt><i class="red">*</i>新密码：</dt>
+            <dd><input type="password" class="inputtxt newpwdtxt" placeholder="请输入您的新密码" id="newPwd1"></dd>
+        </dl>
+        <dl>
+            <dt><i class="red">*</i>重输新密码：</dt>
+            <dd><input type="password" class="inputtxt newpwdtxt" placeholder="请重输新密码" id="newPwd2"></dd>
+        </dl>
+        <input type="button" class="btn savebtn" value="保存" onclick="SaveButton()">
+    </div>
+</div>
+
+<script type="text/javascript">
+    function SaveButton() {
+        var oldPwd = StrTrim($("#oldPwd").val());
+        if (oldPwd === "") {
+            layerMes("密码不能为空", "#oldPwd");
+            return false;
+        }
+        debugger
+        var newPwd1 = StrTrim($("#newPwd1").val());
+        if (newPwd1 === "") {
+            layerMes("密码不能为空", "#newPwd1");
+            return false;
+        }
+
+        var newPwd2 = StrTrim($("#newPwd2").val());
+        if (newPwd2 === "") {
+            layerMes("密码不能为空", "#newPwd2");
+            return false;
+        }
+
+        if (newPwd1 !== newPwd2) {
+            layerMes("两次输入的密码不一致", "#newPwd1");
+            return false;
+        }
+
+        if (oldPwd.length >20) {
+            layerMes("旧密码长度不能大于20", "#oldPwd");
+            return false;
+        }
+        if (newPwd1.length > 20) {
+            layerMes("新密码长度不能大于20", "#newPwd1");
+            return false;
+        }
+        if (newPwd2.length > 20) {
+            layerMes("新密码长度不能大于20", "#newPwd2");
+            return false;
+        }
+
+        $ajaxFunc("@Url.Content("~/UserCenter/ChangePwd")", { "oldPassword": oldPwd, "password": newPwd1, "repassword": newPwd2}, function (res) {
+            if (res.code === 0) {
+                layer.msg(res.msg)
+            } else {
+                layer.msg(res.msg, { time: 1200, offset: 'auto', icon: 5 });
+            }
+        });
+
+    }
+</script>

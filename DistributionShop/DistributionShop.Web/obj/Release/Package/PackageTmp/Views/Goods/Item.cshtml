@@ -1,0 +1,335 @@
+﻿@using DistributionShop.Models.Utils
+@{
+    ViewBag.Title = "商品详情";
+}
+@section head{
+    <link href="~/Assets/web/css/swiper.min.css" rel="stylesheet" />
+    <link href="~/Assets/web/css/detail.css" rel="stylesheet" />
+    <script src="~/Assets/web/js/swiper.min.js"></script>
+}
+<link href="~/Scripts/share/share.min.css" rel="stylesheet" />
+<script src="~/Scripts/jsRender.js"></script>
+<script src="~/Scripts/share/jquery.share.min.js"></script>
+<style>
+    .sharebox {
+        position: absolute;
+        right: 0;
+        top: 4px;
+        height: 38px;
+        overflow: visible !important;
+    }
+
+    .wechat-qrcode{
+        left:-145px !important;
+        top:-195px !important;
+    }
+    .wechat-qrcode img{
+        height:80px !important;
+        width:80px !important;
+    }
+    .social-share .icon-wechat .wechat-qrcode:after {
+        margin-left: 40px !important;
+    }
+</style>
+@model DistributionShop.Models.ViewModels.ProductViewModel
+<div class="detailcon">
+    <div class="md1200">
+        <div class="breadnav"><a href="@Url.Content("~/home/index")">首页</a></div>
+        <!-- 详情头部 -->
+        <div class="detailtop">
+            <div class="bannerbox">
+                <!-- 轮播图 -->
+                <div class="swiper-container gallery-top">
+                    <div class="swiper-wrapper" id="swap1">
+
+                    </div>
+                </div>
+                <div class="swiper-button-next swiper-button-white"></div>
+                <div class="swiper-button-prev swiper-button-white"></div>
+                <div class="swiper-container gallery-thumbs">
+                    <div class="swiper-wrapper" id="swap2">
+
+                    </div>
+                </div>
+            </div>
+            <!-- 商品介绍 -->
+            <div class="infobox">
+                <div class="sharebox">
+                    <a href="javascript:;" id="btnShare"><img src="@Url.Content("~/Assets/web/images/icon_share.png")"></a>
+                    @*<a href="javascript:;" class="wechatbtn"><img src="@Url.Content("~/Assets/web/images/icon_wechat.png")" )"></a>
+                        <a href="javascript:;" class="pyqbtn"><img src="@Url.Content("~/Assets/web/images/icon_pyq.png")"></a>*@
+                    <div class='row' id="share-3" ></div>
+
+                </div>
+                <p class="brand">@Model.BrandName</p>
+                @{
+                    string productName = Model.ProductName;
+                    if (!string.IsNullOrEmpty(productName) && productName.Length > 25)
+                    {
+                        productName = productName.Substring(0, 25) + "...";
+                    }
+                }
+                <p class="name cursor" title="@Model.ProductName">@productName</p>
+                @{
+                    string intro = Model.Description;
+                    if (!string.IsNullOrEmpty(Model.Description) && Model.Description.Length > 40)
+                    {
+                        intro = intro.Substring(0, 40) + "...";
+                    }
+                }
+                <p class="instro cursor" title="@Model.Description">@intro</p>
+                <div class="nowbox"><span class="lab">折扣价</span><i class="dw">￥</i><span class="num">@Model.WebPriceValue</span></div>
+                <div class="prebox"><span class="lab">原价</span><i class="dw">￥</i><span class="num">@Model.OriginalPriceValue</span></div>
+                @{
+                    var send = ViewBag.SendType as SelectOption;
+                    if (send != null)
+                    {
+                        <div class="param"><span class="lab">发货</span>@send.Desction</div>
+                    }
+                }
+
+                <div class="param"><span class="lab">税费</span>商品价格已含关税 </div>
+                <div class="param"><span class="lab">运费</span>请查看运费说明，或加入购物车后查看</div>
+                @if (!string.IsNullOrEmpty(Model.Measure))
+                {
+                    <div class="capacity">
+                        <span class="lab">@Model.MeasureUnit</span>
+                        <select name="" id="">
+                            <option value="1">@Model.Measure</option>
+                        </select>
+                    </div>
+                }
+
+                <div class="count">
+                    <span class="lab">数量</span>
+                    <div class="countbox"><a href="javascript:;" id="adown">-</a><input id="totalCount" type="text" class="countval" value="1" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"><a href="javascript:;" id="aup">+</a></div>
+                </div>
+                <div class="btnsgroup">
+                    <a href="javascript:;" class="btn buybtn" id="toBuyBtn">立刻购买</a>
+                    <a href="javascript:;" class="btn shopcarbtn" id="addShopCart">加入购物车</a>
+                </div>
+            </div>
+        </div>
+        <!-- 详情底部 -->
+        <div class="detailbottom">
+            <div class="detailbtleft">
+                <div class="title">商品推荐</div>
+                <ul class="recommdlist"></ul>
+            </div>
+            <div class="detailbtright">
+                <div class="title">商品详情</div>
+                <div class="content">
+                    <ul class="instrolist">
+                        <li><span class="name">产品名称</span><span class="word">@Model.ProductName</span></li>
+                        <li><span class="name">品牌</span><span class="word">@Model.BrandName</span></li>
+
+                    </ul>
+                    <div class="showimgbox">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/x-jsrender" id="attributeTmp">
+    <li><span class="name">{{:AttributeParentName}}</span><span class="word">{{:AttributeName}}</span></li>
+</script>
+<script type="text/x-jsrender" id="showimgboxTmp">
+    <img src="{{:ImageUrl}}" alt="">
+</script>
+<script type="text/x-jsrender" id="lunboTmp">
+    <div class="swiper-slide" style="background-image:url({{:ImageUrl}})"></div>
+</script>
+<script id="recommdListTmp" type="text/x-jsrender">
+    <li class="item" data-id="{{:Id}}">
+        <a href="@Url.Content("~/Goods/Item/"){{:Id}}" class="imgbox" target="_blank">
+            <img src="@Url.Content("~/api/MediaApi/GetCoverFileName?fileName="){{:CoverFileName}}" onerror="javascript:this.src='@Url.Content("~/Assets/web/images/banner1.png")'" alt="">
+            <div>{{:~InitDiscount(OriginalPrice,WebPrice)}}</div>
+        </a>
+        <div class="infobox">
+            <p class="name cursor" onclick="detail({{:Id}})">{{:~InitCutStr(ProductName,15)}}</p>
+            <a onclick="detail({{:Id}})" class="cursor">{{:~InitCutStr(Description,20)}}</a>
+            <div class="price"><span class="preprice">￥{{:OriginalPrice}}</span><span class="nowprice">￥{{:WebPrice}}</span></div>
+            <a href="javascript:;" data-id="{{:Id}}" class="addshopcar"><img src="@Url.Content("~/Assets/web/images/icon_shopcar.png")" alt=""></a>
+        </div>
+    </li>
+</script>
+<script>
+    function detail(id) {
+        location.href = "@Url.Content("~/Goods/Item/")"+id;
+    }
+      $.views.helpers({
+        "InitCutStr": function (value, length) {
+            if (value && value.length > length) {
+                return value.substr(0, length) + "...";
+            } else {
+                return value;
+            }
+        },
+        "InitDiscount": function (originalPrice, webPrice) {
+            var rtnHtml = "";
+            if (parseFloat(originalPrice) > parseFloat(webPrice)) {
+                var discount = Math.round((parseFloat(webPrice) / parseFloat(originalPrice)) * 100) + '%OFF';
+                rtnHtml = '<div class="discount">'+discount+'</div>';
+            }
+            return rtnHtml;
+        }
+    });
+
+    var galleryThumbs;
+    var galleryTop;
+    function initSwap() {
+          galleryThumbs = new Swiper('.gallery-thumbs', {
+            spaceBetween: 10,
+            slidesPerView: 4,
+            freeMode: true,
+            watchSlidesVisibility: true,
+            watchSlidesProgress: true,
+            direction: 'vertical',
+            loop: true,
+
+        });
+         galleryTop = new Swiper('.gallery-top', {
+            effect: 'fade',
+            loop: true,
+            // spaceBetween: 3,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            thumbs: {
+                swiper: galleryThumbs
+            }
+        });
+    }
+    //查推荐列表
+    function initRecommdList(Id) {
+        $.post("@Url.Content("~/Goods/GetRecommdList")", {id:Id}, function (result) {
+            if (result && result.length > 0) {
+                var html = $("#recommdListTmp").render(result);
+                $("ul.recommdlist").html(html);
+            } else {
+                $(".detailbtleft").hide();
+            }
+
+        });
+    }
+    function initAttribute(productId) {
+          $.post("@Url.Content("~/Goods/GetAttributeByProductId")", {productId:productId}, function (result) {
+            console.log(result);
+            if (result && result.length > 0) {
+                var html = $("#attributeTmp").render(result);
+                $(".instrolist li").eq(1).after(html);
+            }
+        });
+    }
+    function initProductMediaList(productId) {
+         $.post("@Url.Content("~/Goods/GetProductMediaList")", {productId:productId}, function (result) {
+            console.log("图片：",result);
+             if (result && result.length > 0) {
+                 var showimgboxHtml = $("#showimgboxTmp").render(result);
+                 $(".showimgbox").html(showimgboxHtml);
+                 var lunboTmpHtml = $("#lunboTmp").render(result);
+                 $("#swap1").html(lunboTmpHtml);
+                 $("#swap2").html(lunboTmpHtml);
+                 initSwap();
+             }
+        });
+    }
+      function initBreadNav(productId) {
+        $.post("@Url.Content("~/Goods/GetFirstAndSecondCateByProId")", { productId: productId }, function (result) {
+            if (result && result.CategoryName) {
+                var html = '<span>></span><a href="javascript:void(0);">' + result.FirstCategoryName + '</a><span>></span><a href="javascript:void(0)">' + result.CategoryName;
+                $(".breadnav a").after(html);
+            }
+        });
+
+    }
+    $("ul.recommdlist").on("click", ".addshopcar", function () {
+        var productId = $(this).attr("data-id");
+        layer.msg(productId);
+        return;
+         MainPageAddToShoppingCartMethod(productId, num);
+    })
+    $("#addShopCart").click(function () {
+        var productId = "@Model.Id";
+        var num = $("#totalCount").val();
+        if (parseInt(num) > 999) {
+            layer.msg("最多添加999个商品");
+            return;
+        }
+        MainPageAddToShoppingCartMethod(productId, num,1);
+
+    })
+
+    //立即购买
+        $('#toBuyBtn').click(function () {
+            var productId = "@Model.Id";
+            var num = $("#totalCount").val();
+            if (parseInt(num) > 999) {
+                layer.msg("最多添加999个商品");
+                return;
+            }
+            $.post("@Url.Content("~/ShoppingCart/CreateOrderForSingle")", { productId: productId, productNum: num  }, function (res) {
+                if (res.code == 0) {
+                    window.location.href = "@Url.Content("~/ShoppingCart/CreateOrderAndAddress")";
+                }
+                else if (res.code == 2) {
+                    window.location.href = "@Url.Action("EditAddress", "UserCenter")";
+                }
+                else if (res.code == 3) {
+                    window.location.href = "@Url.Action("Index", "Login")";
+                }
+                else {
+                    layer.msg(res.msg, { time: 1200, offset: 'auto' });
+                }
+            });
+        })
+
+    $("#aup").click(function () {
+        var totalCount = $("#totalCount").val();
+        totalCount = !totalCount ? 0 : totalCount;
+        var num = parseInt(totalCount);
+         if (num > 999) {
+            layer.msg("最多添加999个商品");
+            return;
+        }
+        $("#totalCount").val(++num);
+    })
+    $("#adown").click(function () {
+       var totalCount = $("#totalCount").val();
+        totalCount = !totalCount ? 0 : totalCount;
+        var num = parseInt(totalCount);
+         if (num > 999) {
+            layer.msg("最多添加999个商品");
+            return;
+        }
+        var newNum = --num;
+        newNum = newNum < 0 ? 0 : newNum;
+        $("#totalCount").val(newNum);
+    })
+        initRecommdList('@Model.Id');
+        initProductMediaList('@Model.Id');
+        initBreadNav('@Model.Id');
+    initAttribute('@Model.Id');
+</script>
+<script>
+
+    var $config = {
+      url                 : window.location.href,
+      title               : "快来看看"+"@Model.ProductName"+" 来自毛毛雨健康生活馆",
+      description         : '@Model.Description',
+      image               : '@ConfigHelper.GetCoverImage(Model.CoverFileName)',
+      sites               : [ 'qq', 'weibo', 'wechat'], // 启用的站点
+      //disabled            : ['google', 'facebook', 'twitter','tencent','qzone'], // 禁用的站点
+      wechatQrcodeTitle   : '微信扫一扫：分享', // 微信二维码提示文字
+      wechatQrcodeHelper  : '<p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>',
+      target : '_blank' //打开方式
+    };
+    $('#share-3').share($config);
+    $('#share-3').hide();
+    $(".sharebox").hover(function () {
+        $('#share-3').show();
+    }, function () {$('#share-3').hide(); })
+</script>

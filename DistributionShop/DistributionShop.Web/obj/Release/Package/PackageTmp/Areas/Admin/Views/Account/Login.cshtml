@@ -1,0 +1,90 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>平台登录</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/login.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/layer/layer.js"></script>
+    <script src="~/Scripts/public.js"></script>
+</head>
+<body style="background:#323943;">
+    <div class="login-box">
+        <div class="login-logo"></div>
+        <form class="clearfix">
+            <div class="form-option">
+                <span class="line"></span><input type="text" class="text" id="UserName" placeholder="账号..." maxlength="30" autocomplete="off"/>
+                <input type="password" class="text" id="Password" placeholder="密码..." maxlength="40" autocomplete="off"/>
+                <button type="button" class="login-btn" id="login">登录</button>
+            </div>
+            <div class="form-option" style="margin-top:22px;display:none" id="keepLogin">
+                <label><span class="checkb"><i></i><input type="checkbox" name="Remember" value="0" /></span>三天内自动登录</label>
+            </div>
+            <div class="error-info" style="display:none">
+                <p><span class="glyphicon glyphicon-exclamation-sign"></span></p>
+            </div>
+
+        </form>
+    </div>
+
+    <script>
+        $(function () {
+            $('#keepLogin input[name="Remember"]').click(function () {
+                var dom = $("#keepLogin .checkb i");
+                if (dom.hasClass("add")) {
+                    dom.removeClass("add")
+                } else {
+                    dom.addClass("add")
+                }
+            });
+
+            $("#Password").bind("keydown", function (event) {
+                var code = event.keycode ? parseInt(event.keycode) : parseInt(event.which);
+                if (isNaN(code)) return true;
+                if (code == 13) {
+                    Login();
+                }
+            });
+
+            $("#login").click(function () {
+                Login();
+            });
+
+        })
+
+        function Login() {
+            var userName = StrTrim($("#UserName").val());
+            if (userName === "") {
+                LayerMsg("用户名不能为空")
+                return false;
+            }
+
+            var password = StrTrim($("#Password").val());
+            if (password === "") {
+                LayerMsg("密码不能为空")
+                return false;
+            }
+
+            var data = { "UserName": userName, "Password": password, "Remember": false };
+            $ajaxLoadingFunc("@Url.Content("~/Admin/Account/Verify")", data, function (res) {
+                if (res.code == 0) {
+                    layer.msg("登录成功", { time: 800, offset: 'auto' }, function (index) {
+                        layer.close(index);
+                        location.href = "@Url.Content("~/Admin/Home/Index")";
+                    });
+                } else {
+                    layer.msg(res.msg, { time: 1200, offset: 'auto' });
+                }
+            })
+
+        }
+
+    </script>
+</body>
+</html>

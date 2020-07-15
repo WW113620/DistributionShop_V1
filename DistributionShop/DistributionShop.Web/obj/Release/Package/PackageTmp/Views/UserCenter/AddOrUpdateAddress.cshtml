@@ -1,0 +1,72 @@
+﻿@model DistributionShop.Models.ViewModels.AddOrUpdateAddressViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddOrUpdateAddress</title>
+
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+</head>
+<body>
+    <div>
+        <select id="selectA" onchange="ProvinceChange()">
+            @if (Model.ProvinceList != null && Model.ProvinceList.Any())
+            {
+                foreach (var province in Model.ProvinceList)
+                {
+                    <option value="@province.ProID">@province.ProName</option>
+                }
+            }
+        </select>
+        <select id="selectB">
+            <option>选择A</option>
+            <option>选择B</option>
+            <option>选择C</option>
+        </select>
+        <select id="selectC">
+            <option>选择A</option>
+            <option>选择B</option>
+            <option>选择C</option>
+        </select>
+    </div>
+
+    <script>
+        var citylist;
+
+        $(function() {
+            getCity();
+        })
+
+        function getCity() {
+                   $.ajax({
+                    url: '@Url.Content("~/UserCenter/GetCityList")',
+                    type: 'GET',
+                    dataType: 'JSON',
+                    success: function (res) {
+                        citylist = res;
+                    },
+                    error: function (error) {
+
+                    }
+                });
+        }
+
+        function ProvinceChange() {
+            $("#selectB").html('');
+            var provinceId = $("#selectA").val();
+            var filterarray = $.grep(citylist, function (value) {
+                return value.ProID == provinceId;//筛选出大于5的
+            });
+
+            for (var i = 0; i < filterarray.length; i++) {
+                $("#selectB").append("<option " + filterarray[i].CityID+">" + filterarray[i].CityName + "</option>");
+            }
+        }
+    </script>
+</body>
+</html>

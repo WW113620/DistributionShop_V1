@@ -1,0 +1,966 @@
+.shopcarcon{
+    background:rgba(240,242,243,1);
+    overflow: hidden;
+    margin-top:151px;
+}
+.shopcarcon .title{
+    font-weight:500;
+    color:rgba(55,55,55,1);
+    margin:29px 0 25px;
+}
+.shopcarcon .consigneeeditbox{
+    margin-bottom:28px;
+}
+.shopcarcon .consigneeeditbox .title{
+    margin:0;
+    padding-left:48px;
+}
+.consigneeeditbox{
+    background:#fff;
+    border:1px solid #EAEEF6;
+    box-sizing:border-box;
+}
+.consigneeeditbox .title{
+    border-bottom:1px solid #EAEEF6;
+    height:60px;
+    line-height:60px;
+    color:#373737;
+    padding-left:70px;
+    font-family:PingFangSC-Medium,PingFang SC;
+    font-weight:500;
+}
+.consigneeeditbox .tipbox{
+    height:60px;
+    background:rgba(252,252,252,1);
+    border-bottom:1px solid rgba(234,238,246,1);
+    padding-left:48px;
+    padding-top:12px;
+    box-sizing:border-box;
+}
+.consigneeeditbox .tipbox p{
+    color:#BC5A54;
+    font-size:12px;
+}
+.consigneeeditbox .editcon{
+    overflow:hidden;
+}
+.consigneeeditbox .editleft{
+    float:left;
+    width: 588px;
+}
+.consigneeeditbox .editright{
+    float:right;
+    width: 500px;
+    border-left:1px solid #EAEEF6;
+    padding-left:20px;
+    box-sizing:border-box;
+    margin-top: 60px;
+}
+.consigneeeditbox .editright .imgbox{
+    width:270px;
+    height:148px;
+}
+.consigneeeditbox .editright dl{
+    position:relative;
+    padding-left:150px;
+    margin-bottom:20px;
+}
+.consigneeeditbox .red{
+    color:#FF4338;
+    font-size:12px;
+    margin-right:3px;
+}
+.consigneeeditbox .editright dt{
+    position:absolute;
+    left:0;
+    top:10px;
+    width:150px;
+    color:#747474;
+}
+.editright .imgbox img{
+    width:100%;
+    height:100%;
+}
+.consigneeeditbox .editleft .musttip{
+    margin:24px 0 19px 148px;
+}
+.consigneeeditbox .editleft dl{
+    position:relative;
+    padding-left:148px;
+    margin-bottom:18px;
+}
+.consigneeeditbox .editleft dt{
+    position:absolute;
+    left:0;
+    top:5px;
+    width:148px;
+    padding-right:17px;
+    box-sizing:border-box;
+    text-align:right;
+    font-size:12px;
+    color:#747474;
+}
+.consigneeeditbox .editleft .inputtxt,.consigneeeditbox .phonebox{
+    width:316px;
+    height:29px;
+    line-height:29px;
+    background:rgba(255,255,255,1);
+    border-radius:2px;
+    border:1px solid rgba(234,238,246,1);
+    box-sizing:border-box;
+    padding-left:16px;
+}
+.consigneeeditbox .editleft .inputtxt:disabled{
+    background:rgba(240,242,243,1);
+}
+.consigneeeditbox .editleft .sfztip,.consigneeeditbox .editleft .nametip{
+    color:#95ABD0;
+    font-size:12px;
+    padding-top:9px;
+    display:inline-block;
+}
+.consigneeeditbox .editleft .savebtn{
+    width:78px;
+    height:30px;
+    line-height:30px;
+    background:rgba(51,165,142,1);
+    border-radius:23px;
+    font-size:12px;
+    font-family:PingFangSC-Regular,PingFang SC;
+    font-weight:400;
+    color:#fff;
+    margin:25px 0 34px 148px;
+    cursor:pointer;
+}
+.consigneeeditbox .editleft .savebtn:hover{
+    opacity:0.8;
+    filter:alpha(opacity=80);
+}
+.consigneeeditbox .editleft .tjbox{
+    margin:40px 0 0 107px;
+    font-size:12px;
+}
+.consigneeeditbox .editleft .tjbox .check{
+    display:inline-block;
+    width:18px;
+    height:18px;
+    background:url(../images/checked.png) no-repeat 0 0/100% 100%;
+    vertical-align:middle;
+    margin:-2px 24px 0 0;
+}
+.consigneeeditbox .editleft .addresstxt{
+    width: 413px;
+    height:58px;
+    background:rgba(255,250,250,1);
+    border-radius:2px;
+    border:1px solid rgba(255,67,56,0.3);
+    outline:none;
+    resize: none;
+    font-family:PingFangSC-Regular,PingFang SC;
+}
+.consigneeeditbox .editleft .jtdztip{
+    color:#BC5A54;
+    font-size:12px;
+    padding-top:9px;
+    display:inline-block;
+}
+.consigneeeditcon .resultcon{
+    font-size:12px;
+    padding:16px 0 20px 48px;
+    display:none;
+}
+.consigneeeditcon .resultcon .sjr{
+    font-size:14px;
+    font-weight:400;
+    display:inline-block;
+    width:130px;
+}
+.consigneeeditcon .resultcon .address{
+    padding-left:135px;
+    margin-top:5px;
+}
+.consigneeeditcon .resultcon .modifybtn{
+    margin-left:15px;
+    color:#33A58E;
+}
+.consigneeeditcon .resultcon .modifybtn img{
+    vertical-align:middle;
+    margin-right:5px;
+}
+.consigneeeditcon .selbox{
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    -ms-appearance:none;
+    border-radius:2px;
+    border:1px solid rgba(234,238,246,1);
+    background:url("../images/icon_trangle.png") no-repeat scroll 75px center #fff;
+    background-size:18px 18px;
+    color:#373737;
+    padding: 3px 15px;
+    outline:none;
+    height:29px;
+    box-sizing:border-box;
+    width:100px;
+}
+.consigneeeditbox .phonebox{
+    padding-left:0;
+}
+.consigneeeditbox .phonebox .areabox {
+    width: 100px;
+    border: none;
+    background-position: 75px center;
+    height: 17px;
+    line-height: 17px;
+    position: relative;
+    border-right: 1px solid rgba(234,238,246,1);
+    border-radius: 0;
+    padding: 0 10px;
+    margin-top: -5px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.shopcarcon .showtable{
+    background:#fff;
+    width:100%;
+    color:#747474;
+    font-weight:400;
+    text-align:left;
+    box-sizing:border-box;
+    border:1px solid rgba(234,238,246,1);
+}
+.shopcarcon .tablist{
+    overflow:hidden;
+    border-bottom:1px solid rgba(234,238,246,1);
+}
+.shopcarcon .tablist li{
+    float:left;
+    height:60px;
+    line-height:60px;
+    font-weight:500;
+}
+.shopcarcon .tablebox li{
+    border-bottom:1px solid #EAEEF6;
+    overflow:hidden;
+    height:139px;
+    line-height:139px;
+}
+.shopcarcon .zztr{
+    overflow:hidden;
+}
+.shopcarcon .zztr div{
+    float:left;
+}
+.shopcarcon .tablebox .tabbox{
+    float:left;
+}
+.shopcarcon .tablebox .check,.tablist .check,.shopcarcon .zztr .check{
+    width:70px;
+}
+.shopcarcon .tablebox .checkbox{
+    margin:61px auto;
+}
+.shopcarcon .tablebox .imgbox,.tablist .imgbox{
+    width: 105px;
+}
+.shopcarcon .tablebox .detail,.tablist .detail{
+    width: 280px;
+}
+.shopcarcon .tablebox .price,.tablist .price{
+    width:210px;
+}
+.shopcarcon .tablebox .numbox,.tablist .numbox{
+    width:194px;
+}
+.shopcarcon .tablebox .money,.tablist .money{
+    width:144px;
+    color: #373737;
+}
+.shopcarcon .checkbox{
+    width:18px;
+    height:18px;
+    background:url(../images/check.png) no-repeat 0 0/100% 100%;
+    display:block;
+    border-radius:100%;
+    margin: 21px auto;
+    cursor: pointer;
+}
+.shopcarcon .zztr .checkbox{
+    margin:25px auto;
+}
+.shopcarcon .checkbox.active{
+    background-image:url(../images/checked.png);
+}
+.tablist .allword{
+    color:rgba(55,55,55,1);
+    display:block;
+    width:100%;
+    text-align:left;
+    font-weight:600;
+}
+.shopcarcon .tip{
+    height:42px;
+    background:rgba(252,252,252,1);
+    display:block;
+    width:100%;
+    line-height:42px;
+    font-weight:400;
+    color:rgba(188,90,84,1);
+    padding-left:70px;
+    border-bottom: 1px solid rgba(234,238,246,1);
+    box-sizing:border-box;
+}
+.shopcarcon .tablebox .shopimg{
+    width:90px;
+    height:90px;
+    margin:24px 0;
+}
+.tablebox .detail .instro{
+    height:40px;
+    font-weight:400;
+    color:rgba(55,55,55,1);
+    line-height:20px;
+    margin-top: 38px;
+    width: 220px;
+    overflow: hidden;
+}
+.tablebox .detail .type{
+    height:20px;
+    font-weight:400;
+    color:rgba(188,90,84,1);
+    line-height:20px;
+}
+.tablebox .nowprice{
+    color:#373737;
+}
+.tablebox .preprice{
+    text-decoration:line-through;
+}
+.shopcarcon .tablebox .counter{
+    border:1px solid rgba(234,238,246,1);
+    font-size:0;
+    height:28px;
+    width:117px;
+    line-height:28px;
+    margin-top: 55px;
+}
+.shopcarcon .counter a,.tablebox .counter a{
+    color:#747474;
+    display: inline-block;
+    height:28px;
+    line-height:28px;
+    width:28px;
+    vertical-align:middle;
+    margin-top:-8px;
+    font-size:14px;
+    text-align:center;
+}
+.tablebox .counter input{
+    border:none;
+    border-left:1px solid rgba(234,238,246,1);
+    border-right:1px solid rgba(234,238,246,1);
+    height:28px;
+    line-height:28px;
+    width:58px;
+    text-align:center;
+}
+.shopcarcon .delbtn{
+    font-weight:400;
+    color:rgba(55,55,55,1);
+    height:68px;
+    line-height:68px;
+}
+.shopcarcon .delbtn:hover{
+    text-decoration:underline;
+}
+.shopcarcon .zztr{
+    height:68px;
+    line-height:68px;
+}
+.shopcarcon .zztr .qztxt{
+    width:197px;
+    height:47px;
+    background:rgba(255,255,255,1);
+    border-radius:24px;
+    border:1px solid rgba(219,223,225,1);
+    line-height:47px;
+    text-indent:26px;
+    margin-left:34px;
+}
+.shopcarcon .zztr .qztxt::placeholder{
+    color:rgba(166,166,166,1);
+}
+.shopcarcon .zztr .word{
+    color:rgba(55,55,55,1);
+}
+.shopcarcon .operatebox{
+    height:68px;
+    background:rgba(252,252,252,1);
+    overflow:hidden;
+    margin-top:10px;
+    margin-bottom:300px;
+    border:1px solid rgba(234,238,246,1);
+}
+.shopcarcon .operatebox .check{
+    float:left;
+    width:120px;
+    height:68px;
+    line-height:68px;
+}
+.shopcarcon .operatebox .checkbox{
+   margin: 25px 0 0 26px;
+   display:inline-block;
+}
+.shopcarcon .operatebox .word{
+    display:inline-block;
+    margin: -10px 0 0 20px;
+    vertical-align:middle;
+    font-weight:600;
+}
+.shopcarcon .accountbtn{
+    float:right;
+    color:#fff;
+    width:138px;
+    height:68px;
+    background:rgba(51,165,142,1);
+    text-align:center;
+    line-height:68px;
+}
+.shopcarcon .accountbtn:hover{
+    opacity:0.8;
+    filter:alpha(opacity=80);
+}
+.shopcarcon .totalbox{
+    float:right;
+    margin-right:37px;
+    text-align: right;
+}
+.shopcarcon .totalbox .money{
+    font-size:14px;
+    font-weight:400;
+    color:rgba(116,116,116,1);
+    line-height:20px;
+}
+.shopcarcon .totalbox .money span{
+    margin-left:15px;
+}
+.shopcarcon .top i{
+    color:#FF4338;
+    font-size:18px;
+    font-weight:600;
+}
+.shopcarcon .top{
+    margin-top:12px;
+    margin-bottom:3px;
+}
+.shopcarcon .top span{
+    margin-left:25px;
+}
+.mbzztr{
+    display:none;
+}
+.shopcarcon.consigneeeditcon .tablist .detail{
+   padding-left:37px;
+   width: 380px;
+   color: #373737;
+}
+.shopcarcon.consigneeeditcon .tip{
+    padding-left:37px;
+}
+.consigneeeditcon .imgbox,.consigneeeditcon .tablist .imgbox{margin-left: 37px;}
+.shopcarcon.consigneeeditcon .tablebox .price, .shopcarcon.consigneeeditcon .tablist .price{
+    width:240px;
+}
+.shopcarcon.consigneeeditcon .tablebox .numbox, .shopcarcon.consigneeeditcon .tablist .numbox{
+    width:240px;
+}
+.shopcarcon.consigneeeditcon .tablist .money{
+   color:#747474;
+}
+.shopcarcon.consigneeeditcon .zztr{
+    height:auto;
+    line-height:normal;
+}
+.shopcarcon.consigneeeditcon .zztr .pretotalbox{
+    height:42px;
+    line-height:42px;
+    background:rgba(252,252,252,1);
+    border-top:1px solid rgba(234,238,246,1);
+    text-align:right;
+    width:100%;
+    padding-right:120px;
+    box-sizing:border-box;
+}
+.shopcarcon.consigneeeditcon .zztr .pretotalbox .price{
+    color:#FF4338;
+    font-size:18px;
+    font-weight:500;
+}
+.shopcarcon.consigneeeditcon .zztr div.zzfw{
+    display:block;
+    width:100%;
+    margin-left:60px;
+    height:68px;
+    line-height: 68px;
+}
+.shopcarcon.consigneeeditcon .operatebox{
+    height:auto;
+    box-sizing:border-box;
+}
+.shopcarcon.consigneeeditcon .operatebox .yhbox{
+    display:block;
+    height:68px;
+    line-height:68px;
+    background:rgba(252,252,252,1);
+    border-bottom:1px solid rgba(234,238,246,1);
+    padding-left:60px;
+}
+.shopcarcon.consigneeeditcon .operatebox .yhqselbox{
+    height:47px;
+    width:228px;
+    border-radius:24px;
+    background-position:190px center;
+    margin-left:12px;
+}
+.shopcarcon.consigneeeditcon .operatebox .yhxx{
+    margin-left:45px;
+    line-height:normal;
+}
+.shopcarcon.consigneeeditcon .operatebox .radiobox{
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: url(../images/checked.png) no-repeat 0 0/18px 18px;
+    vertical-align: middle;
+    margin: -2px 14px 0 0;
+}
+@media screen and (max-width:1200px) {
+    .md1200{
+       width:100%;
+       padding: 0 30px;
+       box-sizing: border-box;
+     }
+     .md1200 .content{
+         width:100%;
+         overflow:auto;
+     }
+     .consigneeeditbox .tipbox{
+        height:auto;
+        padding-bottom:12px;
+    }
+    .consigneeeditbox .editleft, .consigneeeditbox .editright{
+        display:block;
+        border:none;
+        float:none;
+        width:100%;
+    }
+    
+}
+
+@media screen and (max-width:1000px) {
+    .shopcarcon .md1200{
+       width:100%;
+       margin-bottom:50px;
+     }
+     .md1200 .content {
+        width:100%;
+        overflow-x:scroll;
+    }
+    
+    .shopcarcon .operatebox{
+        width:1000px;
+        margin-bottom:10px;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .shopcarcon .zztr.mbzztr{
+       display:block;
+       border-bottom: 1px solid rgba(234,238,246,1);
+       height:auto;
+       line-height:normal;
+    }
+    .shopcarcon .zztr.mbzztr div.zzfw{
+        width:80%;
+        line-height:normal;
+        font-size: 12px;
+    }
+    .shopcarcon .mbzztr .checkbox{
+        margin: 15px auto;
+    }
+    .shopcarcon{
+        margin-top:136px;
+        background:#fff;
+    }
+    .shopcarcon .title{
+        margin:12px 0;
+    }
+    .shopcarcon .md1200{
+       padding:0 11px;
+    }
+    .shopcarcon .zztr{
+        display:none;
+    }
+    .shopcarcon .mbzztr .qztxt{
+        height:38px;
+        line-height:38px;
+        margin-left:0;
+        display:none;
+        width: 92%;
+        margin-bottom: 17px;
+        font-size: 12px;
+    }
+    .shopcarcon .mbzztr .word{
+        display:block;
+        margin: 15px auto;
+    }
+    .shopcarcon .operatebox,.shopcarcon .delbtn{
+        height:42px;
+        line-height:42px;
+    }
+    .shopcarcon .operatebox .checkbox{
+        margin:12px 0 0 26px;
+    }
+    .shopcarcon .operatebox .check{
+        height:42px;
+        line-height:42px;
+    }
+    .shopcarcon .top{
+        margin-top:0;
+        line-height:40px;
+        font-size: 12px;
+    }
+    .shopcarcon .top i{
+        font-size:14px;
+    }
+    .shopcarcon .accountbtn{
+        height:45px;
+        line-height:45px;
+    }
+    .shopcarcon .tablist{
+        display:none;
+    }
+    .shopcarcon .tip{
+        height: 55px;
+        line-height: 20px;
+        padding: 7px 19px 0 19px;
+        box-sizing: border-box;
+        font-size: 12px;
+    }
+    .shopcarcon .tablebox .check{
+        display:none;
+    }
+    .shopcarcon .tablebox .shopimg{
+        margin:40px 0 40px 17px;
+    }
+    .shopcarcon .tablebox li{
+        height:auto;
+        line-height:normal;
+        position:relative;
+    }
+    .shopcarcon .top span{
+        margin:0 15px 0 0;
+    }
+    .shopcarcon .tablebox li:last-child{
+        border:none;
+    }
+    .shopcarcon .tablebox .detail{
+        position:absolute;
+        left: 120px;
+        top:23px;
+    }
+    .tablebox .detail .instro{
+        margin-top:0;
+        margin-bottom:5px;
+        width:55%;
+        font-size: 12px;
+    }
+    .shopcarcon .tablebox .price{
+        position:absolute;
+        left: 120px;
+        top:93px;
+        width:auto;
+        font-size:12px;
+    }
+    .shopcarcon .tablebox .numbox{
+        position:absolute;
+        left: 120px;
+        top:120px;
+    }
+    .tablebox .detail .type{
+        font-size:12px;
+    }
+    .shopcarcon .tablebox .counter{
+        margin-top:0;
+    }
+    .shopcarcon .tablebox .money{
+        width:auto;
+        position:absolute;
+        right:15px;
+        top:125px;
+        font-size: 12px;
+    }
+    .shopcarcon .delbtn{
+        font-size:0;
+        position:absolute;
+        right:15px;
+        top:23px;
+        display:block;
+        width:25px;
+        height:25px;
+        background:url(../images/icon_delete.png) no-repeat 0 0/100% 100%;
+    }
+    .shopcarcon .tablebox .counter{
+        height:23px;
+        line-height:23px;
+        width: 107px;
+    }
+    .shopcarcon .counter a, .tablebox .counter a{
+        height:23px;
+        line-height:23px;
+        margin-top: -10px;
+    }
+    .tablebox .counter input{
+        height:23px;
+        line-height:23px;
+        width:49px;
+    }
+    .shopcarcon .operatebox{
+        width:100%;
+        position:relative;
+        overflow:auto;
+        box-sizing:border-box;
+        margin:0;
+        border-top:none;
+        border:none;
+        height:168px;
+    }
+    .shopcarcon .operatebox .check{
+        display:none;
+    }
+    .shopcarcon .operatebox .accountbtn{
+        width:100%;
+        position:absolute;
+        left:0;
+        top:90px;
+        float:none;
+    }
+    .shopcarcon .totalbox{
+        float:none;
+        border: 1px solid rgba(234,238,246,1);
+        border-top:none;
+        padding-left:17px;
+        margin-right:0;
+        height:68px;
+        text-align: left;
+    }
+    .shopcarcon .top span:nth-child(2){
+        margin-left:15px;
+    }
+    .shopcarcon .money .yf{
+        margin-left:30px;
+    }
+    .shopcarcon .tablebox .imgbox{
+        width:auto;
+    }
+    .consigneeeditbox{
+        border:none;
+    }
+    .shopcarcon .consigneeeditbox .title{
+        border:1px solid #EAEEF6;
+        height:45px;
+        line-height:45px;
+        padding-left:15px;
+    }
+    .consigneeeditbox .tipbox{
+        height:auto;
+        padding:11px 15px;
+        border:1px solid #EAEEF6;
+        border-top:none;
+    }
+    .consigneeeditbox .editcon{
+        padding:15px;
+        border:1px solid #EAEEF6;
+        border-top:none;
+    }
+    .consigneeeditbox .editleft,.consigneeeditbox .editright{
+        width:100%;
+        display:block;
+        border:none;
+    }
+    .consigneeeditbox .editleft dt{
+        width:100px;
+    }
+    .consigneeeditbox .editleft dl{
+        padding-left:90px;
+    }
+    .consigneeeditbox .editleft .musttip{
+        margin-left:100px;
+        margin-top:0;
+    }
+    .consigneeeditbox .editleft .inputtxt, .consigneeeditbox .phonebox{
+        width:100%;
+        font-size:12px;
+    }
+    .consigneeeditbox .editright{
+        border-top:1px solid #EAEEF6;
+        padding:0;
+    }
+    .consigneeeditbox .editright dl{
+        padding:0;
+    }
+    .consigneeeditbox .editright dt{
+        display: block;
+        position: initial;
+        left: auto;
+        top: auto;
+        margin:12px 0;
+    }
+    .consigneeeditbox .editright dd{
+        display:block;
+    }
+    .consigneeeditbox .phonebox .areabox{
+        width:40%;
+        margin-bottom:0;
+    }
+    .consigneeeditbox .phonebox .phonetxt{
+        width:50%;
+        font-size:12px;
+        height:26px;
+        line-height:26px;
+        vertical-align:middle;
+        margin-top:-5px;
+        padding-left:5px;
+        box-sizing:border-box;
+    }
+    .consigneeeditbox .selbox{
+        font-size:12px;
+        margin-bottom:10px;
+        width:48%;
+    }
+    .consigneeeditbox .editleft .tjbox{
+        margin:20px 0 0 90px;
+    }
+    .consigneeeditbox .editleft .savebtn{
+        margin:20px 0 0 90px;
+    }
+    .consigneeeditbox .editright .imgbox{
+        width:90%;
+    }
+    .shopcarcon.consigneeeditcon .tip{
+        padding-left: 19px;
+        height:40px;
+    }
+    .shopcarcon.consigneeeditcon .zztr div.zzfw{
+        margin:0;
+        float: left;
+        height: auto;
+    }
+    .consigneeeditcon .imgbox, .tablist .imgbox{
+        margin:0;
+    }
+    .shopcarcon.consigneeeditcon .operatebox .yhbox{
+        height: auto;
+        padding:12px 0 12px 17px;
+        line-height: normal;
+        border: 1px solid rgba(234,238,246,1);
+        border-top:none;
+        box-sizing:border-box;
+    }
+    .shopcarcon.consigneeeditcon .operatebox .yhqselbox{
+        width: 40%;
+        height: 38px;
+        font-size: 12px;
+        margin-left: 5px;
+        background-position:80% center;
+        margin-bottom: 5px;;
+    }
+    .shopcarcon.consigneeeditcon .operatebox .yhxx{
+        margin:0 0 5px 0;
+        display:block;
+        font-size: 12px;
+    }
+    .shopcarcon.consigneeeditcon .operatebox .accountbtn{
+        top:auto;
+        bottom:0;
+    }
+    .shopcarcon.consigneeeditcon .operatebox{
+        height: auto;
+        overflow: initial;
+    }
+    .shopcarcon.consigneeeditcon .operatebox .totalbox{
+        height:150px;
+        padding:0;
+    }
+    .shopcarcon.consigneeeditcon .top{
+       text-align:left;
+       padding-left: 12px;
+    }
+    .shopcarcon.consigneeeditcon .money span{
+        width:50%;
+        margin:0;
+        float: left;
+    }
+    .shopcarcon.consigneeeditcon .totalbox .money{
+        overflow: hidden;
+        padding:0 12px;
+    }
+    
+}
+@media screen and (max-width:320px) {
+    .shopcarcon .tablebox .shopimg {
+        margin: 40px 0 40px 12px;
+        width:75px;
+        height:75px;
+    }
+    .shopcarcon .tip{
+        padding: 9px 14px 0 14px;
+        font-size:12px;
+    }
+    .shopcarcon .tablebox  .detail,.shopcarcon .tablebox .price,.shopcarcon .tablebox .numbox{
+        left:100px;
+    }
+    .shopcarcon .showtable .zztr.mbzztr div.zzfw{
+        width:70%;
+    }
+    .shopcarcon .delbtn{
+        width:20px;
+        height:20px;
+    }
+    .tablebox  .detail .instro{
+        width:45%;
+        font-size:12px;
+    }
+    .shopcarcon .totalbox{
+        font-size:12px;
+    }
+    .shopcarcon .operatebox .delbtn{
+        display:none;
+    }
+    .shopcarcon .mbzztr .word{
+        font-size:12px;
+        margin:15px auto;
+    }
+    .tablebox .detail .type{
+        font-size:12px;
+    }
+    .shopcarcon .tablebox .counter,.tablebox .counter input{
+        height:24px;
+        line-height:24px;
+    }
+    .shopcarcon .totalbox .money{
+        font-size:12px;
+    }
+    .shopcarcon .mbzztr .qztxt{
+        height:30px;
+        line-height:30px;
+        margin:0 auto 15px;
+        font-size:12px;
+    }
+    .shopcarcon .mbzztr .checkbox{
+        margin:15px auto;
+    }
+    .shopcarcon .operatebox .accountbtn{
+        height:40px;
+        line-height:40px;
+    }
+}

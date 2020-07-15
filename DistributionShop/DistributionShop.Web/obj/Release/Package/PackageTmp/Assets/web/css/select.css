@@ -1,0 +1,94 @@
+.multi-select-container {
+    display: inline-block;
+    position: relative;
+}
+
+.multi-select-menu {
+    position: absolute;
+    left: 0;
+    top: 29px;
+    z-index: 1;
+    float: left;
+    min-width: 100%;
+    background: #fff;
+    margin: 0;
+    border: 1px solid rgba(234,238,246,1);
+    /*box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);*/
+    display: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.multi-select-menuitem {
+    display: block;
+    font-size: 0.875em;
+    padding: 0.6em 1em 0.6em 30px;
+    white-space: nowrap;
+}
+
+.multi-select-menuitem + .multi-select-menuitem {
+    padding-top: 0;
+}
+
+.multi-select-presets {
+    border-bottom: 1px solid #ddd;
+}
+
+.multi-select-menuitem input {
+    position: absolute;
+    margin-top: 0.25em;
+    margin-left: -20px;
+}
+
+.multi-select-button {
+   -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    border: 1px solid rgba(234,238,246,1);
+    background: url(../images/icon_trangle.png) no-repeat scroll 280px center #fff;
+    background-size: 18px 18px;
+    color: #373737;
+    padding: 3px 15px;
+    outline: none;
+    height: 29px;
+    line-height: 29px;
+    box-sizing: border-box;
+    width: 316px;
+    position: relative;
+    border-radius: 0;
+    padding: 0 15px;
+    display: flex;
+    vertical-align: middle;
+}
+
+.multi-select-button:after {
+    /*content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0.4em 0.4em 0 0.4em;
+    border-color: #999 transparent transparent transparent;
+    margin-left: 0.4em;*/
+    vertical-align: 0.1em;
+}
+
+.multi-select-container--open .multi-select-menu {
+    display: block;
+}
+
+.multi-select-container--open .multi-select-button:after {
+    border-width: 0 0.4em 0.4em 0.4em;
+    border-color: transparent transparent #999 transparent;
+}
+
+.multi-select-container--positioned .multi-select-menu {
+    /* Avoid border/padding on menu messing with JavaScript width calculation */
+    box-sizing: border-box;
+}
+
+.multi-select-container--positioned .multi-select-menu label {
+    /* Allow labels to line wrap when menu is artificially narrowed */
+    white-space: normal;
+}

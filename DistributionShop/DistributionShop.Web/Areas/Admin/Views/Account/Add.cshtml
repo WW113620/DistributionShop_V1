@@ -1,0 +1,107 @@
+﻿@{
+    ViewBag.Title = "添加管理员";
+}
+
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">添加管理员</div>
+                <div class="layui-card-body" pad15>
+
+                    <div class="layui-form" lay-filter="layuiadmin-form-admin" id="layuiadmin-form-admin">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">登录名</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="UserName" lay-verify="username" lay-verType="tips" placeholder="请输入登录名" autocomplete="off" class="layui-input" maxlength="20">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">密码</label>
+                            <div class="layui-input-inline">
+                                <input type="password" name="Password" lay-verify="pass" lay-verType="tips" id="LAY_password" placeholder="请输入密码" autocomplete="off" class="layui-input" maxlength="20">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">确认密码</label>
+                            <div class="layui-input-inline">
+                                <input type="password" name="Repassword" lay-verify="repass" lay-verType="tips" placeholder="请输入确认密码" autocomplete="off" class="layui-input" maxlength="20">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">昵称</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="NickName" lay-verify="nickname" lay-verType="tips" placeholder="请输入昵称" autocomplete="off" class="layui-input" maxlength="20">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">姓名</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="RealName" lay-verify="realname" lay-verType="tips" placeholder="请输入姓名" autocomplete="off" class="layui-input" maxlength="20">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">手机</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="Phone" lay-verify="newPhone" lay-verType="tips" placeholder="请输入手机" autocomplete="off" class="layui-input" maxlength="20">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">邮箱</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="Email" lay-verify="email" lay-verType="tips" placeholder="请输入邮箱" autocomplete="off" class="layui-input" maxlength="50">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">微信号</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="Weixin" lay-verify="weixin" lay-verType="tips" placeholder="请输入微信号" autocomplete="off" class="layui-input" maxlength="50">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">角色</label>
+                            <div class="layui-input-inline">
+                                <select name="RoleType">
+                                    <option value="2">管理员</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">审核状态</label>
+                            <div class="layui-input-inline">
+                                <input type="checkbox" lay-filter="switch" name="State" lay-skin="switch" lay-text="通过|待审核">
+                            </div>
+                        </div>
+                       
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" lay-submit lay-filter="addAccount">确定提交</button>
+                                <button class="layui-btn layui-btn-primary" onclick="List()">返回列表</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function List() {
+         location.href ="@Url.Content("~/Admin/Account/List")";
+    }
+
+    layui.config({
+        base: '/Assets/layuiadmin/'
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'form', 'set'], function () {
+        var $ = layui.$
+            , form = layui.form;
+    })
+</script>

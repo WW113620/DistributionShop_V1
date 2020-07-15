@@ -1,0 +1,133 @@
+﻿@model DistributionShop.Models.ViewModels.RetShoppingCartIndexVModel
+@using DistributionShop.Models.Utils;
+@{
+    //decimal totalPrice = 0;//商品总价
+    //int totalCount = 0;
+    //int secondPostTypeCount = 0;//第二类邮寄类型商品数量
+    //decimal postage = 0;//邮费
+    //bool isPostageFree = false;//是否有第三类商品
+}
+@if (Model.ShoppingCartList != null && Model.ShoppingCartList.Any())
+{
+    foreach (var shoppingCar in Model.ShoppingCartList)
+    {
+        if (shoppingCar.CartProductList != null && shoppingCar.CartProductList.Any())
+        {
+            foreach (var cartProduct in shoppingCar.CartProductList)
+            {
+                //if (cartProduct.IsCheck)
+                //{
+                //    totalCount += cartProduct.Num;
+                //    totalPrice += cartProduct.TotalFee;
+                //    if (!isPostageFree)
+                //    {
+                //        //套餐类商品，此类商品包邮，且订单中含有套餐类商品的订单一律包邮；即套餐类商品混合第二类第一类商品整单包邮。
+                //        isPostageFree = cartProduct.PostType == (int)PostTypeEnums.第三类;
+                //    }
+                //    if (isPostageFree)
+                //    {
+                //        postage = 0;
+                //    }
+                //    else
+                //    {
+                //        if (cartProduct.PostType == (int)PostTypeEnums.第三类)
+                //        {
+                //        }
+                //        else if (cartProduct.PostType == (int)PostTypeEnums.第二类)
+                //        {
+                //            secondPostTypeCount += cartProduct.Num;
+                //            if (isPostageFree || totalPrice >= 500 || secondPostTypeCount >= 6) //有第三类包邮商品 第二类商品中判断满6件或500元
+                //            {
+                //                postage = 0;
+                //            }
+                //            else if (secondPostTypeCount == 5)//5件产品，补运费5元；
+                //            {
+                //                postage = 5;
+
+                //            }
+                //            else if (secondPostTypeCount == 4)//4件产品，补运费10元；
+                //            {
+                //                postage = 10;
+                //            }
+                //            else if (secondPostTypeCount == 3)//3件产品，补运费15元；
+                //            {
+                //                postage = 15;
+                //            }
+                //            else if (secondPostTypeCount == 2)//2件产品，补运费20元；
+                //            {
+                //                postage = 20;
+                //            }
+                //            else if (secondPostTypeCount == 1)//1件产品，补运费25元。
+                //            {
+                //                postage = 25;
+                //            }
+                //        }
+                //    }
+                //}
+
+                <li class="tabli">
+                    <div class="tabbox check"> 
+                        <span class="checkbox@(cartProduct.IsCheck?" active":"")" data-val="@(cartProduct.ProductId)" data-num="@(cartProduct.Num)" data-totalfee="@cartProduct.TotalFee" data-posttype="@(cartProduct.PostType)">
+                        </span>
+                    </div>
+                    <div class="tabbox imgbox">
+                        <img src="@Url.Content("~/api/MediaApi/GetCoverFileName?fileName="+cartProduct.FileName)" onerror="onerror=null;src='../Images/banner1.png'" class="shopimg">
+                    </div>
+                    <div class="tabbox detail">
+                        <p class="instro">@cartProduct.ProductName</p>
+                        <p class="type">@(cartProduct.PostType==(int)PostTypeEnums.第二类? "非包邮商品" : "包邮商品")</p>
+                    </div>
+                    <div class="tabbox price">
+                        <span class="nowprice">￥@cartProduct.WebPrice</span>
+                        <span class="preprice">￥@cartProduct.OriginalPrice</span>
+                    </div>
+                    <div class="tabbox numbox">
+                        <div class="counter">
+                            <a href="javascript:;" class="minus" onclick="AddToShoppingCart(@cartProduct.ProductId,-1)">-</a>
+                            <input type="text" class="numtxt" style="font-size:small" value="@(cartProduct.Num)" onblur="ChangeCount(this,@(cartProduct.ProductId),@(cartProduct.Num))" onkeyup="this.value=this.value.replace(/\D/g,'')">
+                            <a href="javascript:;" class="add" onclick="AddToShoppingCart(@cartProduct.ProductId,1)">+</a>
+                        </div>
+                    </div>
+                    <div class="tabbox money">￥@cartProduct.TotalFee</div>
+                    <div class="tabbox opt">
+                        <a href="javascript:;" class="delbtn" onclick="DeleteProducts(@cartProduct.ProductId,@(-cartProduct.Num))">删除</a>
+                    </div>
+                </li>
+            }
+        }
+    }
+}
+<script type="text/javascript">
+    $(function () {
+        @*$('#totalCount').text('@(totalCount)');
+        $('#totalPrice').text('￥@(totalPrice)');
+        $('#total').html('商品总价：￥@(totalPrice+postage) <span class="yf" id="postage">运费：￥@(postage)</span>');
+        //$('#postage').text('运费：￥@(postage)');*@
+
+        $(".shopcarcon .counter a").on("click", function () {
+            var inputvale = parseInt($(this).siblings("input").val());
+            if ($(this).hasClass("minus")) {
+                inputvale--;
+            } else {
+                inputvale++;
+            }
+            $(this).siblings("input").val(inputvale);
+        });
+
+        $(".tablebox .checkbox").on("click", function () {
+            var len = parseInt($(".tablebox .tabli").length);//- 1减一是为了底部增值服务
+            $(this).toggleClass("active");
+            if ($(this).hasClass("active")) {
+                var nowlen = $(".tabli .checkbox.active").length;
+                if (nowlen == len) {
+                    $(".checkallbox").addClass("active");
+                }
+            } else {
+                $(".checkallbox").removeClass("active");
+            }
+            SumMoney();
+        });
+
+        SumMoney();
+    })
+</script>

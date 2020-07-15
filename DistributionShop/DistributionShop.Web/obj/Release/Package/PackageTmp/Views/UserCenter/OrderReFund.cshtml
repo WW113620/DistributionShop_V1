@@ -1,0 +1,295 @@
+﻿@using DistributionShop.Models.Utils
+@model DistributionShop.Models.ViewModels.GetOrderDetailViewModel
+@{
+    ViewBag.Title = "我要退款";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    DistributionShop.Models.Data.Order orderModel = ViewBag.Order as DistributionShop.Models.Data.Order;
+    string description = Model.orderReFund != null ? Model.orderReFund.Description : "";
+    int Status = Model.orderReFund.Status.ToInt(0);
+    string StatusName = "";
+    if (Model.orderReFund != null)
+    {
+        if (Status == (int)WebReFundStatusEnums.已退款)
+        {
+            if (Model.OrderDetailList != null && Model.OrderDetailList.Count > 0)
+            {
+                StatusName = "部分已退款";
+            }
+            else
+            {
+                StatusName = "已退款";
+            }
+        }
+        else
+        {
+            StatusName = Enum.GetName(typeof(WebReFundStatusEnums), Status);
+        }
+    }
+}
+
+<link href="~/Assets/web/css/personal.css" rel="stylesheet" />
+<link href="~/Assets/web/css/select.css" rel="stylesheet" />
+<script src="~/Assets/web/js/select.js"></script>
+<input type="hidden" id="hidOrderSn" value="@ViewBag.OrderSn" />
+<div class="personalcon">
+    <div class="md1200">
+        <div class="breadnav"><a href="@Url.Action("MyOrder","UserCenter")">我的订单</a><span>&gt;</span><a href="@Url.Action("GetOrderDetail","UserCenter",new { orderSn=ViewBag.OrderSn})">订单详情</a><span>&gt;</span><a href="javascript:;">我要退款</a></div>
+        <div class="ddxxcon refundcon">
+            <div class="title">订单信息</div>
+            <div class="ddxxbox">
+                <div class="ddxxleft">
+                    <dl>
+                        <dt>收货人：</dt>
+                        <dd>
+                            <p>@(Model?.OrderDetailViewModelData?.RealName)</p>
+                            <p>@(Model?.OrderDetailViewModelData?.PrePhoneTypeStr)@(Model?.OrderDetailViewModelData?.TelPhone)</p>
+                            <p>@(Model?.OrderDetailViewModelData?.Address)</p>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>订单号：</dt>
+                        <dd><p>@(Model?.OrderDetailViewModelData?.OrderSn)</p></dd>
+                    </dl>
+                    <dl>
+                        <dt>下单时间：</dt>
+                        <dd><p>@(Model?.OrderDetailViewModelData?.AddTimeValue)</p></dd>
+                    </dl>
+                </div>
+                <div class="ddxxright">
+                    <div class="infobox">
+                        <p>订单状态：@(Model?.OrderDetailViewModelData?.PayStateStr)</p>
+                        <p>订单金额（含运费）：<span class="money">￥@(Model?.OrderDetailViewModelData?.TotalPayPriceStr)</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="refundbox">
+                <div class="title">申请退款</div>
+                <div class="tip"><p>请提交申请并耐心等待审核。一般情况下，退款需要1-5个工作日完成。 请耐心等待，我们将尽快处理您的退款请求。</p></div>
+                <div class="formbox">
+                    @if (Model.orderReFund != null && Status != (int)WebReFundStatusEnums.未退款)
+                    {
+
+                        <dl>
+                            <dt>退款状态：</dt>
+                            <dd>
+                                <select class="selbox" disabled>
+                                    <option value="@Model.orderReFund.Status">@StatusName</option>
+                                </select>
+                            </dd>
+                        </dl>
+                    }
+
+                    <dl>
+                        <dt>选择种类：</dt>
+                        <dd>
+                            <select class="selbox" id="refundType">
+                                @{
+                                    List<SelectOption> ReFundTypeEnums = ViewBag.ReFundTypeEnums as List<SelectOption>;
+                                    foreach (var item in ReFundTypeEnums)
+                                    {
+                                        if (Model.orderReFund != null)
+                                        {
+                                            if (Model.orderReFund.ReFundType == item.Value)
+                                            {
+                                                <option value="@item.Value" selected="selected">@item.Text</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.Value">@item.Text</option>
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.Value">@item.Text</option>
+                                        }
+                                    }
+                                }
+                            </select>
+                        </dd>
+                    </dl>
+                    <dl class="overauto">
+                        <dt>退款商品：</dt>
+                        <dd>
+                            <select id="productids" multiple>
+
+                                @{
+                                    if (Model.OrderDetailList != null && Model.OrderDetailList.Count > 0)
+                                    {
+                                        foreach (var item in Model.OrderDetailList)
+                                        {
+                                            string proName = item.ProductName;
+                                            if (!string.IsNullOrEmpty(proName) && proName.Length > 25)
+                                            {
+                                                proName = proName.Substring(0, 25) + "...";
+                                            }
+                                            if (item.Status == (int)WebOrderDetailStatusEnums.退款申请中)
+                                            {
+                                                <option value="@item.Id" data-price="@item.WebPrice" data-count="@item.OrderProductAmount" title="@item.ProductName" selected="selected">@proName</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.Id" data-price="@item.WebPrice" data-count="@item.OrderProductAmount" title="@item.ProductName">@proName</option>
+                                            }
+
+                                        }
+
+                                    }
+                                }
+
+
+                            </select>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>退款方式：</dt>
+                        <dd>
+                            <select class="selbox" disabled>
+
+                                @{
+                                    List<SelectOption> PayChannelEnums = ViewBag.PayChannelEnums as List<SelectOption>;
+                                    foreach (var item in PayChannelEnums)
+                                    {
+                                        if (item.Value == orderModel.PayChannel)
+                                        {
+                                            <option value="@item.Value" selected>@item.Text</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.Value">@item.Text</option>
+                                        }
+
+                                    }
+                                }
+                            </select>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>退款原因：</dt>
+                        <dd>
+                            <select class="selbox" id="reFundReason">
+                                <option value="">请选择</option>
+                                @{
+                                    List<SelectOption> ReFundReasonEnums = ViewBag.ReFundReasonEnums as List<SelectOption>;
+                                    foreach (var item in ReFundReasonEnums)
+                                    {
+                                        if (Model.orderReFund != null && Model.orderReFund.ReFundReason == item.Value)
+                                        {
+                                            <option value="@item.Value" selected="selected">@item.Text</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.Value">@item.Text</option>
+                                        }
+
+                                    }
+                                }
+                            </select>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>退款金额：</dt>
+                        <dd><input type="text" class="inputxt moneytxt" value="@Model.applyAccount" id="ReApplyFee" disabled="disabled"></dd>
+                        <dd><div class="tipbox" id="ReApplyFeeTips">最多￥(@Model.applyAccount)不含发货邮费￥@(orderModel.Postage ?? 0)</div></dd>
+                    </dl>
+                    <dl>
+                        <dt>退款说明：</dt>
+                        <dd>
+                            <textarea placeholder="请详细填写你的退款理由" class="inputtxt reasontxt" id="description">@description</textarea>
+                        </dd>
+                    </dl>
+                    @{
+                        if (Model.orderReFund != null && StatusName == "已退款")
+                        {
+
+                        }
+                        else
+                        {
+                            <input type="button" value="提交申请" class="submitbtn" id="btnSave">
+                        }
+                    }
+
+                </div>
+                <div class="refundsuccess" style="display:none;">
+                    <img src="@Url.Content("~/Assets/web/images/icon_drawback.png")" alt="">
+                    <div class="word">
+                        <p class="tit">申请提交成功！</p>
+                        <p>请耐心等待，我们将尽快处理您的退款请求</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    $("#productids").multiSelect({"noneText":"请选择"});
+    var subCount = 0;
+    $("#btnSave").click(function () {
+        if (subCount == 0) {
+            var params = {
+                orderSn: $("#hidOrderSn").val(),
+                refundType: $("#refundType").val(),
+                productids: $("#productids").val().join(','),
+                reFundReason: $("#reFundReason").val(),
+                reApplyFee: $("#ReApplyFee").val(),
+                description: StrTrim($("#description").val())
+            }
+            if (!params.refundType) {
+                layer.msg("请选择退款种类");
+                return;
+            }
+              if ($("#productids").val().length <= 0) {
+                layer.msg("请选择要退款的商品");
+                  subCount = 0;
+                return;
+            }
+            var selectedPrice = 0;
+            $("#productids option:selected").each(function () {
+                var price = $(this).attr("data-price");
+                var count = $(this).attr("data-count");
+                var newPrice = parseFloat(price) * parseInt(count);
+                selectedPrice += parseFloat(newPrice);
+            })
+            if (parseFloat($("#reFundPrice").val()) > selectedPrice) {
+                layer.msg("请勿自己更改价格");
+                  subCount = 0;
+                return;
+            }
+            if (!params.reFundReason) {
+                layer.msg("请选择退款原因");
+                 return;
+            }
+            if (!params.description) {
+                layer.msg("请输入退款说明");
+                 return;
+            }
+
+            $.post("@Url.Content("~/UserCenter/ApplyOrderRefund")", params, function (result) {
+                if (result && result.code == 200) {
+                    $(".formbox").hide();
+                    $(".refundsuccess").show();
+                } else {
+                    subCount = 0;
+                    layer.msg(result.msg);
+                }
+
+            })
+        }
+
+
+    })
+    $("#productids").change(function () {
+        var price = 0;
+        $("#productids option:selected").each(function () {
+            var selectPrice = $(this).attr("data-price");
+            var count = $(this).attr("data-count");
+            var newPrice = parseFloat(selectPrice) * parseInt(count);
+            price += parseFloat(newPrice);
+         })
+        $("#ReApplyFee").val(price);
+        $("#ReApplyFeeTips").html("最多￥" + price + "不含发货邮费￥" +@(orderModel.Postage??0));
+    })
+
+</script>
+

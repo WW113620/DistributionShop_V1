@@ -1,0 +1,890 @@
+﻿@using ditbShop = DistributionShop.Models.Utils;
+@model DistributionShop.Models.ViewModels.CreateOrderAndAddressViewModel
+@{
+    ViewBag.Title = "收货人信息";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var prePhoneTypeStr = (Model.Address?.PrePhoneType ?? 0) == (int)ditbShop.PhoneTypeEnums.澳洲 ? ditbShop.EnumHelper.GetDescription(ditbShop.PhoneTypeEnums.澳洲) : ditbShop.EnumHelper.GetDescription(ditbShop.PhoneTypeEnums.中国);
+    prePhoneTypeStr = Model.Address == null ? "" : prePhoneTypeStr;
+}
+@section head{
+    <link href="~/Assets/web/css/shopcar.css" rel="stylesheet" />
+
+    <script src="~/Scripts/axios.min.js"></script>
+    <script src="~/Scripts/vue.min.js"></script>
+    <script type="text/javascript" src="http://unpkg.com/view-design/dist/iview.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://unpkg.com/view-design/dist/styles/iview.css">
+    <script src="~/Scripts/plupload/plupload.full.min.js"></script>
+}
+<div class="shopcarcon consigneeeditcon">
+    <div class="md1200">
+        <div class="breadnav">
+            <a href="@Url.Action("Index","ShoppingCart")">购物车</a>
+            <span>&gt;</span>
+            <a href="javascript:;">收货人信息</a>
+        </div>
+        <div class="content">
+            <div class="consigneeeditbox">
+                <div class="title">收货人信息</div>
+                <div class="tipbox" style="display:@(Model.Address==null?"block":"none")">
+                    <p>根据中国海关规定，为配合进口货物查验，证明包裹物品确系个人自用，办理海关入境清关手续时需要提交收件人身份证明。</p>
+                    <p>您可以在 “我的订单” &gt; “收货人管理” 页面上传收件人身份证照片。请务必在下单后及时上传，否则无法出货。</p>
+                </div>
+                <div class="editcon" style="display:@(Model.Address==null?"block":"none")">
+                    <div class="editleft">
+                        <div class="musttip">
+                            <span class="red">*</span>为必填信息
+                        </div>
+              
+                        <dl>
+                            <dt><i class="red">*</i>收货人姓名：</dt>
+                            <dd class="pr">
+                                <input type="text" class="inputtxt nametxt selectInput" placeholder="请输入真实姓名" id="realName"  value="@(Model.Address?.RealName)" onkeyup="GetAddressList()">
+                                <ul class="InputSel" style="display: none;" id="realNameList">
+                                    <li>测试测试测试</li>
+                                </ul>
+                            </dd>
+                            <dd><span class="nametip">* 您可输入已存入的名字来查找收货人</span></dd>
+                        </dl>
+
+
+                        <dl>
+                            <dt><i class="red">*</i>手机号码：</dt>
+                            <dd>
+                                <div class="phonebox">
+                                    <select class="selbox areabox" id="prePhoneType">
+                                        @if (Model.PrePhoneOptionList != null && Model.PrePhoneOptionList.Count > 0)
+                                        {
+                                            foreach (var prePhoneOption in Model.PrePhoneOptionList)
+                                            {
+                                                var prePhoneType = Model.Address?.PrePhoneType ?? (int)ditbShop.PhoneTypeEnums.中国;
+                                                <option value="@(prePhoneOption.Value)" @(prePhoneType == prePhoneOption.Value ? "selected" : "")>@(prePhoneOption.Desction)(@(prePhoneOption.Text))</option>
+                                            }
+                                        }
+                                    </select>
+                                    <input type="text" class="phonetxt" style="line-height:normal" placeholder="请输入手机号码" value="@(Model.Address?.TelPhone)" id="telPhone">
+                                </div>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><i class="red">*</i>收货地址：</dt>
+                            <dd>
+                                <select class="selbox countrysel" id="county" disabled>
+                                    @if (Model.CountryList != null && Model.CountryList.Count > 0)
+                                    {
+                                        foreach (var country in Model.CountryList)
+                                        {
+                                            var countyId = 0;// Model.Address.CountyId;
+                                            <option value="@(country.CountryId)" @(countyId == country.CountryId ? "selected" : "")>@(country.CountryName)</option>
+                                        }
+                                    }
+                                </select>
+                                <select class="selbox provincesel" id="province" onchange="AddressChange(0)">
+                                    @if (Model.ProvinceList != null && Model.ProvinceList.Count > 0)
+                                    {
+                                        for (int i = 0; i < Model.ProvinceList.Count; i++)
+                                        {
+                                            var obj = Model.ProvinceList[i];
+                                            string select = string.Empty;
+                                            if (((Model.Address == null || Model.Address?.ProvinceId == null) && i == 0) || (Model.Address != null && Model.Address.ProvinceId == obj.ProID))
+                                            {
+                                                select = "selected";
+                                            }
+                                            <option value="@(obj.ProID)" @(select)>@(obj.ProName)</option>
+                                        }
+                                    }
+                                </select>
+                                <select class="selbox citysel" id="city" onchange="AddressChange(1)">
+                                    @if (Model.CityList != null && Model.CityList.Count > 0)
+                                    {
+                                        for (int i = 0; i < Model.CityList.Count; i++)
+                                        {
+                                            var obj = Model.CityList[i];
+                                            string select = string.Empty;
+                                            if (((Model.Address == null || Model.Address.CityId == null) && i == 0) || (Model.Address != null && Model.Address.CityId == obj.CityID))
+                                            {
+                                                select = "selected";
+                                            }
+                                            <option value="@(obj.CityID)" @(select)>@(obj.CityName)</option>
+                                        }
+                                    }
+                                </select>
+
+                                @if (Model.DistrictList != null && Model.DistrictList.Count > 0)
+                                {
+                                    <select class="selbox areasel" id="district">
+                                        @for (int i = 0; i < Model.DistrictList.Count; i++)
+                                        {
+                                            var obj = Model.DistrictList[i];
+                                            string select = string.Empty;
+                                            if (((Model.Address == null || Model.Address.DistrictId == null) && i == 0) || (Model.Address != null && Model.Address.DistrictId == obj.Id))
+                                            {
+                                                select = "selected";
+                                            }
+                                            <option value="@(obj.Id)" @(select)>@(obj.DisName)</option>
+                                        }
+                                    </select>
+                                }
+                                else
+                                {
+                                    <select class="selbox areasel" id="district" style="display:none">  </select>
+                                }
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><i class="red">*</i>具体地址：</dt>
+                            <dd>
+                                <textarea class="inputtxt addresstxt" placeholder="请详细输入地址信息，如道路，门牌号等信息" id="address">@(Model.Address?.Address)</textarea>
+                            </dd>
+                            <dd><span class="jtdztip errortip">* 请填写具体地址</span></dd>
+                        </dl>
+                        <dl>
+                            <dt>邮政编码：</dt>
+                            <dd>
+                                <input type="text" class="inputtxt yzbmtxt" placeholder="请输入邮政编码" id="postCode" value="@(Model.Address?.PostCode)">
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><i class="red">*</i>身份证号码：</dt>
+                            <dd>
+                                <input type="text" class="inputtxt sfztxt" placeholder="请输入真实身份证号码" value="@(Model.Address?.IdentityCard)" id="identityCard">
+                            </dd>
+                            <dd><span class="sfztip">* 身份证号码需与收件人姓名一致</span></dd>
+                        </dl>
+                        <div class="tjbox">
+                            <span class="check @((Model.Address?.IsDefault??true)?"":"uncheck")" id="isDefault"></span>设置为默认收货人信息
+                        </div>
+                        <input type="button" class="btn savebtn" value="保存">
+                    </div>
+                    <div class="editright">
+                        <dl>
+                            <dt><span class="red">*</span>身份证正面上传：</dt>
+                            <dd>
+                                <div class="imgbox" id="idCard0" onclick="SetImagUrl(this)">
+                                    @if (Model.Address != null && !string.IsNullOrWhiteSpace(Model.Address.IDPhotoNegative))
+                                    {
+                                        <img data-url="@(Model.Address.IDPhotoNegative)" src="@Url.Content($"~/api/MediaApi/GetCoverFileName?mediaType={(int)ditbShop.UploadImageEnums.身份证}&fileName={Model.Address.IDPhotoNegative}")">
+                                    }
+                                    else
+                                    {
+                                        <img src="@Url.Content("~/Assets/web/images/idcardz.png")">
+                                        @*<img src="~/images/idcardz.png">*@
+                                    }
+                                </div>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><span class="red">*</span>身份证反面上传：</dt>
+                            <dd>
+                                <div class="imgbox" id="idCard1" onclick="SetImagUrl(this)">
+                                    @if (Model.Address != null && !string.IsNullOrWhiteSpace(Model.Address.IDPhotoPositive))
+                                    {
+                                        <img data-url="@(Model.Address.IDPhotoPositive)" src="@Url.Content($"~/api/MediaApi/GetCoverFileName?mediaType={(int)ditbShop.UploadImageEnums.身份证}&fileName={Model.Address.IDPhotoPositive}")">
+                                    }
+                                    else
+                                    {
+                                        <img src="@Url.Content("~/Assets/web/images/idcardf.png")">
+                                    }
+                                </div>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="resultcon" style="display:@(Model.Address!=null?"block":"none")">
+                    <p>
+                        <span class="sjr" id="showRealName">收件人：@(Model.Address?.RealName)</span>
+                        <span class="phone" id="showRealPhone">@(prePhoneTypeStr) @(Model.Address?.TelPhone)</span>
+                    </p>
+                    <div class="address" >
+                        <text id="showAddress">
+                            @(Model.Address?.Address)
+                        </text>
+                        <a href="javascript:;" class="modifybtn">
+                            <img src="@Url.Content("~/Assets/web/images/icon_modify.png")">修改信息
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="vueHtml">
+                <div class="showtable">
+                    <ul class="tablist">
+                        <li class="detail">商品详情</li>
+                        <li class="price">单价</li>
+                        <li class="numbox">数量</li>
+                        <li class="money">金额</li>
+                    </ul>
+                    <div class="tip">已满足包邮条件</div>
+                    @*<div class="zztr tabli mbzztr">
+                <div class="check"><span class="checkbox"></span></div>
+                <div class="zzfw"><span class="word">增值服务：奶粉罐底签字￥50.00</span> <input type="text" placeholder="请填写您的签字" class="qztxt"></div>
+            </div>*@
+                    <div class="tablebox">
+                        <ul class="tablelist" v-for="(shop, i) in shopList" :key="i">
+                            <li class="tabli" v-for="(product, j) in shop.CartProductList" :key="j">
+                                <div class="tabbox imgbox">
+                                    <img :src="'@Url.Content("~/api/MediaApi/GetCoverFileName?fileName=")'+product.FileName" alt="" class="shopimg">
+                                </div>
+                                <div class="tabbox detail">
+                                    <p class="instro">{{product.ProductName}}</p>
+                                    <p class="type">{{product.PostType==@((int)ditbShop.PostTypeEnums.第二类) ? '非包邮商品':'包邮商品'}}</p>
+                                </div>
+                                <div class="tabbox price">
+                                    <span class="nowprice">￥{{product.WebPrice}}</span>
+                                    <span class="preprice">￥{{product.OriginalPrice}}</span>
+                                </div>
+                                <div class="tabbox numbox">
+                                    <div class="counter">
+                                        <a href="javascript:;" class="minus" @@click="UpdateNum(i,j,-1)">-</a>
+                                        <input type="text" class="numtxt" :value="product.Num" oninput="value=value.replace(/\D/g, '')" @@blur="ChangeCount(i,j)" v-model.number="product.Num">
+                                        <a href="javascript:;" class="add" @@click="UpdateNum(i,j,1)">+</a>
+                                    </div>
+                                </div>
+                                <div class="tabbox money">￥{{parseFloat(product.WebPrice*product.Num).toFixed(2)}}</div>
+                            </li>
+                        </ul>
+                        @*<div class="zztr tabli">
+                    <div class="zzfw"><span class="word">增值服务：奶粉罐底签字￥50.00</span> <input type="text" placeholder="请填写您的签字" class="qztxt"></div>
+                    <div class="pretotalbox">合计（不含运费）：<span class="price">￥83.00</span></div>
+                </div>*@
+                    </div>
+
+                </div>
+                <div class="operatebox">
+                    @*<div class="yhbox">
+                        优惠券
+                        <select class="selbox yhqselbox">
+                            <option value="1">请选择您的优惠券</option>
+                        </select>
+                        <span class="yhxx"><i class="radiobox"></i>钱包余额：￥120.00</span>
+                        <span class="yhxx"><i class="radiobox"></i>使用商城积分：119点</span>
+                    </div>*@
+                    <a href="javascript:;" class="accountbtn" onclick="save()">去结算</a>
+                    <div class="totalbox">
+                        <p class="top">
+                            <span>
+                                已选商品(件）：
+                                <i class="num">{{sum}}</i>
+                            </span>
+                            <span>
+                                合计（含运费）：
+                                <i class="price">￥{{Number(totalPrice)+Number(postPay)}}</i>
+                            </span>
+                        </p>
+                        <p class="money">
+                            @*<span class="scjf">商城积分：-￥119.00</span>
+                    <span class="qbye">钱包余额：-￥120.00</span>*@
+                            <span class="spzj">商品总价：￥{{totalPrice}}</span>
+                            <span class="yf">运费：￥{{postPay}}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="id" value="@(Model.Address?.Id??0)" />
+<script type="text/javascript">
+    var uploadObj;//显示图片对象
+    var imgschema =  "@Url.Content("~/api/MediaApi/GetCoverFileName?fileName=")";//显示图片地址
+    //设置图片显示对象
+    function SetImagUrl(obj) {
+        uploadObj = '#' + $(obj).attr('id') +' img';
+    }
+    //实例化一个plupload上传对象
+    var uploader = new plupload.Uploader({
+        browse_button: ["idCard0", "idCard1"], //触发文件选择对话框的按钮，为那个元素id
+        url: '@Url.Content("~/Admin/Image/UploadCoverPic")', //服务器端的上传页面地址
+        //flash_swf_url: 'js/Moxie.swf', //swf文件，当需要使用swf方式进行上传时需要配置该参数
+        //silverlight_xap_url: 'js/Moxie.xap' //silverlight文件，当需要使用silverlight方式进行上传时需要配置该参数
+        filters: {
+            mime_types: [ //只允许上传图片和zip文件
+                { title: "Image files", extensions: "gif,jpg,jpeg,png" },
+            ],
+            max_file_size: '10240kb', //最大只能上传400kb的文件
+        },
+        multipart_params: {
+            type: '@((int)ditbShop.UploadImageEnums.身份证)',
+        },
+        multi_selection: false,
+    });
+    //在实例对象上调用init()方法进行初始化
+    uploader.init();
+
+    //绑定文件上传完成后触发
+    uploader.bind('UploadComplete', function (uploader, file, responseObject) {
+        ////每个事件监听函数都会传入一些很有用的参数，
+        ////我们可以利用这些参数提供的信息来做比如更新UI，提示上传进度等操作
+        //alert(file);
+    });
+
+    //绑定
+    uploader.bind('FilesAdded', function (uploader, files) {
+        uploader.start();
+    });
+
+    //绑定
+    uploader.bind('FileUploaded', function (uploader, file, responseObject) {
+        var response = JSON.parse(responseObject.response);
+        var url = imgschema + response.msg +"&mediaType=@((int)ditbShop.UploadImageEnums.身份证)";
+        $(uploadObj).attr("src", url)
+        $(uploadObj).attr("data-url", response.msg)
+    });
+
+    //绑定文件上传完成后触发
+    uploader.bind('Error', function (uploader, errObject) {
+        layer.msg('上传图片失败' + errObject.response);
+    });
+</script>
+<script type="text/javascript">
+    $(function () {
+        //商品分类点击
+        $(".typebtn").on("click", function (e) {
+            e.stopPropagation();
+            $(".goodtype").show();
+        });
+
+        $(".goodtype").on("click", function (e) {
+            e.stopPropagation();
+        });
+        $("body").on("click", function () {
+            $(".goodtype").hide();
+        });
+
+        $(".closebtn").on("click", function () {
+            $(".goodtype").hide();
+        });
+
+        $('.selectInput').bind('input propertychange', function () {
+            $(this).siblings(".InputSel").show();
+        });
+
+        //计数器加减去
+        $(".shopcarcon .counter a").on("click", function () {
+            var inputvale = parseInt($(this).siblings("input").val());
+            if ($(this).hasClass("minus")) {
+                inputvale--;
+            } else {
+                inputvale++;
+            }
+            $(this).siblings("input").val(inputvale);
+        });
+
+        //保存修改切换
+        $(".savebtn").on("click", function () {
+            var realName = StrTrim($("#realName").val());
+        if (realName === "") {
+            layerMes("请输入姓名", "#realName");
+            $("#realName").focus();
+            return false;
+        }
+
+        var phone = StrTrim($("#telPhone").val());
+        if (phone === "") {
+            layerMes("请输入要绑定的手机号", "#telPhone");
+            $("#telPhone").focus();
+            return false;
+        }
+
+        var prePhoneType = $('#prePhoneType').val()
+        if (prePhoneType ==@((int)ditbShop.PhoneTypeEnums.中国)) {
+            var reg = /^1[3456789]\d{9}$/; //正则表达式
+            if (!(reg.test(phone))) {
+                layerMes("手机号格式错误", "#telPhone");
+                $("#telPhone").focus();
+                return false;
+            }
+        } else {//澳洲手机号
+            var reg = /^\d{9}$/; //正则表达式
+            if (!reg.test(phone)) {
+                layerMes("手机号格式错误", "#telPhone");
+                $("#telPhone").focus();
+                return false;
+            }
+        }
+
+        var countryId = StrTrim($('#county').val());
+        var countryName = StrTrim($('#county').find("option:selected").text());
+        if (countryId < 0 || countryName === "") {
+            layerMes("请选择所在国家", "#county");
+            $('#county').focus();
+            return false;
+        }
+
+
+        var provinceId = StrTrim($('#province').val());
+        var provinceName = StrTrim($('#province').find("option:selected").text());
+        if (provinceId < 0 || provinceName === "") {
+            layerMes("请选择所在省", "#province");
+            return false;
+        }
+
+        var cityId = StrTrim($('#city').val());
+        var cityName = StrTrim($('#city').find("option:selected").text());
+        if (cityId < 0 || cityName === "") {
+            layerMes("请选择所在市", "#city");
+            return false;
+        }
+
+        var districtId = StrTrim($('#district').val());
+        var districtName = StrTrim($('#district').find("option:selected").text());
+        //if (districtId < 0 || districtName === "") {
+        //    layerMes("请选择所在区县", "#district");
+        //    return false;
+        //}
+
+        var address = StrTrim($("#address").val());
+        if (address === "") {
+            layerMes("请输入详细地址", "#address");
+            return false;
+        }
+
+        var postCode = StrTrim($("#postCode").val());
+        //if (postCode === "") {
+        //    layerMes("请输入邮编", "#postCode");
+        //    return false;
+        //}
+
+        var identityCard = StrTrim($("#identityCard").val());
+        if (identityCard === "") {
+            layerMes("请输入身份证号码", "#identityCard");
+            return false;
+        }
+
+        var reg = /^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$|^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/;
+        if (!(reg.test(identityCard))) {
+            layerMes("身份证格式错误", "#identityCard");
+            return false;
+        }
+
+        var isDefault = !$("#isDefault").hasClass("uncheck")
+
+        var iDPhotoNegative = StrTrim($("#idCard0 img").attr("data-url"));
+        if (iDPhotoNegative === "") {
+            layerMes("请上传身份证正面照片", "#idCard0");
+            return false;
+        }
+
+        var iDPhotoPositive = StrTrim($("#idCard1 img").attr("data-url"));
+        if (iDPhotoPositive === "") {
+            layerMes("请上传身份证反面照片", "#idCard1");
+            return false;
+            }
+
+         var id = $('#id').val();
+
+        $ajaxFunc("@Url.Content("~/ShoppingCart/SaveAddress")",
+        {
+            "Id": id,
+            "RealName": realName,
+            "PrePhoneType": prePhoneType,
+            "TelPhone": phone,
+            "CountryId": countryId,
+            "CountryName": countryName,
+            "ProvinceId": provinceId,
+            "ProvinceName": provinceName,
+            "CityId": cityId,
+            "CityName": cityName,
+            "DistrictId": districtId,
+            "DistrictName": districtName,
+            "Address": address,
+            "PostCode": postCode,
+            "IdentityCard": identityCard,
+            "IsDefault": isDefault,
+            "IDPhotoNegative": iDPhotoNegative,
+            "IDPhotoPositive": iDPhotoPositive,
+        }, function (res) {
+                if (res.code === 0) {
+                    $('#showRealName').text(realName);
+                    var pre = prePhoneType ==@((int)ditbShop.PhoneTypeEnums.澳洲)? "@(ditbShop.EnumHelper.GetDescription(ditbShop.PhoneTypeEnums.澳洲))" : "@(ditbShop.EnumHelper.GetDescription(ditbShop.PhoneTypeEnums.中国))";
+                    $('#showRealPhone').text(pre +' '+ phone);
+                    $('#showAddress').text(address);
+                    $('#id').val(res.model);
+                    layer.msg('保存成功');
+                    $(".consigneeeditbox .editcon,.consigneeeditbox .tipbox").hide();
+                    $(".resultcon").show();
+                } else {
+                    $(".resultcon").hide();
+                    layer.msg(res.msg, { time: 1200, offset: 'auto', icon: 5 });
+                }
+            });
+        });
+
+        $(".modifybtn").on("click", function () {
+            $(".consigneeeditbox .editcon,.consigneeeditbox .tipbox").show();
+            $(".resultcon").hide();
+        });
+
+        $(".mbzztr .checkbox").on("click", function () {
+            if ($(this).hasClass("active")) {
+                $(this).removeClass("active");
+                $(".shopcarcon .mbzztr .qztxt").hide();
+            } else {
+                $(this).addClass("active");
+                $(".shopcarcon .mbzztr .qztxt").show();
+            }
+        });
+
+        //全选
+        $("#isDefault").on("click", function () {
+            $(this).toggleClass("uncheck");
+        });
+
+        GetRegionsData();
+    });
+
+
+    var cityList = [];
+    var districtList = [];
+    //查询地区数据
+    function GetRegionsData() {
+        $ajaxFunc("@Url.Content("~/UserCenter/GetAddressData")", {}, function (res) {
+            if (res.code === 0) {
+                cityList = res.model.CityList;
+                districtList = res.model.DistrictList;
+            } else {
+                layer.msg(res.msg, { time: 1200, offset: 'auto', icon: 5 });
+            }
+        });
+    }
+
+    //省市县联动
+    function AddressChange(type) {
+        if (cityList == undefined || cityList.length <= 0 || districtList == undefined || districtList.length <= 0) {
+            layer.msg('未查询到市县区是所有数据', { time: 1200, offset: 'auto', icon: 5 });
+            return;
+        }
+        if (type==0) {//省变化
+            $("#city").html('');
+            var provinceId = $("#province").val();
+            var filterarray = $.grep(cityList, function (value) {
+                return value.ProID == provinceId;
+            });
+            if (filterarray != null && filterarray.length > 0) {
+            for (var i = 0; i < filterarray.length; i++) {
+                $("#city").append("<option value=" + filterarray[i].CityID + (i == 0 ? " selected" : "") + ">" + filterarray[i].CityName + "</option>");
+                }
+            }
+
+            $("#district").html('');//市变化
+            var ctyID = filterarray[0].CityID;
+            var filterarray1 = $.grep(districtList, function (value) {
+                return value.CityID == ctyID;
+            });
+            if (filterarray1 != null && filterarray1.length > 0) {
+                $("#district").show();
+                for (var i = 0; i < filterarray1.length; i++) {
+                    $("#district").append("<option value=" + filterarray1[i].Id + (i == 0 ? " selected" : "") + ">" + filterarray1[i].DisName + "</option>");
+                }
+            } else {
+                $("#district").hide();
+            }
+
+        } else {
+            $("#district").html('');
+            var ctyID = $("#city").val();
+            var filterarray = $.grep(districtList, function (value) {
+                return value.CityID == ctyID;
+            });
+            if (filterarray != null && filterarray.length > 0) {
+                $("#district").show();
+                for (var i = 0; i < filterarray.length; i++) {
+                    $("#district").append("<option value=" + filterarray[i].Id + (i == 0 ? " selected" : "") + ">" + filterarray[i].DisName + "</option>");
+                }
+            } else {
+                $("#district").hide();
+            }
+        }
+    }
+
+    var addressList = [];
+    //查询已存地址列表
+    function GetAddressList() {
+        var words = $('#realName').val();
+        $ajaxFunc("@Url.Content("~/ShoppingCart/GetAddressList")", { words: words}, function (res) {
+            if (res.code === 0) {
+                $('#realNameList').html('');
+                if (res.model == undefined || res.model.length <= 0) {
+                    return;
+                }
+                for (var i = 0; i < res.model.length; i++) {
+                    $('#realNameList').append('<li attr-id=' + res.model[i].Id + '>' + res.model[i].RealName + '</li>');
+                }
+                $('#realNameList li').click(function () {
+                    var id = $(this).attr('attr-id');
+                    $('#realNameList').hide();
+                    GetAddressDetailData(id);
+                })
+            }
+            else if (res.code === 3) {
+                 window.location.href = "@Url.Action("Index", "Login")";
+            }
+            else {
+                layer.msg(res.msg, { time: 1200, offset: 'auto', icon: 5 });
+            }
+        });
+    }
+
+   //地址输入
+   //function AddressKeyUp() {
+   //     if (addressList == undefined || addressList.length <= 0) {
+   //         return;
+   //    }
+   //    var words = $('#realName').val();
+   //    var filterarray = $.grep(addressList, function (value) {
+   //        return value.RealName.includes(words);
+   //     });
+
+   //    if (filterarray == undefined || filterarray.length <= 0) {
+   //        $('#realNameList').hide();
+   //         return;
+   //    }
+   //    $('#realNameList').html('');
+   //    for (var i = 0; i < filterarray.length; i++) {
+   //        $('#realNameList').append('<li attr-id=' + filterarray[i].Id +'>' + filterarray[i].RealName+'</li>');
+   //    }
+   //    $('#realNameList li').click(function () {
+   //        var id = $(this).attr('attr-id');
+   //        $('#realNameList').hide();
+   //        GetAddressDetailData(id);
+   //    })
+   // }
+    //选择地址
+    function GetAddressDetailData(id) {
+          $ajaxFunc("@Url.Content("~/ShoppingCart/GetAddress")", {id:id}, function (res) {
+              if (res.code === 0) {
+                  $('#id').val(res.model.Id);
+                  $("#realName").val(res.model.RealName);
+                  $('#prePhoneType').val(res.model.PrePhoneType);
+                  $("#telPhone").val(res.model.TelPhone);
+                  $('#county').val(res.model.CountryId);
+                  $('#province').val(res.model.ProvinceId);
+                  AddressChange(0);
+                  $('#city').val(res.model.CityId);
+                  AddressChange(1);
+                  $('#district').val(res.model.DistrictId);
+                  $("#address").val(res.model.Address);
+                  $("#postCode").val(res.model.PostCode);
+                  $("#identityCard").val(res.model.IdentityCard);
+                  if (!res.model.IsDefault) {
+                      $("#isDefault").addClass("uncheck");
+                  } else {
+                      $("#isDefault").removeClass("uncheck");
+                  }
+
+                  var imgschema = "@Url.Content($"~/api/MediaApi/GetCoverFileName?mediaType={(int)ditbShop.UploadImageEnums.身份证}")";//显示图片地址
+
+                  $("#idCard0 img").attr("data-url", res.model.IDPhotoNegative);
+                  var url0 = imgschema +"&fileName="+ res.model.IDPhotoNegative;
+                  $("#idCard0 img").attr("src", url0)
+
+
+                  $("#idCard1 img").attr("data-url", res.model.IDPhotoPositive);
+                  var url1 = imgschema + "&fileName=" +  res.model.IDPhotoPositive;
+                  $("#idCard1 img").attr("src", url1)
+            }
+            else if (res.code === 3) {
+                 window.location.href = "@Url.Action("Index", "Login")";
+            }
+            else {
+                layer.msg(res.msg, { time: 1200, offset: 'auto', icon: 5 });
+            }
+        });
+    }
+
+    function save() {
+        if ($(".resultcon").is(':hidden')) {
+            layer.msg("请先保存地址", { time: 1200, offset: 'auto', icon: 5 });
+        } else {
+            var addressId = $('#id').val();
+            $ajaxFunc("@Url.Content("~/ShoppingCart/SaveOrder")", { addressId: addressId }, function (res) {
+                if (res.code == 0) {
+                    window.location.href = "@Url.Content("~/UserCenter/GetOrderDetail?orderSn=")" + res.model;
+                }
+                else if (res.code == 3) {
+                    window.location.href = "@Url.Action("Index", "Login")";
+                }
+                else {
+                    layer.msg(res.msg, { time: 1200, offset: 'auto' });
+                }
+            });
+        }
+    }
+</script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#vueHtml',
+        data: {
+            shopList:[],
+        },
+        mounted() {
+            this.GetCheckProductList();
+        },
+        methods: {
+            GetCheckProductList: function () {
+                $ajaxFunc("@Url.Content("~/ShoppingCart/GetCheckProductList")", {}, function (res) {
+                     //var res = response.model;
+                    if (res.code == 0) {
+                        vm.shopList = res.model;
+                     } else {
+                        layer.msg(res.msg, { time: 1200, offset: 'auto', icon: 5 });
+                    }
+                });
+            },
+            UpdateNum: function (i, j, count) {
+                var num = Number(this.shopList[i].CartProductList[j].Num);
+                if (count>0 && num>=200) {
+                    layer.msg('商品数量不能大于200', { time: 1200, offset: 'auto', icon: 5 });
+                    return;
+                }
+                if (count <0 && num <= 1) {
+                    layer.msg('商品数量必须大于0', { time: 1200, offset: 'auto' });
+                    return;
+                }
+                var vm = this;
+                var productId = this.shopList[i].CartProductList[j].ProductId;
+                $ajaxFunc("@Url.Content("~/ShoppingCart/UpdateShoppingCartModel")", { productId: productId, num: count }, function (res) {
+                     //var res = response.model;
+                    if (res.code == 0) {
+                        vm.shopList[i].CartProductList[j].Num = num + count;
+                        layer.msg(res.msg, { time: 1200, offset: 'auto'});
+                     } else {
+                        layer.msg(res.msg, { time: 1200, offset: 'auto', icon: 5 });
+                    }
+                });
+            },
+            ChangeCount: function (i, j) {
+                var num = Number(this.shopList[i].CartProductList[j].Num);
+
+                if (num <= 0) {
+                    layer.msg('商品数量必须大于0', { time: 1200, offset: 'auto' });
+                    this.shopList[i].CartProductList[j].Num = 1;
+                    return;
+                }
+                if (num > 200) {
+                    layer.msg('商品数量不能大于200', { time: 1200, offset: 'auto' });
+                    this.shopList[i].CartProductList[j].Num = 200;
+                    return;
+                }
+
+                var productId = this.shopList[i].CartProductList[j].ProductId;
+                if (productId <= 0) {
+                    layer.msg('查询获得物品Id失败', { time: 1200, offset: 'auto', icon: 5 });
+                }
+
+                $ajaxFunc("@Url.Content("~/ShoppingCart/UpdateShoppingCartModel")", { productId: productId, num: num, isAdd: false }, function (res) {
+                    if (res.code == 0) {
+                        layer.msg(res.msg, { time: 1200, offset: 'auto' });
+                     } else {
+                        layer.msg(res.msg, { time: 1200, offset: 'auto', icon: 5 });
+                    }
+                });
+
+
+            }
+        },
+        computed: {
+            //商品数量
+            sum: function () {
+                if (this.shopList == undefined || this.shopList.length <= 0) {
+                    return 0;
+                }
+                var count = 0;
+                this.shopList.forEach(function (shop) {
+                    if (shop.CartProductList !== undefined && shop.CartProductList.length > 0) {
+                        shop.CartProductList.forEach(function (product) {
+                            count += product.Num;
+                        });
+                    }
+                });
+                return count;
+            },
+            //商品总价
+            totalPrice: function () {
+                if (this.shopList == undefined || this.shopList.length <= 0) {
+                    return 0;
+                }
+                var price = 0;
+                this.shopList.forEach(function (shop) {
+                    if (shop.CartProductList !== undefined && shop.CartProductList.length > 0) {
+                        shop.CartProductList.forEach(function (product) {
+                            var p = parseFloat(product.WebPrice) * parseFloat(product.Num);
+                            price = (parseFloat(price)+p).toFixed(2);
+                        });
+                    }
+                });
+                return price;
+            },
+            postPay: function () {
+                if (this.shopList == undefined || this.shopList.length <= 0) {
+                    return 0;
+                }
+                var postage = 0;
+                var isPostageFree = false;//是否有第三类商品,
+                var secondPostTypeCount = 0;
+                if (Number(this.totalPrice) > 500) {
+                    return 0;
+                }
+                this.shopList.forEach(function (shop) {
+                    if (shop.CartProductList !== undefined && shop.CartProductList.length > 0) {
+                        shop.CartProductList.forEach(function (product) {
+
+                            var posttype = product.PostType;//商品邮费类型
+                            if (isPostageFree) {
+                                postage = 0;
+                            } else {
+                                if (posttype ==@((int)ditbShop.PostTypeEnums.第三类)) {
+                                    isPostageFree = true;
+                                    postage = 0;
+                                } else if (posttype ==@((int)ditbShop.PostTypeEnums.第二类)){
+                                    var num = Number(product.Num);
+                                    secondPostTypeCount += num;
+                                    if (secondPostTypeCount >= 6) // 第二类商品中判断满6件或500元
+                                    {
+                                        postage = 0;
+                                        isPostageFree = true;
+                                    } else if (secondPostTypeCount == 5)//5件产品，补运费5元；
+                                    {
+                                        postage = 5;
+
+                                    }
+                                    else if (secondPostTypeCount == 4)//4件产品，补运费10元；
+                                    {
+                                        postage = 10;
+                                    }
+                                    else if (secondPostTypeCount == 3)//3件产品，补运费15元；
+                                    {
+                                        postage = 15;
+                                    }
+                                    else if (secondPostTypeCount == 2)//2件产品，补运费20元；
+                                    {
+                                        postage = 20;
+                                    }
+                                    else if (secondPostTypeCount == 1)//1件产品，补运费25元。
+                                    {
+                                        postage = 25;
+                                    }
+
+                                } else {//第一类商品
+
+                                }
+                            }
+
+                        });
+                    }
+                });
+
+                return postage;
+            }
+        }
+    });
+</script>
+<style type="text/css">
+    .tablebox .counter .numtxt {
+        font-size: small;
+        border-bottom: 1px solid rgba(234,238,246,1);
+    }
+    .consigneeeditbox .editleft .tjbox .uncheck {
+        background: url( @Url.Content("~/Assets/web/images/check.png") ) no-repeat 0 0/100% 100%
+    }
+</style>

@@ -1,0 +1,254 @@
+﻿@using DistributionShop.Models.Utils;
+@model DistributionShop.Models.ViewModels.UserPersonalMsgView
+@{
+    ViewBag.Title = "个人中心";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section head{
+    <link rel="stylesheet" href="~/Assets/web/css/personal.css">
+    <script src="~/Scripts/plupload/plupload.full.min.js"></script>
+}
+
+
+<!-- 内容 -->
+<div class="rtcon rtdocument">
+    <div class="title">个人资料</div>
+    <div class="doccon">
+        <div class="uploadimg" id="uploadAvatarUrl">
+            <input type="file" class="filebtn">
+            <img src="@Url.Content("~/Assets/web/images/icon_camera.png")" alt="" class="camera">
+            <div class="imgbox">
+                @if (!string.IsNullOrWhiteSpace(Model?.UserMessage?.AvatarUrl))
+                {
+                    <img data-url="@(Model.UserMessage.AvatarUrl)" src="@Url.Content($"~/api/MediaApi/GetCoverFileName?mediaType={(int)UploadImageEnums.用户头像}&fileName="+Model.UserMessage.AvatarUrl)">
+                }
+                else
+                {
+                    <img src="@Url.Content("~/Assets/web/images/defaultperson.png")">
+                }
+            </div>
+            <div class="uploadtip">片要求：JPG，PNG</div>
+        </div>
+        <div class="rightdocbox">
+            <div class="tip"><i class="red">*</i>为必填信息</div>
+            <dl>
+                <dt><i class="red">*</i>姓名：</dt>
+                <dd><input type="text" class="inputtxt nametxt" placeholder="请输入您的姓名" id="userName" value="@(Model?.UserMessage?.RealName)" maxlength="20"></dd>
+            </dl>
+            <dl>
+                <dt><i class="red">*</i>昵称：</dt>
+                <dd><input type="text" class="inputtxt nametxt" placeholder="请输入您的昵称" id="nickName" value="@(Model?.UserMessage?.NickName)" maxlength="20"></dd>
+            </dl>
+            <dl>
+                <dt><i class="red">*</i>手机号码：</dt>
+                <dd>
+                    <div class="phonebox">
+                        <select class="selbox areabox" id="phoneType">
+                            @if (Model != null && Model.PrePhoneOptionList != null && Model.PrePhoneOptionList?.Count > 0)
+                            {
+                                foreach (var prePhoneOption in Model.PrePhoneOptionList)
+                                {
+                                    <option value="@(prePhoneOption.Value)" @(prePhoneOption.Value == Model?.UserMessage?.PrePhoneType ? "selected" : "")>@(prePhoneOption.Text)</option>
+                                }
+                            }
+                        </select>
+                        <input type="text" id="telPhone" class="phonetxt" placeholder="请输入手机号码" value="@(Model?.UserMessage?.Phone)" onblur="CheckPhone()">
+                        <span class="tipbox" id="phoneStr">已绑定</span>
+                    </div>
+                </dd>
+            </dl>
+            <dl>
+                <dt><i class="red">*</i>所在国家：</dt>
+                <dd>
+                    <select class="selbox countrybox" id="Country">
+                        @if (Model != null && Model.CountryList != null && Model.CountryList?.Count > 0)
+                        {
+                            foreach (var country in Model.CountryList)
+                            {
+                                <option value="@(country.CountryId)" @(country.CountryId == Model?.UserMessage?.CountryId ? "selected" : "")>@(country.CountryName)</option>
+                            }
+                        }
+                    </select>
+                </dd>
+            </dl>
+            <dl>
+                <dt><i class="red">*</i>邮箱：</dt>
+                <dd><input type="text" id="email" class="inputtxt nametxt" value="@(Model?.UserMessage?.Email)"></dd>
+            </dl>
+            <input type="button" class="btn savebtn" value="保存" onclick="SaveMessage()">
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    //判断手机号是否绑定
+    function CheckPhone() {
+        var phone = StrTrim($("#telPhone").val());
+        if (phone === "") {
+            $('#phoneStr').text('未绑定');
+            return false;
+        }
+
+        var phone = StrTrim($("#telPhone").val());
+        if (phone === "") {
+            return false;
+        }
+
+        var phoneType = $('#phoneType').val()
+        if (phoneType==@((int)PhoneTypeEnums.中国)) {
+            var reg = /^1[3456789]\d{9}$/; //正则表达式
+            if (!(reg.test(phone))) {
+                return false;
+            }
+        } else {//澳洲手机号
+            var reg = /^\d{9}$/; //正则表达式
+            if (!reg.test(phone)) {
+                return false;
+            }
+        }
+
+        $ajaxFunc("@Url.Content("~/UserCenter/CheckPhone")", { "phoneType": phoneType, "phone": phone }, function (res) {
+            if (res.code === 0) {
+                $('#phoneStr').text(res.model? '未绑定' : '已绑定');
+            } else {
+                //layer.msg(res.msg, { time: 1200, offset: 'auto', icon: 5 });
+            }
+        });
+
+    }
+
+    //保存信息
+    function SaveMessage() {
+        var userName = StrTrim($("#userName").val());
+        if (userName === "") {
+            layerMes("请输入姓名", "#userName");
+            return false;
+        }
+        if (userName.length < 2) {
+            layerMes("姓名长度最少2个字符", "#userName");
+            return false;
+        }
+        //if (userName.length>10) {
+        //    layerMes("输入姓名最长10个字符", "#userName");
+        //    return false;
+        //}
+
+         var nickName = StrTrim($("#nickName").val());
+        if (nickName === "") {
+            layerMes("请输入昵称", "#nickName");
+            return false;
+        }
+        if (nickName.length < 2) {
+            layerMes("昵称长度最少2个字符", "#nickName");
+            return false;
+        }
+        //if (nickName.length > 10) {
+        //    layerMes("昵称长度最多10个字符", "#nickName");
+        //    return false;
+        //}
+
+        var phone = StrTrim($("#telPhone").val());
+        if (phone === "") {
+            layerMes("请输入要绑定的手机号", "#telPhone");
+            return false;
+        }
+
+        var phoneType = $('#phoneType').val()
+        if (phoneType==@((int)PhoneTypeEnums.中国)) {
+            var reg = /^1[3456789]\d{9}$/; //正则表达式
+            if (!(reg.test(phone))) {
+                layerMes("手机号格式错误", "#telPhone");
+                return false;
+            }
+        } else {//澳洲手机号
+            var reg = /^\d{9}$/; //正则表达式
+            if (!reg.test(phone)) {
+                layerMes("手机号格式错误", "#telPhone");
+                return false;
+            }
+        }
+
+        var email = StrTrim($("#email").val());
+        if (email === "") {
+            layerMes("请输入邮箱", "#email");
+            return false;
+        }
+        var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$"); //正则表达式
+        if (!reg.test(email)) {
+            layerMes("邮箱格式错误", "#email");
+            return false;
+        }
+
+        var countryId = StrTrim($('#Country').val());
+        var countryName = StrTrim($('#Country option[selected]').text());
+        if (countryId < 0 || countryName==="") {
+            layerMes("请选择所在国家", "#Country");
+            return false;
+        }
+
+        //头像
+        var avatarUrl = $('#uploadAvatarUrl .imgbox img').attr("data-url");
+
+        $ajaxFunc("@Url.Content("~/UserCenter/SaveUserInfo")",
+            {
+                "RealName": userName,
+                "NickName": nickName,
+                "PrePhoneType": phoneType,
+                "phone": phone,
+                "CountryId": countryId,
+                "CountryName": countryName,
+                "Email": email,
+                "AvatarUrl": avatarUrl,
+            }, function (res) {
+            if (res.code === 0) {
+                layer.msg(res.msg);
+            } else {
+                layer.msg(res.msg, { time: 1200, offset: 'auto', icon: 5 });
+            }
+        });
+
+    }
+     //实例化一个plupload上传对象
+    var uploader = new plupload.Uploader({
+        browse_button: ["uploadAvatarUrl"], //触发文件选择对话框的按钮，为那个元素id
+        url: '@Url.Content("~/Admin/Image/UploadCoverPic")', //服务器端的上传页面地址
+        filters: {
+            mime_types: [ //只允许上传图片和zip文件
+                { title: "Image files", extensions: "gif,jpg,jpeg,png" },
+            ],
+            max_file_size: '10240kb', //最大只能上传400kb的文件
+        },
+        multipart_params: {
+            type: '@((int)UploadImageEnums.用户头像)',
+        },
+        multi_selection: false,
+        resize: {
+            width: 170,
+            height: 170,
+            crop: true,
+            preserve_headers: false
+        },
+    });
+
+    //在实例对象上调用init()方法进行初始化
+    uploader.init();
+
+    //绑定
+    uploader.bind('FilesAdded', function (uploader, files) {
+        uploader.start();
+    });
+
+    //绑定
+     var imgschema =  "@Url.Content("~/api/MediaApi/GetCoverFileName?fileName=")";//显示图片地址
+    uploader.bind('FileUploaded', function (uploader, file, responseObject) {
+        var response = JSON.parse(responseObject.response);
+        var url = imgschema + response.msg +"&mediaType=@((int)UploadImageEnums.用户头像)";
+        $('#uploadAvatarUrl .imgbox img').attr("src", url)
+        $('#uploadAvatarUrl .imgbox img').attr("data-url", response.msg)
+    });
+
+    //绑定文件上传完成后触发
+    uploader.bind('Error', function (uploader, errObject) {
+        layer.msg('上传图片失败' + errObject.response);
+    });
+
+</script>

@@ -1,0 +1,81 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="/Assets/layuiadmin/layui/css/layui.css?v=1.0" media="all">
+    <link rel="stylesheet" href="/Assets/layuiadmin/style/admin.css" media="all">
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="/Assets/layuiadmin/layui/layui.js"></script>
+   
+</head>
+<body class="">
+    <input type="hidden" id="hidReFundId" value="@ViewBag.Id" />
+    <input type="hidden" id="hidStatus" value="@ViewBag.Status" />
+    <input type="hidden" id="hidOrderSn" value="@ViewBag.OrderSn" />
+    
+
+    <div class="layui-form" style="margin-top:20px;">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">审批意见</label>
+                <div class="layui-input-inline">
+                    <textarea placeholder="请输入审批意见" class="layui-textarea" id="AuditContent" name="AuditContent" style="height:100px;width:300px;resize:none;" maxlength="200"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block" style="margin-left: 35%;">
+                <button type="button" class="layui-btn" id="btnSave">提交</button>
+                <button type="button" class="layui-btn" id="btnCancle">取消</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    var layer;
+    layui.use('layer', function () {
+        layer = layui.layer;
+         var i = 0;
+    function SaveContent() {
+            var AuditContent = $("#AuditContent").val();
+            if (!AuditContent) {
+                layer.msg("审批意见！")
+                return;
+        }
+        i = 1;
+            $.post('@Url.Action("OrderRefundAudit","Order",new { Area="Admin"})', {id :$("#hidReFundId").val(),AuditContent: AuditContent,status:$("#hidStatus").val() ,ordersn:$("#hidOrderSn").val()}, function (result) {
+                if (result && result.code == 0) {
+                    layer.msg("操作成功！")
+                      setTimeout(function () {
+                          parent.layer.closeAll();
+                          top.$("#btnSearch").click();
+                    }, 1000);
+                } else {
+                    i = 0;
+                    layer.msg(result.msg);
+                }
+                
+          })
+        }
+
+    $(document).on('click', '#btnSave', function () {
+            if (i == 0) {
+                 SaveContent();
+            }
+        });
+    $("#btnCancle").click(function () {
+             parent.layer.closeAll();
+    })
+    })
+   
+</script>
+

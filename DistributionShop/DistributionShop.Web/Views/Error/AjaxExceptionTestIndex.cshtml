@@ -1,0 +1,35 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <div onclick="test()"> 
+        ajax异常点击测试
+    </div>
+    <script type="text/javascript">
+        function test() {
+            $.ajax({
+                url: '@Url.Content("~/Error/AjaxException")',
+                type: 'POST',
+                dataType: 'JSON',
+                //data: { productId: productId, num: num},
+                success: function (res) {
+                    alert(res.msg)
+                },
+                error: function (error) {
+
+                }
+            });
+        }
+    </script>
+</body>
+</html>

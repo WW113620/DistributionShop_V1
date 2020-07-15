@@ -1,0 +1,359 @@
+﻿@using DistributionShop.Models.Utils;
+
+@{
+    ViewBag.Title = "登录";
+    int tab = (int)ViewBag.Tab;
+    var PrePhoneOptionList = ViewBag.PrePhoneOptionList as List<SelectOption>;
+}
+@section head{
+    <link href="~/Assets/web/css/login.css" rel="stylesheet" />
+}
+
+<div class="lgcontent">
+    <div class="md1200">
+        <div class="words">
+            <p class="title">为您分享全世界的优质产品</p>
+            <p class="word">主营营养保健品，美妆护肤品，非处方药，家庭日用品等。拥有丰富的商品种类、强大的库存、完善的物流配送以及严格的质量管理体系，致力于为顾客提供最高品质的服务和商品。</p>
+        </div>
+        <div class="lgbox">
+            <ul class="list">
+                <li class="active" data-tab="0">登录</li>
+                <li data-tab="1">注册</li>
+            </ul>
+            <!-- 密码登录 -->
+            <div class="box phonelgbox active">
+                <a href="javascript:;" class="yzmlg mmlgbtn" linkbox="codelgbox">使用验证码登录</a>
+                <div class="inputbox">
+                    <select class="selbox" id="PhonePrefix">
+                        @foreach (var item in PrePhoneOptionList)
+                        {
+                            <option value="@item.Value">@item.Desction</option>
+                        }
+                    </select>
+                    <input type="text" id="UserName" placeholder="请输入手机号" class="txt phonetxt" autocomplete="off" onkeyup="this.value=this.value.replace(/\D/g,'')" maxlength="11">
+                </div>
+                <div class="inputbox">
+                    <input type="password" id="Password" placeholder="请输入密码" class="txt pwdtxt" autocomplete="off" maxlength="20">
+                </div>
+
+                <a href="@Url.Content("~/Login/Password")" class="forgetpwd">忘记密码？</a>
+                <input type="button" value="登录" class="btn lgbtn" onclick="Login()">
+            </div>
+            <!-- 注册 -->
+            <div class="box rgbox">
+                <div class="inputbox">
+                    <select class="selbox" id="registerPhonePrefix">
+                        @foreach (var item in PrePhoneOptionList)
+                        {
+                            <option value="@item.Value">@item.Desction</option>
+                        }
+                    </select>
+                    <input type="text" id="registerUserName" placeholder="请输入手机号" class="txt phonetxt" autocomplete="off" onkeyup="this.value=this.value.replace(/\D/g,'')" maxlength="11">
+                </div>
+                <div class="inputbox">
+                    <input type="text" id="VerifyCode" placeholder="请输入手机验证码" class="txt codetxt" maxlength="6" onkeyup="this.value=this.value.replace(/\D/g,'')">
+                    <a style="cursor:pointer;" id="sendCode" class="codebtn">获取验证码</a>
+                </div>
+                <div class="inputbox">
+                    <input type="password" id="registerPassword" placeholder="请输入密码" class="txt pwdtxt" autocomplete="off" maxlength="20">
+                </div>
+                <div class="inputbox">
+                    <input type="password" id="registerRepeatPassword" placeholder="请输入密码" class="txt pwdtxt" autocomplete="off" maxlength="20">
+                </div>
+                <input type="button" value="立刻注册" class="btn regbtn" onclick="Register()">
+                <div class="tipbox"><span class="icon"></span>我已阅读并同意<a href="javascript:;">《服务条款》</a> 及<a href="javascript:;">《隐私条款》</a></div>
+            </div>
+            <!-- 验证码登录 -->
+            <div class="box codelgbox">
+                <a href="javascript:;" class="yzmlg codelgbtn" linkbox="phonelgbox">使用账户登录</a>
+                <div class="inputbox">
+                    <select class="selbox" id="codePhonePrefix">
+                        @foreach (var item in PrePhoneOptionList)
+                        {
+                            <option value="@item.Value">@item.Desction</option>
+                        }
+                    </select>
+                    <input type="text" id="Phone" placeholder="请输入手机号码" class="txt phonetxt" onkeyup="this.value=this.value.replace(/\D/g,'')" maxlength="11">
+                </div>
+                <div class="inputbox">
+                    <input type="text" id="PhoneVerifyCode" placeholder="请输入验证码" class="txt codetxt" maxlength="6" onkeyup="this.value=this.value.replace(/\D/g,'')">
+                    <a style="cursor:pointer;" id="phoneSendCode" class="codebtn">获取验证码</a>
+                </div>
+                <a href="@Url.Content("~/Login/Password")" class="forgetpwd">忘记密码？</a>
+                <input type="button" value="登录" class="btn lgbtn" onclick="LoginPhone()">
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="hidReturnUrl" value="@ViewBag.ReturnUrl" />
+@Html.Partial("_PartialLogin")
+<script>
+    $(function () {
+        //登录注册tab切换
+        $(".lgbox ul li").on("click", function () {
+            var index = $(this).index();
+            $(this).addClass("active").siblings().removeClass("active");
+            $(".lgcontent .box").eq(index).addClass("active").siblings().removeClass("active");
+        });
+
+        $(".mmlgbtn,.codelgbtn").on("click", function () {
+            var linkbox = $(this).attr("linkbox");
+            console.log(linkbox);
+            $(".lgcontent .box").removeClass("active");
+            $("." + linkbox).addClass("active");
+        });
+
+        $("#PhonePrefix").change(function () {
+            var val = $(this).val();
+            changePhonePrefix(val, "UserName");
+        })
+
+        $("#registerPhonePrefix").change(function () {
+            var val = $(this).val();
+            changePhonePrefix(val, "registerUserName");
+        })
+
+        $("#codePhonePrefix").change(function () {
+            var val = $(this).val();
+            changePhonePrefix(val, "Phone");
+        })
+
+        $("#sendCode").click(function () {
+            var disabled = $("#sendCode").attr("disabled");
+            if (disabled)
+                return false;
+
+            var phone = StrTrim($("#registerUserName").val());
+            if (phone == "") {
+                layerMes("手机号不能为空", "#registerUserName");
+                return false;
+            }
+
+            var PhonePrefix = $("#registerPhonePrefix").val();
+            var bo = isMobilePhone(PhonePrefix, phone);
+            if (!bo) {
+                layerMes("请输入正确的手机号", "#registerUserName");
+                return false;
+            }
+
+            var domainUrl ="@Url.Content("~/Admin/Account/Exist")";
+            var isExist = isExistValue(phone, domainUrl);
+            if (isExist === true) {
+                layerMes("手机号已注册", "#registerUserName");
+                return false;
+            }
+
+            $("#VerifyCode").val('')
+            setTime("sendCode");
+
+            sendPhoneCode(phone, PhonePrefix);
+
+        });
+
+        $("#phoneSendCode").click(function () {
+            var disabled = $("#phoneSendCode").attr("disabled");
+            if (disabled)
+                return false;
+
+            var phone = StrTrim($("#Phone").val());
+            if (phone == "") {
+                layerMes("手机号不能为空", "#Phone");
+                return false;
+            }
+
+            var PhonePrefix = $("#codePhonePrefix").val();
+            var bo = isMobilePhone(PhonePrefix, phone);
+            if (!bo) {
+                layerMes("请输入正确的手机号", "#Phone");
+                return false;
+            }
+
+            var domainUrl ="@Url.Content("~/Admin/Account/Exist")";
+            var isExist = isExistValue(phone, domainUrl);
+            if (isExist === false) {
+                layerMes("手机号不存在，请先注册", "#Phone");
+                return false;
+            }
+
+            $("#PhoneVerifyCode").val('');
+
+            setTime("phoneSendCode");
+
+            sendPhoneCode(phone, PhonePrefix);
+        });
+
+        initTab();
+
+    });
+
+    function LoginPhone() {
+        var Phone = StrTrim($("#Phone").val());
+        if (Phone === "") {
+            layerMes("手机号不能为空", "#Phone");
+            return false;
+        }
+
+        var PhonePrefix = $("#codePhonePrefix").val();
+        var bo = isMobilePhone(PhonePrefix, Phone);
+        if (!bo) {
+            layerMes("请输入正确的手机号", "#Phone");
+            return false;
+        }
+
+        var VerifyCode = StrTrim($("#PhoneVerifyCode").val());
+        if (VerifyCode === "") {
+            layerMes("验证码不能为空", "#PhoneVerifyCode");
+            return false;
+        }
+        if (VerifyCode.length != 6) {
+            layerMes("验证码长度为6", "#PhoneVerifyCode");
+            return false;
+        }
+
+        var returnUrl = StrTrim($("#hidReturnUrl").val());
+        if (!returnUrl)
+            returnUrl = '@Url.Content("~/Home/Index")';
+
+        $ajaxFunc("@Url.Content("~/Login/LoginPhone")", { "Phone": Phone, "VerifyCode": VerifyCode, "PhonePrefix": PhonePrefix}, function (res) {
+            if (res.code === 0) {
+                layer.msg("登录成功", { time: 1000, offset: 'auto' }, function (index) {
+                    layer.close(index);
+                    location.href = returnUrl;
+                });
+            } else {
+                layer.msg(res.msg, { time: 1200, offset: 'auto', icon: 5 });
+            }
+        });
+
+    }
+
+    function Login() {
+        var UserName = StrTrim($("#UserName").val());
+        if (UserName === "") {
+            layerMes("手机号不能为空","#UserName");
+            return false;
+        }
+
+        var PhonePrefix = $("#PhonePrefix").val();
+        var bo = isMobilePhone(PhonePrefix,UserName);
+        if (!bo) {
+            layerMes("请输入正确的手机号", "#UserName");
+            return false;
+        }
+
+        var Password = StrTrim($("#Password").val());
+        if (Password === "") {
+            layerMes("密码不能为空", "#Password");
+            return false;
+        }
+        if (Password.length <6) {
+            layerMes("密码长度不能小于6", "#Password");
+            return false;
+        }
+
+        if ((/^[\S]{6,20}$/.test(Password) === false)) {
+            layerMes("密码为6到20位，且不能出现空格", "#Password");
+            return false;
+        }
+
+        var returnUrl = StrTrim($("#hidReturnUrl").val());
+        if (!returnUrl)
+            returnUrl = '@Url.Content("~/Home/Index")';
+
+        $ajaxFunc("@Url.Content("~/Login/Login")", { "UserName": UserName, "Password": Password, "PhonePrefix": PhonePrefix}, function (res) {
+            if (res.code === 0) {
+                layer.msg("登录成功", { time: 1000, offset: 'auto' }, function (index) {
+                    layer.close(index);
+                    location.href = returnUrl;
+                });
+            } else {
+                layer.msg(res.msg, { time: 1200, offset: 'auto', icon: 5 });
+            }
+        });
+
+    }
+
+    function Register() {
+
+        var UserName = StrTrim($("#registerUserName").val());
+        if (UserName === "") {
+            layerMes("手机号不能为空", "#registerUserName");
+            return false;
+        }
+
+        var PhonePrefix = $("#registerPhonePrefix").val();
+        var bo = isMobilePhone(PhonePrefix, UserName);
+        if (!bo) {
+            layerMes("请输入正确的手机号", "#registerUserName");
+            return false;
+        }
+
+        var domainUrl ="@Url.Content("~/Admin/Account/Exist")";
+        var isExist = isExistValue(UserName, domainUrl);
+        if (isExist === true) {
+            layerMes("手机号已注册", "#registerUserName");
+            return false;
+        }
+
+        var VerifyCode = StrTrim($("#VerifyCode").val());
+        if (VerifyCode === "") {
+            layerMes("手机验证码不能为空", "#VerifyCode");
+            return false;
+        }
+        if (VerifyCode.length != 6) {
+            layerMes("手机验证码长度为6", "#VerifyCode");
+            return false;
+        }
+
+        var Password = StrTrim($("#registerPassword").val());
+        if (Password === "") {
+            layerMes("密码不能为空", "#registerPassword");
+            return false;
+        }
+        if (Password.length < 6) {
+            layerMes("密码长度不能小于6", "#registerPassword");
+            return false;
+        }
+
+        if ((/^[\S]{6,20}$/.test(Password) === false)) {
+            layerMes("密码必须6到20位，且不能出现空格", "#registerPassword");
+            return false;
+        }
+
+        var repeatPassword = StrTrim($("#registerRepeatPassword").val());
+        if (repeatPassword === "") {
+            layerMes("重复密码不能为空", "#registerRepeatPassword");
+            return false;
+        }
+
+        if (Password != repeatPassword) {
+            layerMes("重复密码和密码不匹配", "#registerRepeatPassword");
+            return false;
+        }
+
+        $ajaxFunc("@Url.Content("~/Login/Register")", { "PhonePrefix": PhonePrefix, "UserName": UserName, "VerifyCode": VerifyCode, "Password": Password, "RePassword": repeatPassword}, function (res) {
+            if (res.code === 0) {
+                layer.msg("注册成功", { time: 1000, offset: 'auto' }, function (index) {
+                    layer.close(index);
+                    location.href = "@Url.Content("~/Login/Index")";
+                });
+            } else {
+                layer.msg(res.msg, { time: 1200, offset: 'auto', icon: 5 });
+            }
+        });
+    }
+
+
+    function initTab() {
+        if ("@tab" == 1) {
+            var index = 1;
+            $(".lgbox ul li").eq(index).addClass("active").siblings().removeClass("active");
+            $(".lgcontent .box").eq(index).addClass("active").siblings().removeClass("active");
+        }
+    }
+
+    $("#UserName,#Password,#registerUserName,#registerPassword,#registerRepeatPassword,#Phone,#VerifyCode,#PhoneVerifyCode").focus(function () {
+        if (layerIndex)
+            layer.close(layerIndex);
+    })
+</script>

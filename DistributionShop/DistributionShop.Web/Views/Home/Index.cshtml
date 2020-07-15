@@ -1,0 +1,222 @@
+﻿@{
+    ViewBag.Title = "首页";
+}
+@using DistributionShop.Models.Data
+@{
+    List<Category> categoriesList = ViewBag.categoriesList as List<Category>;
+}
+<link href="~/Assets/web/css/swiper.min.css" rel="stylesheet" />
+<link href="~/Assets/web/css/index.css" rel="stylesheet" />
+<link href="~/Content/homeIndex.css" rel="stylesheet" />
+<script src="~/Assets/web/js/swiper.min.js"></script>
+<style>
+    .adbox img {
+        display: block !important;
+    }
+</style>
+<div class="content">
+    <!-- banner -->
+    <div class="banner">
+        <p class="title">为您分享全世界的优质产品</p>
+        <p class="sub">主营营养保健品，美妆护肤品，非处方药，家庭日用品等。拥有丰富的商品种类、强大的库存、完善的物流配送以及严格的质量管理体系，致力于为顾客提供最高品质的服务和商品。</p>
+        <a href="javascript:;" class="morebtn">了解毛毛雨健康生活馆</a>
+        <img src="@Url.Content("~/Assets/web/images/wave0.png")" alt="">
+    </div>
+
+    <div class="typebox">
+        <div class="title">产品分类</div>
+        <div class="list">
+            <a href="#id_0" class="active"><img src="@Url.Content("~/Assets/web/images/icon_djtj.png")" alt="" class="djtjimg">独家推荐</a>
+            <a href="#id_1"><img src="@Url.Content("~/Assets/web/images/icon_xsth.png")" alt="" class="xsthimg">限时特惠</a>
+            <a href="#id_2"><img src="@Url.Content("~/Assets/web/images/icon_zynf.png")" alt="" class="zynfimg">直邮奶粉</a>
+            <a href="#id_3"><img src="@Url.Content("~/Assets/web/images/icon_crjk.png")" alt="" class="crjkimg">成人健康</a>
+            <a href="#id_4"><img src="@Url.Content("~/Assets/web/images/icon_rtjk.png")" alt="" class="rtjkimg">儿童健康</a>
+            <a href="#id_5"><img src="@Url.Content("~/Assets/web/images/icon_mbhl.png")" alt="" class="mbhlimg">面部护理</a>
+            <a href="#id_6"><img src="@Url.Content("~/Assets/web/images/icon_sthl.png")" alt="" class="sthlimg">身体护理</a>
+            <a href="#id_7"><img src="@Url.Content("~/Assets/web/images/icon_jksp.png")" alt="" class="jkspimg">健康食品</a>
+            <a href="#id_8"><img src="@Url.Content("~/Assets/web/images/icon_shrz.png")" alt="" class="shrzimg">生活日杂</a>
+            <a href="#id_9"><img src="@Url.Content("~/Assets/web/images/icon_xzfs.png")" alt="" class="xzfsimg">鞋子服饰</a>
+            <a href="#id_10"><img src="@Url.Content("~/Assets/web/images/icon_qtcp.png")" alt="" class="qtcpimg">其他产品</a>
+            <a href="javascript:;" class="openbtn"></a>
+        </div>
+    </div>
+
+    <!-- 独家推荐 -->
+    <div class="djtjbox" id="id_0">
+        <div class="md1200">
+            <div class="titlebox"><img src="@Url.Content("~/Assets/web/images/icon_djtj.png")" alt="" class="djtjimg">独家推荐<ul class="typelist"></ul><a href="@Url.Content("~/goods/index?cate1=1")" class="more ">更多推荐</a></div>
+            <div class="djtjcon">
+
+            </div>
+        </div>
+    </div>
+    <!-- 限时特惠 -->
+    <div class="conbox xsthbox" id="id_1">
+        <div class="md1200">
+            <div class="titlebox"><img src="@Url.Content("~/Assets/web/images/icon_xsth.png")" alt="" class="xsyhimg">限时特惠 <ul class="typelist"></ul><a href="@Url.Content("~/goods/index?cate1=2")" class="more ">查看更多<img src="@Url.Content("~/Assets/web/images/icon_next1.png")" alt=""></a></div>
+            <ul class="list"></ul>
+        </div>
+    </div>
+    <!-- 直邮奶粉 -->
+    <div class="conbox zynfbox" id="id_2">
+        <div class="md1200">
+            <div class="titlebox"><img src="@Url.Content("~/Assets/web/images/icon_zynf.png")" alt="" class="zynfimg">直邮奶粉 <ul class="typelist"></ul><a href="@Url.Content("~/goods/index?cate1=3")" class="more ">查看更多<img src="@Url.Content("~/Assets/web/images/icon_next1.png")" alt=""></a></div>
+            <ul class="list"></ul>
+        </div>
+    </div>
+    <!-- 成人健康 -->
+    <div class="conbox crjkbox" id="id_3">
+        <div class="md1200">
+            <div class="titlebox"><img src="@Url.Content("~/Assets/web/images/icon_crjk.png")" alt="" class="crjkimg">成人健康 <ul class="typelist"></ul><a href="@Url.Content("~/goods/index?cate1=4")" class="more ">查看更多<img src="@Url.Content("~/Assets/web/images/icon_next1.png")" alt=""></a></div>
+            <ul class="list"></ul>
+        </div>
+    </div>
+    <!-- 儿童健康 -->
+    <div class="conbox rtjkbox" id="id_4">
+        <div class="md1200">
+            <div class="titlebox"><img src="@Url.Content("~/Assets/web/images/icon_rtjk.png")" alt="" class="crjkimg">儿童健康 <ul class="typelist"></ul><a href="@Url.Content("~/goods/index?cate1=5")" class="more ">查看更多<img src="@Url.Content("~/Assets/web/images/icon_next1.png")" alt=""></a></div>
+            <ul class="list"></ul>
+        </div>
+    </div>
+    <!-- 面部护理 -->
+    <div class="conbox mbhlbox" id="id_5">
+        <div class="md1200">
+            <div class="titlebox"><img src="@Url.Content("~/Assets/web/images/icon_mbhl.png")" alt="" class="crjkimg">面部护理<ul class="typelist"></ul><a href="@Url.Content("~/goods/index?cate1=6")" class="more ">查看更多<img src="@Url.Content("~/Assets/web/images/icon_next1.png")" alt=""></a></div>
+            <ul class="list"></ul>
+        </div>
+    </div>
+    <!-- 身体护理 -->
+    <div class="conbox sthlbox" id="id_6">
+        <div class="md1200">
+            <div class="titlebox"><img src="@Url.Content("~/Assets/web/images/icon_sthl.png")" alt="" class="crjkimg">身体护理<ul class="typelist"></ul><a href="@Url.Content("~/goods/index?cate1=7")" class="more ">查看更多<img src="@Url.Content("~/Assets/web/images/icon_next1.png")" alt=""></a></div>
+            <ul class="list"></ul>
+        </div>
+    </div>
+    <!-- 健康食品 -->
+    <div class="conbox jkspbox" id="id_7">
+        <div class="md1200">
+            <div class="titlebox"><img src="@Url.Content("~/Assets/web/images/icon_jksp.png")" alt="" class="crjkimg">健康食品<ul class="typelist"></ul><a href="@Url.Content("~/goods/index?cate1=8")" class="more ">查看更多<img src="@Url.Content("~/Assets/web/images/icon_next1.png")" alt=""></a></div>
+            <ul class="list"></ul>
+        </div>
+    </div>
+    <!-- 生活日杂 -->
+    <div class="conbox shrzbox" id="id_8">
+        <div class="md1200">
+            <div class="titlebox"><img src="@Url.Content("~/Assets/web/images/icon_shrz.png")" alt="" class="crjkimg">生活日杂<ul class="typelist"></ul><a href="@Url.Content("~/goods/index?cate1=9")" class="more ">查看更多<img src="@Url.Content("~/Assets/web/images/icon_next1.png")" alt=""></a></div>
+            <ul class="list"></ul>
+        </div>
+    </div>
+    <!-- 鞋子服饰 -->
+    <div class="conbox xzfsbox" id="id_9">
+        <div class="md1200">
+            <div class="titlebox"><img src="@Url.Content("~/Assets/web/images/icon_xzfs.png")" alt="" class="crjkimg">鞋子服饰<ul class="typelist"></ul><a href="@Url.Content("~/goods/index?cate1=10")" class="more ">查看更多<img src="@Url.Content("~/Assets/web/images/icon_next1.png")" alt=""></a></div>
+            <ul class="list"></ul>
+        </div>
+    </div>
+    <!-- 其他产品 -->
+    <div class="conbox qtcpbox" id="id_10">
+        <div class="md1200">
+            <div class="titlebox">
+                <img src="@Url.Content("~/Assets/web/images/icon_qtcp.png")" alt="" class="crjkimg">其他产品
+                <ul class="typelist"></ul>
+                <a href="@Url.Content("~/goods/index?cate1=11")" class="more ">查看更多<img src="@Url.Content("~/Assets/web/images/icon_next1.png")" alt=""></a>
+            </div>
+            <ul class="list"></ul>
+        </div>
+    </div>
+    <div class="adbox">
+        <img src="@Url.Content("~/Assets/web/images/mypic.jpg")" />
+    </div>
+</div>
+
+
+<script type="text/x-jsrender" id="djtjTmp">
+    <a href="@Url.Content("~/Goods/Item/"){{:Id}}"><img src="@Url.Content("~/api/MediaApi/GetCoverFileName?fileName="){{:CoverFileName}}" alt=""></a>
+</script>
+<script type="text/x-jsrender" id="productTmp">
+    <li class="item">
+        <div class="imgbox" style="cursor:pointer" onclick="detail({{:Id}})">
+            <img src="@Url.Content("~/api/MediaApi/GetCoverFileName?fileName="){{:CoverFileName}}" alt="">{{:~InitDiscount(OriginalPrice,WebPrice)}}
+        </div>
+        <div class="infobox">
+            <p class="name" style="cursor:pointer" onclick="detail({{:Id}})">{{:~InitCutStr(ProductName,10)}}</p>
+            <p class="instro" style="cursor:pointer" onclick="detail({{:Id}})">{{:~InitCutStr(Description,10)}}</p>
+            <div class="price"><span class="preprice">￥{{:OriginalPrice}}</span><span class="nowprice">￥{{:WebPrice}}</span></div>
+            <a href="javascript:void(0);" class="addshopcar" data-id="{{:Id}}"><img src="@Url.Content("~/Assets/web/images/icon_shopcar.png")" alt=""></a>
+        </div>
+    </li>
+
+</script>
+<script>
+        $(".typebox .list .openbtn").on("click", function (e) {
+            $(".typebox .list").toggleClass("active");
+        });
+
+      $.views.helpers({
+        "InitCutStr": function (value, length) {
+            if (value && value.length > length) {
+                return value.substr(0, length) + "...";
+            } else {
+                return value;
+            }
+        },
+        "InitDiscount": function (originalPrice, webPrice) {
+            var rtnHtml = "";
+            if (parseFloat(originalPrice) > parseFloat(webPrice)) {
+                var discount = Math.round((parseFloat(webPrice) / parseFloat(originalPrice)) * 100) + '%OFF';
+                rtnHtml = '<div class="discount">'+discount+'</div>';
+            }
+            return rtnHtml;
+        }
+      });
+    function detail(id) {
+        location.href = "@Url.Content("~/Goods/Item/")"+id;
+    }
+    function getCate(id) {
+        $.post("@Url.Content("~/Goods/GetCategoryList")", { id: id }, function (result) {
+            if (result && result.length > 0) {
+                var html = "";
+                for (var i = 0; i < result.length; i++) {
+                    html += "<li data-id='" + result[i].Id + "'>" + result[i].Name + "<li>";
+                }
+                $("#id_" + (id-1)+" .typelist").html(html);
+            }
+        })
+    }
+    function initCate() {
+        for (var i = 0; i <12 ; i++) {
+            getCate(i+1);
+        }
+    }
+    function getHomeListData(FiristCategoryId, limit, tmp, el) {
+        $.post("@Url.Content("~/Goods/GetHomePageList")", { limit: limit, FiristCategoryId: FiristCategoryId }, function (result) {
+            if (result && result.data && result.data.length > 0) {
+                var html = $(tmp).render(result.data);
+                $(el).html(html);
+                if (result.data.length < 5) {
+                    $("#id_" + (FiristCategoryId - 1)).find("a.more").hide();
+                    $("#id_0").find("a.more").show();
+                } else {
+                    $("#id_" + (FiristCategoryId - 1)).find("a.more").show();
+                }
+            } else {
+                $("#id_"+(FiristCategoryId-1)).hide();
+            }
+        })
+    }
+    function initHomeList() {
+        for (var i = 2; i < 12; i++) {
+            getHomeListData(i, 5, "#productTmp", "#id_" + (i-1)+" .list");
+        }
+    }
+    //添加购物车
+    $(".conbox").on("click", ".addshopcar", function () {
+        var productId = $(this).attr("data-id");
+
+        MainPageAddToShoppingCartMethod(productId, 1,1);
+    })
+    initCate();
+    initHomeList();
+    getHomeListData(1, 4, "#djtjTmp", ".djtjcon");
+</script>
+

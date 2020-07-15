@@ -1,0 +1,616 @@
+.content{
+    /*margin-top:151px;*/
+}
+.banner{
+    width: 100%;
+    height: 100vh;
+    background: url(../images/banner.jpg) no-repeat 0 150px;
+    background-size: 100% 100%;
+    z-index:10;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+}
+.banner img{
+    width:100%;
+    position: absolute;
+    left:0;
+    bottom:-25px;
+    height: 100px;
+}
+.djtjbox {
+    padding-top:70px;
+}
+.djtjbox .md1200,.xsthbox .md1200,.zynfbox .md1200,.crjkbox .md1200,.rtjkbox .md1200,.mbhlbox .md1200,.sthlbox .md1200,.jkspbox .md1200,.shrzbox .md1200,.xzfsbox .md1200,.qtcpbox .md1200{
+    padding-top:160px;
+    margin-top:-160px;
+}
+.content .conbox {
+   padding-top:80px;
+}
+.djtjbox,.rtjkbox{
+    background-color:#DBDFE1;
+}
+.content .conbox.xsthbox{
+    background: url(../images/wave1.png) no-repeat 0 0px /100% 100px;
+    background-color:#F0F2F3;
+    width: 100%;
+    padding-top:110px;
+}
+
+.content .conbox.crjkbox{
+    background: url(../images/wave2.png) no-repeat 0 0 /100% 100px;
+    background-color:#DBDFE1;
+    width: 100%;
+    padding-top:110px;
+}
+.content .conbox.mbhlbox{
+    background: url(../images/wave3.png) no-repeat 0 -10px /100% 100px;
+    background-color:#F0F2F3;
+    width: 100%;
+    padding-top:110px;
+}
+.banner .title{
+    text-align: center;
+    height:56px;
+    font-size:34px;
+    font-weight:600;
+    color:rgba(255,255,255,1);
+    line-height:56px;
+    margin-top:200px;
+}
+.banner .sub{
+    text-align:center;
+    width:776px;
+    height:44px;
+    font-size:16px;
+    font-family:PingFangSC-Regular,PingFang SC;
+    font-weight:400;
+    color:rgba(255,255,255,1);
+    line-height:22px;
+    margin:15px auto 39px;
+}
+.banner .morebtn{
+    width:220px;
+    height:45px;
+    line-height:45px;
+    border-radius:23px;
+    border:1px solid rgba(255,255,255,1);
+    display:block;
+    margin:0 auto;
+    font-weight:400;
+    color:rgba(255,255,255,1);
+    font-size:16px;
+    text-align:center;
+}
+.typebox{
+    position: fixed;
+    left:102px;
+    top:200px;
+    z-index:98;
+    width:134px;
+}
+.typebox .title{
+    text-align:center;
+    width:134px;
+    height:52px;
+    line-height:52px;
+    background:rgba(51,165,142,1);
+    border-radius:19px 19px 0px 0px;
+    color:#fff;
+}
+.typebox  a{
+    background:#fff;
+    font-weight:400;
+    color:rgba(12,20,80,1);
+    text-align: left;
+    height:46px;
+    line-height:46px;
+    display:block;
+    width:100%;
+    padding-left: 14px;
+    box-sizing: border-box;
+}
+.typebox  a img{
+    width:36px;
+    /* height:36px; */
+    vertical-align:middle;
+    margin:0 5px 0 0;
+}
+.typebox a img.djtjimg{
+    margin-top:-5px;
+}
+.typebox a img.qtcpimg{
+    width: 32px;
+    margin-top:-2px;
+    height: auto;
+    margin-right: 10px;
+}
+.adbox,.adbox img{
+    width:100%;
+}
+    .adbox img {
+        width:100%;
+        height:auto;
+    }
+    .adbox{
+        margin-bottom:-10px;
+    }
+.adbox{
+    margin-top:100px;
+}
+.content{
+    background:rgba(240,242,243,1);
+    overflow: hidden;
+}
+.content .titlebox{
+    font-size:28px;
+    font-weight:500;
+    color:rgba(12,20,80,1);
+    height: 50px;
+    margin-bottom:80px;
+    line-height: 50px;
+    position: relative;
+    padding-left: 70px;
+}
+.content .titlebox img{
+   position: absolute;
+   left:-3px;
+   top: 0;
+}
+.content .titlebox .djtjimg{
+   width: 55px;
+   top: -3px;
+}
+.content .titlebox .xsyhimg{
+    width:58px;
+    top:-3px;
+}
+.content .titlebox .more{
+    position: absolute;
+    font-size:16px;
+    font-weight:400;
+    color:rgba(55,55,55,1);
+    height: 50px;
+    line-height: 50px;
+    right: 0;
+    top: 0;
+}
+.content .titlebox .more img{
+    width:9px;
+    height:15px;
+    margin-left:22px;
+    position: relative;
+    left: auto;
+    top: 3px;
+}
+.djtjbox .djtjcon{
+    overflow: hidden;
+    margin-right:-10px;
+}
+.djtjbox .djtjcon a{
+    float: left;
+    width:25%;
+    border-right:10px solid #DBDFE1;
+    box-sizing: border-box;
+}
+.djtjbox .djtjcon img{
+    width: 100%;
+}
+.content .xsthbox .titlebox{
+   margin-bottom:70px;
+}
+.content .titlebox .typelist{
+    position: absolute;
+    left: 220px;
+    top: 2px;
+}
+.content .typelist li{
+    float: left;
+    font-size:16px;
+    font-weight:400;
+    color:rgba(55,55,55,1);
+    margin-right:15px;
+    cursor: pointer;
+}
+.conbox .list{
+    overflow: hidden;
+    margin-right: -10px;
+}
+.conbox .list .item{
+    width:20%;
+    float: left;
+    padding:0 10px 10px 0;
+    box-sizing: border-box;
+}
+
+.content .zynfbox .titlebox{
+   margin-bottom:70px;
+}
+.content .zynfbox .zynfimg{
+    width:58px;
+    top:-3px;
+}
+.content .rtjkbox .titlebox{
+    margin-bottom:76px;
+}
+.content .rtjkbox .titlebox .more{
+    margin-top:10px;
+}
+.content .mbhlbox .titlebox{
+    margin-bottom:60px;
+}
+.content .mbhlbox .titlebox .more{
+    margin-top:10px;
+}
+.content .mbhlbox .crjkimg{
+    width: 62px;
+    top: -3px;
+}
+.content .titlebox .sthlimg{
+    width: 60px;
+    top:-2px;
+}
+.content .titlebox .jkspimg{
+    width: 60px;
+    top:-2px;
+}
+.content .titlebox  .shrzimg{
+    width: 60px;
+    top:-5px;
+}
+.content .titlebox  .crjkimg{
+    width: 58px;
+    top:-6px;
+}
+.content .titlebox  .qtcpimg{
+    width: 59px;
+    top:-5px;
+}
+.payresultbox{
+    margin:190px auto 400px;
+    background-color:#fff;
+    width:667px;
+    padding:0 28px;
+    box-sizing:border-box;
+}
+.payresultbox .resulttopbox{
+    border-bottom:1px solid rgba(234,238,246,1);
+    overflow: hidden;
+    text-align:center;
+    padding:40px 0 30px;
+}
+.payresultbox .resulttopbox img{
+    width:32px;
+    height: 43px;
+    display: inline-block;
+    margin-right:20px;
+}
+.payresultbox .resulttopbox .word{
+    display:inline-block;
+    text-align:left;
+    font-size:12px;
+}
+.payresultbox .resulttopbox .word .result{
+    height:33px;
+    font-size:24px;
+    font-family:PingFangSC-Semibold,PingFang SC;
+    font-weight:600;
+    color:rgba(101,206,163,1);
+    line-height:33px;
+}
+.payresultbox .resulttopbox .word .failresult{
+    color:#FF5B5F;
+}
+.payresultbox .resultbottombox{
+    overflow: hidden;
+}
+.payresultbox .resultbottombox .showbox{
+    overflow: hidden;
+    width: 450px;
+    margin:25px 0 33px 120px;
+}
+.payresultbox .resultbottombox .showbox dl{
+    float: left;
+    position: relative;
+    font-size: 12px;
+    margin-bottom:7px;
+}
+.payresultbox .resultbottombox dt{
+    position: absolute;
+    left:0;
+    top:0;
+    width:70px;
+}
+.payresultbox .resultbottombox dd{
+    padding-left: 70px;
+    width: 150px;
+}
+.payresultbox .resultbottombox dd.money{
+    color:#FF4338;
+    font-size:16px;
+    font-family:PingFangSC-Semibold,PingFang SC;
+    font-weight:600;
+    margin-top:-2px;
+}
+.payresultbox .resultbottombox .btns{
+    text-align: center;
+    margin:0 0 56px 0;
+}
+.payresultbox .resultbottombox .btn{
+    width:140px;
+    height:30px;
+    line-height: 30px;
+    text-align:center;
+    font-size:12px;
+    border-radius:23px;
+    display:inline-block;
+}
+.payresultbox .resultbottombox .checkbtn{
+    border:1px solid #33A58E;
+    color:#33A58E;
+    margin-right:10px;
+}
+.payresultbox .resultbottombox .buybtn{
+    border:1px solid #33A58E;
+    color:#fff;
+    background:#33A58E;
+}
+@media screen and (max-width:1500px) {
+    .typebox{
+        left:5px;
+        width: 114px;
+    }
+    .typebox .title{
+        width:114px;
+    }
+    .typebox a{
+        padding-left: 5px;
+    }
+    .item .infobox{
+        padding:15px 12px 12px;
+    }
+    .item .infobox .addshopcar{
+        width:36px;
+        height:36px;
+        line-height: 36px;
+        bottom:10px;
+    }
+    .item .infobox .addshopcar img{
+        width:18px;
+        margin-top:10px;
+    }
+    .conbox .list{
+        margin-right: -8px;
+    }
+    .conbox .list .item{
+        padding:0 8px 8px 0;
+    }
+}
+@media screen and (max-width:1000px) {
+
+}
+@media screen and (max-width:768px) {
+    .banner {
+        width: 100%;
+        height: 100vh;
+        background: url(../images/banner.jpg) no-repeat center;
+        background-size: cover;
+    }
+    .typebox{
+        width:100%;
+        position:initial;
+        background-color: #DBDFE1;
+        padding: 0px 11px 0;
+        box-sizing: border-box;
+    }
+    .typebox .list{
+       overflow: hidden;
+       height: 30px;
+       position: relative;
+    }
+    .typebox .list.active{
+        height: auto;
+    }
+    .typebox .list .openbtn{
+        height: 12px;
+        width: 6px;
+        content:'';
+        display: block;
+        position: absolute;
+        right:-15px;
+        top: 9px;
+        background: url(../images/icon_next1.png) no-repeat 0 0/100% 100%;
+        transform:rotate(90deg);
+        -webkit-transform:rotate(90deg);
+    }
+    .typebox .list.active .openbtn{
+        transform:rotate(-90deg);
+        -webkit-transform:rotate(-90deg);
+    }
+    .typebox .title{
+       display:none;
+    }
+    .typebox a{
+        line-height: normal;
+        height: 30px;
+        line-height: 30px;
+        float: left;
+        width: auto;
+        background-color: #DBDFE1;
+        padding:0;
+        margin-right: 22px;
+        color: #0C1450;
+    }
+    .typebox a.active{
+        border-bottom: 2px solid #33A58E;
+        font-weight: 600;
+    }
+    .typebox a img{
+        display:none;
+    }
+    .djtjbox .djtjcon a{
+        width:100%;
+        margin:0;
+    }
+    .djtjbox .djtjcon{
+        margin:0;
+        height: 340px;
+        overflow: hidden;
+    }
+    .djtjbox .djtjcon img{
+        width:100%;
+        height: 100%;
+    }
+    .djtjbox{
+        padding-top:40px;
+    }
+    .content .conbox .md1200, .djtjbox .md1200{
+        padding-right:12px;
+        padding-left:12px;
+        box-sizing:border-box;
+        overflow: hidden;
+        width:100%;
+    }
+    /* .content{
+        margin-top:136px;
+    } */
+    .banner{
+        /* height: 535px; */
+        overflow: hidden;
+    }
+    .banner .title{
+        font-size:22px;
+        margin-top: 168px;
+    }
+    .banner .sub{
+        font-size:14px;
+        width:310px;
+        margin:0 auto;
+    }
+    .banner .morebtn{
+        margin-top:100px;
+        font-size:14px;
+    }
+    .content .titlebox{
+        font-size:16px;
+        padding-left:35px;
+        height:32px;
+        line-height:32px;
+    }
+    .content .titlebox,.content .xsthbox .titlebox,.content .zynfbox .titlebox,.content .crjkbox .titlebox,.content .rtjkbox .titlebox,.content .mbhlbox .titlebox{
+        margin-bottom:20px;
+    }
+    .content .titlebox .more{
+        font-size:14px;
+        height: 35px;
+        line-height: 35px;
+    }
+    .content .titlebox .more img{
+        width:7px;
+        height:11px;
+        margin: 0 0 0 12px;
+        top: 1px;
+    }
+    .content .titlebox > img{
+        width:30px !important;
+    }
+    .content .titlebox .xsyhimg{
+        top:0;
+    }
+    .content .titlebox .crjkimg{
+        top:0;
+    }
+    .content .titlebox .sthlimg{
+        top:1px;
+    }
+    .content .titlebox .shrzimg{
+        top:0;
+    }
+    .content .titlebox .qtcpimg{
+        top:0;
+    }
+    .content .titlebox .typelist{
+        display:none;
+    }
+    .xsthbox .more,.content .mbhlbox .titlebox .more{
+        margin-top:0;
+    }
+    .conbox .list{
+        margin-right:-9px;
+    }
+    .conbox .list .item{
+        float: left;
+        width: 50%;
+        border-right: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+        padding: 0;
+    }
+    .adbox{
+        margin-top:48px;
+        background: rgba(240,242,243,1);
+    }
+    .adbox, .adbox img{
+        height:151px;
+    }
+    .payresultbox{
+        width:90%;
+    }
+    .payresultbox .resultbottombox dd.money{
+        font-size:14px;
+    }
+    .payresultbox .resultbottombox dd{
+        padding-left:55px;
+    }
+    
+    .payresultbox .resulttopbox{
+        padding:25px 0 15px;
+    }
+    .payresultbox .resultbottombox .showbox{
+        margin:25px 0 33px 0;
+    }
+    .payresultbox .resulttopbox .word .result{
+        font-size:16px;
+    }
+    .content .conbox.crjkbox .titlebox{
+        margin-bottom: 30px;
+    }
+    .content .rtjkbox .titlebox .more{
+        margin-top:0;
+    }
+    .content .zynfbox .zynfimg{
+        top:0;
+    }
+    .content .conbox{
+        padding-top:35px;
+    }
+    .content .conbox.xsthbox{
+        background-position: 0 0;
+        background-size: 100% 52px;
+        padding-top: 55px;
+    }
+    .content .conbox.mbhlbox{
+        background-position:0 -20px;
+        background-size: 100% 52px;
+        padding-top: 40px;
+    }
+    .content .conbox.crjkbox{
+        background-position: 0 0;
+        background-size: 100% 52px;
+        padding-top:40px;
+    }
+    .banner img{
+        height: 70px;
+        bottom:-10px;
+    }
+    .djtjbox .md1200,.xsthbox .md1200,.zynfbox .md1200,.crjkbox .md1200,.rtjkbox .md1200,.mbhlbox .md1200,.sthlbox .md1200,.jkspbox .md1200,.shrzbox .md1200,.xzfsbox .md1200,.qtcpbox .md1200{
+        padding-top:136px;
+        margin-top:-136px;
+    }
+    
+}
+
+

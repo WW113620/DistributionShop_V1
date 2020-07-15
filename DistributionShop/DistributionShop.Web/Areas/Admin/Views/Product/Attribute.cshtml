@@ -1,0 +1,101 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_DialogLayout.cshtml";
+}
+<input type="hidden" id="productId" value="@ViewBag.productId" />
+<input type="hidden" id="attributeIds" value="@ViewBag.attributeIds" />
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body" style="padding: 15px;">
+                    <div id="AttributeList"></div>
+                    <div class="layui-btn-container" style="margin-top: 40px;text-align: center;">
+                        @*<button type="button" class="layui-btn layui-btn-sm" lay-event="getChecked">获取选中节点数据</button>
+                        <button type="button" class="layui-btn layui-btn-sm" lay-event="setChecked">勾选指定节点</button>
+                        <button type="button" class="layui-btn layui-btn-sm" lay-event="reload">重载实例</button>*@
+                        <button type="button" class="layui-btn layui-btn-sm" id="btnSave">保存</button>
+                        <button type="button" class="layui-btn layui-btn-sm" id="btnCacle">取消</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    layui.config({
+        base: '/Assets/layuiadmin/'
+    }).extend({
+        index: 'lib/index'
+    }).use(['index', 'tree','util'], function () {
+        var tree = layui.tree
+            , util = layui.util
+            , layer = layui.layer
+        function initTree() {
+            $.post("@Url.Content("~/admin/product/GetAtrributeTreeData")", {}, function (result) {
+                if (result && result.length > 0) {
+                    //基本演示
+                    tree.render({
+                        elem: '#AttributeList'
+                        , data: result
+                        , showCheckbox: true
+                        //, edit: ['add', 'update', 'del']
+                        , id: 'tree-attributeId'
+                        , isJump: tree
+                        , click: function (obj) {
+                        }
+
+                    });
+                    initChecked();
+                }
+            });
+        }
+
+        function initChecked() {
+              var attributeIds = $("#attributeIds").val();
+                    if (attributeIds) {
+                        var arry = attributeIds.split(',');
+                        tree.setChecked('tree-attributeId',arry );
+                    }
+        }
+
+        ////按钮事件
+        //util.event('lay-event', {
+        //    getChecked: function (othis) {
+        //        var checkedData = tree.getChecked('tree-attributeId'); //获取选中节点的数据
+        //        layer.alert(JSON.stringify(checkedData), { shade: 0 });
+        //        console.log(checkedData);
+        //    }
+        //    , setChecked: function () {
+        //        tree.setChecked('tree-attributeId', [12, 16]); //勾选指定节点
+        //    }
+        //    , reload: function () {
+        //        //重载实例
+        //        tree.reload('tree-attributeId', {
+
+        //        });
+
+        //    }
+        //});
+
+        $("#btnSave").click(function () {
+            var checkedData = tree.getChecked('tree-attributeId'); //获取选中节点的数据
+            var strcheckedData = JSON.stringify(checkedData);
+           
+            $.post("@Url.Content("~/product/RelateProductAttribute")", {data:strcheckedData,productId:$("#productId").val()}, function (result) {
+                if (result.code == 200 && result.model > 0) {
+                    layer.msg("保存成功！")
+                    setTimeout(function () {
+                        top.layer.closeAll();
+                    },1000)
+                }
+            })
+        })
+        $("#btnCacle").click(function () {
+           top.layer.closeAll();
+        })
+        initTree();
+
+    });
+</script>

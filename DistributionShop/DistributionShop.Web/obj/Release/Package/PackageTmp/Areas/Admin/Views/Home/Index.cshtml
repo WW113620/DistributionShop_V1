@@ -1,0 +1,192 @@
+﻿@model DistributionShop.Models.ViewModels.OrderStatisticsModel
+
+@{
+    ViewBag.Title = "首页";
+}
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md6">
+                    <div class="layui-card">
+                        <div class="layui-card-header">快捷方式</div>
+                        <div class="layui-card-body">
+
+                            <div class="layui-carousel layadmin-carousel layadmin-shortcut">
+                                <div carousel-item>
+                                    <ul class="layui-row layui-col-space10">
+                                        <li class="layui-col-xs3">
+                                            <a href="@Url.Content("~/Home/Index")">
+                                                <i class="layui-icon layui-icon-home"></i>
+                                                <cite>前台主页</cite>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs3">
+                                            <a href="@Url.Content("~/Admin/Home/Index")">
+                                                <i class="layui-icon layui-icon-refresh"></i>
+                                                <cite>后台主页</cite>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs3">
+                                            <a href="@Url.Content("~/Admin/Category/Index")">
+                                                <i class="layui-icon layui-icon-template-1"></i>
+                                                <cite>商品类别</cite>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs3">
+                                            <a href="@Url.Content("~/Admin/Product/Index")">
+                                                <i class="layui-icon layui-icon-table"></i>
+                                                <cite>商品管理</cite>
+                                            </a>
+                                        </li>
+
+                                        <li class="layui-col-xs3">
+                                            <a href="@Url.Content("~/Admin/Order/Index")">
+                                                <i class="layui-icon layui-icon-cart"></i>
+                                                <cite>订单管理</cite>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs3">
+                                            <a href="@Url.Content("~/Admin/Order/OrderReFundIndex")">
+                                                <i class="layui-icon layui-icon-list"></i>
+                                                <cite>退款申请</cite>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs3">
+                                            <a href="@Url.Content("~/Admin/User/Index")">
+                                                <i class="layui-icon layui-icon-user"></i>
+                                                <cite>用户列表</cite>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs3">
+                                            <a href="@Url.Content("~/Admin/Account/List")">
+                                                <i class="layui-icon layui-icon-friends"></i>
+                                                <cite>管理员列表</cite>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <ul class="layui-row layui-col-space10">
+                                        <li class="layui-col-xs3">
+                                            <a href="@Url.Content("~/Admin/Account/Info")">
+                                                <i class="layui-icon layui-icon-edit"></i>
+                                                <cite>基本信息</cite>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs3">
+                                            <a href="@Url.Content("~/Admin/Account/Password")">
+                                                <i class="layui-icon layui-icon-set"></i>
+                                                <cite>修改密码</cite>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs3">
+                                            <a href="@Url.Content("~/Admin/Account/LoginOut")">
+                                                <i class="layui-icon layui-icon-logout"></i>
+                                                <cite>退出系统</cite>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md6">
+                    <div class="layui-card">
+                        <div class="layui-card-header">待办事项</div>
+                        <div class="layui-card-body">
+
+                            <div class="layui-carousel layadmin-carousel layadmin-backlog">
+                                <div carousel-item>
+                                    <ul class="layui-row layui-col-space10">
+                                        <li class="layui-col-xs6">
+                                            <a href="@Url.Content("~/Admin/Order/Index")" class="layadmin-backlog-body">
+                                                <h3>待支付</h3>
+                                                <p><cite>@Model.NoPayCount</cite></p>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs6">
+                                            <a href="@Url.Content("~/Admin/Order/Index")" class="layadmin-backlog-body">
+                                                <h3>已支付</h3>
+                                                <p><cite>@Model.PayedCount</cite></p>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs6">
+                                            <a href="@Url.Content("~/Admin/Order/Index")" class="layadmin-backlog-body">
+                                                <h3>待发货</h3>
+                                                <p><cite>@Model.NoSendCount</cite></p>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs6">
+                                            <a href="@Url.Content("~/Admin/Order/OrderReFundIndex")" class="layadmin-backlog-body">
+                                                <h3>待退款</h3>
+                                                <p><cite>@Model.ApplyRefundCount</cite></p>
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-header">数据概览</div>
+                        <div class="layui-card-body">
+
+                            <div class="layui-carousel layadmin-carousel layadmin-dataview" data-anim="fade" lay-filter="LAY-index-dataview">
+                                <div carousel-item id="LAY-index-dataview">
+                                    <div><i class="layui-icon layui-icon-loading1 layadmin-loading"></i></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="layui-card">
+                        <div class="layui-tab layui-tab-brief layadmin-latestData">
+                            <ul class="layui-tab-title">
+                                <li class="layui-this">待发货</li>
+                                <li>待退款</li>
+                            </ul>
+                            <div class="layui-tab-content" style="min-height:300px;">
+                                <div class="layui-tab-item layui-show">
+                                    <table id="LAY-index-topSearch" lay-filter="LAY-index-topSearch"></table>
+                                </div>
+                                <div class="layui-tab-item">
+                                    <table id="LAY-index-topCard" lay-filter="LAY-index-topCard"></table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script type="text/html" id="table-useradmin-webuser">
+            <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail"><i class="layui-icon layui-icon-form"></i>查看详情</a>
+        </script>
+        <script type="text/html" id="zizeng">
+            {{d.LAY_TABLE_INDEX+1}}
+        </script>
+        <script type="text/html" id="tb-operate">
+            <a class="layui-btn layui-btn-xs layui-btn-primary" lay-event="preview">查看</a>
+            <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="refuse">拒绝</a>
+            <a class="layui-btn layui-btn-xs" lay-event="agree">同意</a>
+        </script>
+    </div>
+</div>
+
+<script>
+    layui.config({
+        base: '/Assets/layuiadmin/'
+    }).extend({
+        index: 'lib/index'
+    }).use(['index', 'console', 'table']);
+
+</script>

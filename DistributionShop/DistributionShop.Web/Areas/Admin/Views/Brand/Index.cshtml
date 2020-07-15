@@ -1,0 +1,226 @@
+﻿@using DistributionShop.Models.Utils;
+@{
+    ViewBag.Title = "商品管理列表";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<style>
+</style>
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">品牌名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="Name" id="Name" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+              
+                <div class="layui-inline">
+                    <button class="layui-btn layuiadmin-btn-useradmin" lay-submit lay-filter="LAY-product-search" id="btnSearch">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="layui-card-body">
+            <div style="padding-bottom: 10px;">
+                <button class="layui-btn layuiadmin-btn-useradmin" data-type="batchdel">批量删除</button>
+                <button class="layui-btn layuiadmin-btn-useradmin" data-type="add">添加</button>
+            </div>
+
+            <table id="LAY-product-manage" lay-filter="LAY-product-manage"></table>
+            <script type="text/html" id="imgTpl">
+                <img style="display: inline-block; width: 50%; height: 100%;" src={{ d.avatar }}>
+            </script>
+            <script type="text/html" id="tb-operate">
+                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="detail" style="cursor:pointer">查看</a>
+                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit" style="cursor:pointer">编辑</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" style="cursor:pointer">删除</a> 
+            </script>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+ layui.config({
+      base: '/Assets/layuiadmin/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(["index","form","laydate","table"],function(){
+      var layer = layui.layer,
+        laydate = layui.laydate,
+        table = layui.table,
+        form = layui.form,
+        $ = layui.$;
+   
+
+      //品牌管理
+    table.render({
+        elem: '#LAY-product-manage'
+        , url: layui.setter.baseUrl + 'Brand/GetList'
+        , where:{
+            Name: $("#Name").val()
+           }
+        , cols: [[
+            { type: 'checkbox' }
+            , { field: 'zizeng', title: '序号', type: 'numbers' ,width:60 }
+            , { field: 'Name', align: 'center', title: '品牌名称', width: 500 }
+           
+            , {
+                field: 'Description', title: '描述',  templet: function (d) {
+                    var Description = d.Description;
+                    var rtnStr = "-";
+                    if (Description) {
+                        rtnStr = CuteStr(Description, 20);
+                    }
+                    return rtnStr;
+                } ,
+            }
+            , { field: 'AddTimeValue', title: '添加时间' ,width:180 ,algin:'center'}
+            , { title: '操作', width: 250, align: 'center', fixed: 'right', toolbar: '#tb-operate' }
+        ]]
+        , page: true
+
+        , text: {
+            none: '暂无相关数据'
+        }
+    });
+      
+        //监听搜索
+      form.on('submit(LAY-product-search)', function(data){
+        var field = data.field;
+        //var StartDate = data.field.StartDate;
+        //    var EndDate = data.field.EndDate;
+        //    if (StartDate && EndDate) {
+        //        var sTime = convertStrToDate(StartDate);
+        //        var eTime = convertStrToDate(EndDate);
+        //        if (eTime < sTime) {
+        //            LayerMsg("结束日期不能小于开始日期");
+        //            return;
+        //        }
+        //    }
+      //执行重载
+      table.reload('LAY-product-manage', {
+          where: field,
+             page: {
+                curr: 1 //重新从第 1 页开始
+            }
+      });
+    });
+      
+    //监听table 工具条
+  table.on('tool(LAY-product-manage)', function(obj){
+      var data = obj.data;
+      switch (obj.event) {
+          case "detail":
+              layer.open({
+                type: 2
+                , title: '查看品牌'
+                  , area: ['500px', '350px']
+                  , content: ['@Url.Content("~/admin/brand/detail/")'+data.Id]
+
+            });
+              break;
+          case "edit":
+              layer.open({
+                type: 2
+                , title: '编辑品牌'
+                  , area: ['500px', '400px']
+                  , content: ['@Url.Content("~/admin/brand/addview/")'+data.Id]
+
+            });
+              break;
+          case "del":
+             layer.confirm('确定删除吗？', function (index) {
+                delById(data.Id);
+                layer.close(index);
+             });
+              break;
+      }
+
+  });
+    //列表外按钮点击事件
+    var active = {
+      batchdel: function(){
+        var checkStatus = table.checkStatus('LAY-product-manage')
+        ,checkData = checkStatus.data; //得到选中的数据
+
+            if (checkData.length === 0) {
+                return layer.msg('请选择数据');
+            } else {
+                var Ids= "";
+                console.log(checkData);
+                for (var i = 0; i < checkData.length; i++) {
+                    Ids += checkData[i].Id + ",";
+                }
+                 layer.confirm('确定批量删除吗？', function (index) {
+               DelByIds(Ids);
+                layer.close(index);
+             });
+                
+            }
+
+
+      }
+        , add: function () {
+            layer.open({
+                type: 2
+                , title: '添加品牌'
+                , area: ['500px', '400px']
+                , content: ['@Url.Content("~/admin/brand/addview/0")']
+
+            });
+        }
+    };
+
+    $('.layui-btn.layuiadmin-btn-useradmin').on('click', function(){
+      var type = $(this).data('type');
+      active[type] ? active[type].call(this) : '';
+    });
+
+      function DelByIds(ids) {
+           $.post('@Url.Action("DelByIds","brand",new { Area="Admin"})', { ids: ids }, function (result) {
+              if (result && result.code == 200) {
+                  if (result.model && result.model > 0) {
+                      layer.msg("操作成功！")
+                      setTimeout(function () { layer.closeAll(); }, 1000);
+                      $("#btnSearch").click();
+                  } else {
+                      layer.msg("操作失败！")
+                  }
+              }
+          })
+      }
+      
+    
+      //删除
+      function delById(id) {
+           $.post('@Url.Action("DelById","Brand",new { Area="Admin"})', { id: id }, function (result) {
+              if (result && result.code == 200) {
+                  if (result.model && result.model > 0) {
+                      layer.msg("操作成功！")
+                      setTimeout(function () { layer.closeAll(); }, 1000);
+                      $("#btnSearch").click();
+                  } else {
+                      layer.msg("操作失败！")
+                  }
+              }
+          })
+      }
+    
+      document.onkeydown = function (e) { // 回车提交表单
+        // 兼容FF和IE和Opera
+            var theEvent = window.event || e;
+            var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+            if (code == 13) {
+               $("#btnSearch").click();
+            }
+        }
+  });
+</script>
+
+

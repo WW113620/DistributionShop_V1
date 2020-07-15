@@ -1,0 +1,251 @@
+﻿@using DistributionShop.Models.Utils;
+@{
+    ViewBag.Title = "商品列表";
+}
+
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">商品名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="ProductName" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">商品品牌</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="BrandName" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">是否新品</label>
+                    <div class="layui-input-block">
+                        <select name="IsNew">
+                            <option value="">不限</option>
+                            @{
+                                var ProductNewEnums = ViewBag.ProductNewEnums as List<SelectOption>;
+                                foreach (var item in ProductNewEnums)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="layui-inline">
+                    <label class="layui-form-label">是否置顶</label>
+                    <div class="layui-input-block">
+                        <select name="IsTop">
+                            <option value="">不限</option>
+                            @{
+                                var ProductTopEnums = ViewBag.ProductTopEnums as List<SelectOption>;
+                                foreach (var item in ProductTopEnums)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">商品分类</label>
+                    <div class="layui-input-block">
+                        <select id="category1" name="FiristCategoryId" lay-filter="category1">
+                            <option value="">不限</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">二级分类</label>
+                    <div class="layui-input-block">
+                        <select id="category2" name="SecondCategoryId" lay-filter="category2">
+                            <option value="">不限</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">首页展示</label>
+                    <div class="layui-input-block">
+                        <select name="IsHomePage">
+                            <option value="">不限</option>
+                            @{
+                                var ShowHomePageEnums = ViewBag.ShowHomePageEnums as List<SelectOption>;
+                                foreach (var item in ShowHomePageEnums)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">商品状态</label>
+                    <div class="layui-input-block">
+                        <select name="AuditStatus">
+                            <option value="">不限</option>
+                            @{
+                                var AuditStatusEnums = ViewBag.AuditStatusEnums as List<SelectOption>;
+                                foreach (var item in AuditStatusEnums)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="layui-inline">
+                    <button class="layui-btn layuiadmin-btn-useradmin" lay-submit lay-filter="LAY-user-front-search">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-card-body">
+            <div style="padding-bottom: 10px;">
+                <button class="layui-btn layuiadmin-btn-useradmin" data-type="batchdel">批量删除</button>
+                <button class="layui-btn layuiadmin-btn-useradmin" data-type="add">添加</button>
+            </div>
+
+            <table id="LAY-product-manage" lay-filter="LAY-product-manage"></table>
+            <script type="text/html" id="tb-operate">
+                <a class="layui-btn layui-btn-xs" lay-event="preview">预览</a>
+                {{# if(d.AuditStatus==0){ }}
+                <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="attribute">添加属性</a>
+                <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="publish">上架</a>
+                <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+                {{# }if(d.AuditStatus==1){ }}
+                <a class="layui-btn layui-btn-xs layui-btn-primary" lay-event="detail">查看</a>
+                <a class="layui-btn layui-btn-xs layui-btn-disabled" lay-event="attribute">添加属性</a>
+                <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="down">下架</a>
+                <a class="layui-btn layui-btn-xs layui-btn-disabled">删除</a>
+                {{# } if(d.AuditStatus==2){ }}
+                <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="attribute">添加属性</a>
+                <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="publish">上架</a>
+                <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+                {{# } }}
+
+            </script>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    layui.config({
+        base: '/Assets/layuiadmin/'
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'product', 'layer', 'table', 'laydate'], function () {
+        var $ = layui.$
+            , form = layui.form
+            , table = layui.table
+            , layer = layui.layer //弹层
+
+
+        //监听搜索
+        form.on('submit(LAY-user-front-search)', function (data) {
+            var field = data.field;
+            //执行重载
+            table.reload('LAY-product-manage', {
+                where: field
+            });
+        });
+
+        //列表外按钮点击事件
+    var active = {
+      batchdel: function(){
+        var checkStatus = table.checkStatus('LAY-product-manage')
+        ,checkData = checkStatus.data; //得到选中的数据
+
+            if (checkData.length === 0) {
+                return layer.msg('请选择数据');
+            } else {
+                var Ids= "";
+                console.log(checkData);
+                for (var i = 0; i < checkData.length; i++) {
+                    Ids += checkData[i].Id + ",";
+                }
+                DelByIds(Ids);
+            }
+
+
+      }
+        , add: function () {
+            var win = window.open();
+            win.location = "@Url.Content("~/Admin/Product/Add")";
+        }
+    };
+
+        $('.layui-btn.layuiadmin-btn-useradmin').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+
+          function DelByIds(ids) {
+           $.post('@Url.Action("DelByIds","Product",new { Area="Admin"})', { ids: ids }, function (result) {
+              if (result && result.code == 200) {
+                  if (result.model && result.model > 0) {
+                      layer.msg("删除成功", { time: 1000, offset: 'auto' }, function (index) {
+                          layer.close(index);
+                          table.reload('LAY-product-manage');
+                      });
+                  } else {
+                      layer.msg("操作失败！")
+                  }
+              }
+          })
+      }
+
+        //监听品牌分类
+        form.on("select(category1)", function (data) {
+            var parentId = data.elem[data.elem.selectedIndex].value;
+            initCateList(parentId, "#category2");
+        })
+        form.on("select(category2)", function (data) {
+            var parentId = data.elem[data.elem.selectedIndex].value;
+        })
+      
+         //初始化分类下拉
+        function initCateList(parentId, el) {
+            var html = "<option value=''>不限</option>";
+            if (!parentId) {
+                $(el).html(html);
+                form.render('select');
+                return false;
+            }
+            GetCategroyList(parentId, el)
+        }
+
+        function GetCategroyList(parentId, el) {
+            var html = "<option value=''>不限</option>";
+              $.post('@Url.Action("GetListByParentId","Category",new { Area="Admin"})', { parentid: parentId }, function (result) {
+              if (result && result.code == 200) {
+                  if (result.model && result.model.length > 0) {
+                      for (var i = 0; i < result.model.length; i++) {
+                          var item = result.model[i];
+                          var strName = CuteStr(item.Name, 10);
+                          html += "<option value='"+item.Id+"'>" + strName + "</option>";
+                      }
+                  }
+                  $(el).html(html);
+                  form.render('select');
+              }
+          })
+        }
+
+        GetCategroyList(0, "#category1");
+    });
+
+</script>
+

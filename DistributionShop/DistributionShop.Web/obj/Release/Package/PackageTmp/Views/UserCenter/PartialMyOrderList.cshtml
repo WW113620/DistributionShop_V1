@@ -1,0 +1,73 @@
+﻿@using DistributionShop.Models.ViewModels;
+@using DistributionShop.Models.Utils;
+@model DistributionShop.Models.ViewModels.LayuiPageResult<OrdersHeadViewModel>
+
+@if (Model.code == 0)
+{
+    if (Model.data != null && Model.data.Count > 0)
+    {
+        foreach (var order in Model.data)
+        {
+            <li class="orderli">
+                <div class="ordertop">
+                    <span class="orderbh">订单号：@(order.OrderSn)</span>
+                    <span class="ordertime">下单时间：@(order.AddTimeValue)</span>
+                    <span class="ordermoney">订单金额：￥@(order.TotalPayPriceStr)（含运费：￥@(order.PostageStr)）</span>
+                </div>
+                <div class="ordercon">
+                    <div class="libox goodinfo">
+                        @if (order.orderDetailList != null && order.orderDetailList.Count > 0)
+                        {
+                            foreach (var orderDetail in order.orderDetailList)
+                            {
+                                <div class="detail">
+                                    <div class="imgbox">
+                                        <img src="@Url.Content("~/api/MediaApi/GetCoverFileName?fileName="+orderDetail.ProductImagePath)">
+                                    </div>
+                                    <div class="name">@(orderDetail.ProductName)</div>
+                                    <div class="num">x @(orderDetail.OrderProductAmount)</div>
+                                    <div class="unitprice">￥@((orderDetail.WebPrice* orderDetail.OrderProductAmount).ToMoney())</div>
+                                </div>
+                            }
+                        }
+
+                    </div>
+                    <div class="libox consignee">@(order.RealName)</div>
+                    <div class="libox state">@(order.PayStateName)</div>
+                    <div class="libox operate">
+                        @if (order.PayState == (int)PayStateEnums.未支付|| order.PayState == (int)PayStateEnums.支付失败)
+                        {
+                            <a href="@Url.Action("OrderPayment", "UserCenter")?orderSn=@(order.OrderSn)" class="btn lkfkbtn">立刻付款</a>
+                            <a href="javascript:;" class="btn qxddbtn" onclick="CancelOrder('@(order.OrderSn)')">取消订单</a>
+                            <a href="@Url.Action("GetOrderDetail", "UserCenter")?orderSn=@(order.OrderSn)" class="btn ddxqbtn">订单详情</a>
+                        }
+                        else if (order.PayState == (int)PayStateEnums.已支付未发货|| order.PayState == (int)PayStateEnums.已支付已发货)
+                        {
+                            <a href="@Url.Action("GetOrderDetail", "UserCenter")?orderSn=@(order.OrderSn)" class="btn ddxqbtn">订单详情</a>
+                            <a href="@Url.Content("~/UserCenter/OrderRefund?ordersn=")@(order.OrderSn)" class="btn wytkbtn">我要退款</a>
+                        }
+                        else if (order.PayState == (int)PayStateEnums.已收货||order.PayState == (int)PayStateEnums.已完成)
+                        {
+                            @*<a href="personal_order_logistics.html" class="btn ckwlbtn">查看物流</a>*@
+                            <a href="@Url.Action("GetOrderDetail", "UserCenter")?orderSn=@(order.OrderSn)" class="btn ddxqbtn">订单详情</a>
+                            <a href="@Url.Content("~/UserCenter/OrderRefund?ordersn=")@(order.OrderSn)" class="btn wytkbtn">我要退款</a>
+                        }
+                        else if (order.PayState == (int)PayStateEnums.已退款 || order.PayState == (int)PayStateEnums.已拒绝)
+                        {
+                            @*<a href="personal_order_logistics.html" class="btn ckwlbtn">查看物流</a>*@
+                            <a href="@Url.Action("GetOrderDetail", "UserCenter")?orderSn=@(order.OrderSn)" class="btn ddxqbtn">订单详情</a>
+                            <a href="@Url.Content("~/UserCenter/OrderRefund?ordersn=")@(order.OrderSn)" class="btn wytkbtn">我要退款</a>
+                        }
+                    </div>
+                </div>
+            </li>
+        }
+    }
+}
+<script type="text/javascript">
+    $(function () {
+        $("#totalCount").text(@(Model.count));
+        InitPage(@(ViewBag.pageIndex), 5, @(Model.count), "pagebox");
+    });
+</script>
+

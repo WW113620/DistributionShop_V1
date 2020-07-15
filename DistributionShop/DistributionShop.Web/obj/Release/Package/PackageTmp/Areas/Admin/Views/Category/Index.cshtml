@@ -1,0 +1,150 @@
+﻿
+@{
+    ViewBag.Title = "分类列表";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+    <div class="layui-container">
+        <div>
+            <button class="layui-btn layui-btn-sm" data-type="add" name="op"><i class="layui-icon">&#xe654;</i>新增</button>
+
+            <button class="layui-btn layui-btn-sm" data-type="updata" name="op"><i class="layui-icon">&#xe642;</i>修改</button>
+
+            <button class="layui-btn  layui-btn-sm" data-type="del" name="op"><i class="layui-icon">&#xe640;</i>删除</button>
+            <button class="layui-btn layui-btn-sm" name="op" data-type="expand">全部展开</button>
+
+            <button class="layui-btn layui-btn-sm" name="op" data-type="fold">全部折叠</button>
+            <button class="layui-btn layui-btn-sm" name="op" data-type="refresh" id="btnRefresh">刷新</button>
+        </div>
+        
+        <table id="cate-table" class="layui-table" lay-filter="cate-table"></table>
+    </div>
+
+<script>
+    layui.config({
+        base: '/Assets/layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index', //主入口模块
+        treetable: 'treetable-lay/treetable'
+    }).use(["index", "treetable"], function () {
+        var $ = layui.jquery;
+        var table = layui.table;
+        var treetable = layui.treetable;
+        //渲染表格
+        layer.load(2);
+        var renderTable = function () {
+            treetable.render({
+                treeColIndex: 1,
+                treeSpid: 0,
+                treeIdName: 'Id',
+                treePidName: 'ParentCategoryId',
+                elem: '#cate-table',
+                url: '@Url.Content("~/Admin/Category/GetAllList")',
+                page: false,
+                treeDefaultClose: true,
+                //toolbar:"#toolbarDemo",
+                cols: [[
+                    {type:'radio'},
+                    { field: 'Name', minWidth: 200, title: '分类名称' }
+                    //{ field: 'DisplaySequence', title: '排序'  },
+                    //{ field: 'Depth', title: '深度' }
+                    
+                ]],
+                done: function () {
+                    layer.closeAll('loading');
+                }
+            });
+        };
+       
+
+        $("button[name='op']").click(function () {
+             var checkStatus = table.checkStatus('cate-table');
+             var data = checkStatus.data;
+            var optype = $(this).attr('data-type');
+            switch (optype) {
+                case "add":
+                    add(data);
+                    break;
+                case "del":
+                    del(data);
+                    break;
+                case "updata":
+                    updata(data);
+                    break;
+                case "expand":
+                     treetable.expandAll('#cate-table');
+                    break;
+                case "fold":
+                     treetable.foldAll('#cate-table');
+                    break;
+                case "refresh":
+                    renderTable();
+                    break;
+            }
+        })
+
+    function add(data) {
+        var parentId = data.length == 0 ? 0 : data[0].Id;
+        var depth = data.length == 0 ? 1 : parseInt(data[0].Depth) + 1;
+        if (depth != 2) {
+            layer.msg("只能添加二级层级！")
+            return;
+        }
+        $.get("@Url.Content("~/Admin/Category/AddCateView")", { parentCateId: parentId, depth:depth }, function (data) {
+            layer.open({
+                type: 1,
+                title: '新增',
+                area: ['530px'],
+                content: data
+                })
+        })
+      }
+    function del(data) {
+        if(data.length != 1){
+            layer.msg("请选择一行进行删除");
+        } else {
+            var id = data[0].Id;
+             var depth = data[0].Depth;
+              if (depth != 2) {
+                layer.msg("只能删除二级层级！")
+                return;
+            }
+            layer.confirm('确定删除选定行的数据吗?', function(index){
+               $.get("@Url.Content("~/Admin/Category/DelById")", {id: id}, function(data){
+                   if (data && data.model > 0) {
+                       layer.msg("删除成功");
+                       renderTable();
+                   }
+        })
+            });
+        }
+       }
+     function updata(data) {
+         if(data.length != 1){
+            layer.msg("请选择一行进行编辑");
+        }else{
+            var id = data[0].Id;
+             var name = data[0].Name;
+             var depth = data[0].Depth;
+                if (depth != 2) {
+                layer.msg("只能修改二级层级！")
+                return;
+            }
+           $.get("@Url.Content("~/Admin/Category/EditCateView")", {id: id,name:name}, function(data){
+            layer.open({
+                type: 1,
+                title: '编辑',
+                area: ['530px'],
+                content: data
+                })
+        })
+            }
+      }
+
+        renderTable();
+        
+    });
+
+
+</script>
+
+

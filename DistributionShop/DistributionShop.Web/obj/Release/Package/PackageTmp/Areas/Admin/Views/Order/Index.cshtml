@@ -1,0 +1,158 @@
+﻿@using DistributionShop.Models.Utils;
+
+@{
+    ViewBag.Title = "订单列表";
+}
+
+
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">订单号</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="OrderSn" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">用户名</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="UserName" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-inline">
+                    <label class="layui-form-label">支付状态</label>
+                    <div class="layui-input-block">
+                        <select name="PayState">
+                            <option value="">不限</option>
+                            @{
+                                var PayStateList = ViewBag.PayStateList as List<SelectOption>;
+                                foreach (var item in PayStateList)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">支付方式</label>
+                    <div class="layui-input-block">
+                        <select name="PayChannel">
+                            <option value="">不限</option>
+                            @{
+                                var PayChannelList = ViewBag.PayChannelList as List<SelectOption>;
+                                foreach (var item in PayChannelList)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">订单来源</label>
+                    <div class="layui-input-block">
+                        <select name="Platform">
+                            <option value="">不限</option>
+                            @{
+                                var PlatformList = ViewBag.PlatformList as List<SelectOption>;
+                                foreach (var item in PlatformList)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="layui-inline">
+                    <label class="layui-form-label">开始时间</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="StartDate" id="StartDate" placeholder="yyyy-MM-dd" readonly="readonly">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">结束时间</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input" name="EndDate" id="EndDate" placeholder="yyyy-MM-dd" readonly="readonly">
+                    </div>
+                </div>
+
+                <div class="layui-inline">
+                    <button class="layui-btn layuiadmin-btn-useradmin" lay-submit lay-filter="LAY-user-front-search">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-card-body">
+
+            <table id="LAY-user-manage" lay-filter="LAY-user-manage"></table>
+
+            <script type="text/html" id="table-useradmin-webuser">
+                <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail"><i class="layui-icon layui-icon-form"></i>查看详情</a>
+                {{#  if(d.PayState ==3){ }}
+                <a class="layui-btn layui-btn-disabled layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>修改</a>
+                {{#  } else { }}
+                <a class="layui-btn layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>修改</a>
+                {{#  } }}
+
+            </script>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    layui.config({
+        base: '/Assets/layuiadmin/'
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'order', 'layer', 'table', 'laydate'], function () {
+        var $ = layui.$
+            , form = layui.form
+            , table = layui.table
+            , layer = layui.layer //弹层
+            , laydate = layui.laydate;
+
+        //国际版
+        laydate.render({
+            elem: '#StartDate'
+            , lang: 'en'
+        });
+        laydate.render({
+            elem: '#EndDate'
+            , lang: 'en'
+        });
+        //监听搜索
+        form.on('submit(LAY-user-front-search)', function (data) {
+            var field = data.field;
+            var StartDate = data.field.StartDate;
+            var EndDate = data.field.EndDate;
+            if (StartDate && EndDate) {
+                var sTime = convertStrToDate(StartDate);
+                var eTime = convertStrToDate(EndDate);
+                if (eTime < sTime) {
+                    LayerMsg("结束日期不能小于开始日期");
+                    return;
+                }
+            }
+            //执行重载
+            table.reload('LAY-user-manage', {
+                where: field
+            });
+        });
+
+
+
+    });
+</script>

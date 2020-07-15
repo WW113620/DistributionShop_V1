@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "退款申请详情";
+}
+<input  type="hidden" id="hidReFundId" value="@ViewBag.ReFundId"/>
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <div style="padding-bottom: 10px;">
+                <button class="layui-btn layuiadmin-btn-useradmin" onclick="goToList()">返回列表</button>
+              
+            </div>
+            <table id="LAY-product-manage" lay-filter="LAY-product-manage"></table>
+        </div>
+    </div>
+</div>
+<script type="text/html" id="zizeng">
+    {{d.LAY_TABLE_INDEX+1}}
+</script>
+<script>
+    function goToList() {
+         location.href ="@Url.Content("~/Admin/Order/OrderReFundIndex")";
+    }
+    layui.config({
+        base: '/Assets/layuiadmin/'
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'table'], function () {
+        var table = layui.table;
+        table.render({
+            elem: '#LAY-product-manage'
+            , url: layui.setter.baseUrl + 'order/GetORderReFundDetailData?id='+$("#hidReFundId").val()
+            , cols: [[
+                  {field:'zizeng', width:80, title: '序号',align: 'center',templet:'#zizeng'}
+                , {
+                    field: 'OrderSn', width:200, title: '订单编号', templet: function (d) {
+                        return '<a href="/Order/detail?ordersn=' + d.OrderSn + '" target="_blank">' + d.OrderSn + '</a>';
+                    }
+                }
+                , { field: 'ProductName', title: '退款商品', width: 250 }
+                , { field: 'WebPrice', title: '价格(元)', width: 100 }
+                , { field: 'OrderProductAmount', title: '数量', width: 100 }
+                , { field: 'ReFundPrice', title: '退款金额(元)', width: 150 }
+                , { field: 'ReFundTypeName', title: '退款类别', width: 100 }
+                , { field: 'ReFundReasonName', title: '退款原因', width: 100 }
+                , { field: 'Description', title: '退款说明', width: 250 }
+                , { field: 'StatusVal', title: '退款状态', width: 100 }
+                , { field: 'AuditContent', title: '审批意见', width: 250 }
+                , { field: 'AuditTime', width: 158, title: '审批时间' }
+            ]]
+            , done: function (res, curr, count) {
+
+            }
+            , page: false
+          
+            , height: 'full-220'
+            , text: {
+                none: '暂无相关数据'
+            }
+        });
+    })
+</script>

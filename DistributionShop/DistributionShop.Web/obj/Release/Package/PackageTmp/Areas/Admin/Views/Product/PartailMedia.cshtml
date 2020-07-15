@@ -1,0 +1,30 @@
+﻿@using DistributionShop.Models.ViewModels;
+@using DistributionShop.Models.Data;
+@using DistributionShop.Models.Utils;
+@model List<DistributionShop.Models.ViewModels.ProductMediaViewModel>
+
+<link href="~/Content/productmedia.css" rel="stylesheet" />
+
+@{
+    if (Model != null && Model.Count > 0)
+    {
+        <div class="layui-form-item">
+            <label class="layui-form-label"></label>
+            <div class="layui-input-inline" style="width: 700px !important;">
+                <div class="layui-upload">
+                    <div class="layui-upload-list">
+                        @foreach (var item in Model)
+                        {
+                            <div class="sidebar">
+                                <img class="layui-upload-img" src="@item.ImageUrl" style="width:100%;">
+                                <div class="icon-group"><a style="cursor:pointer;" class="icon-del deletePic" title="删除" data-id="@item.Id"></a></div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+
+}

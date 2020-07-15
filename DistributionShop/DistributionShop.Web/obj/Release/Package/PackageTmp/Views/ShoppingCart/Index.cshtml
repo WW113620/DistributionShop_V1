@@ -1,0 +1,317 @@
+﻿@using DistributionShop.Models.Utils;
+@{
+    ViewBag.Title = "购物车";
+
+}
+@section head{
+    <link href="~/Assets/web/css/shopcar.css" rel="stylesheet" />
+
+    <link href="~/Assets/layuiadmin/layui/css/layui.css" rel="stylesheet" />
+    <script src="~/Assets/layuiadmin/layui/layui.js"></script>
+}
+
+<div class="shopcarcon">
+    <div class="md1200">
+        <div class="title">我的购物车</div>
+        <div class="content" style="padding-top:0">
+            <div class="showtable">
+                <ul class="tablist">
+                    <li class="check"><span class="checkbox checkallbox"></span></li>
+                    <li class="imgbox"><span class="allword">全选</span></li>
+                    <li class="detail">商品详情</li>
+                    <li class="price">单价</li>
+                    <li class="numbox">数量</li>
+                    <li class="money">金额</li>
+                    <li class="opt">操作</li>
+                </ul>
+                <div class="tip">未满足包邮条件【奶粉和特殊产品一件包邮，单独发货；其他产品满500元或任意6件包邮】</div>
+                <div class="zztr tabli mbzztr">
+                    <div class="check"><span class="checkbox"></span></div>
+                    <div class="zzfw"><span class="word">增值服务：奶粉罐底签字￥50.00</span> <input type="text" placeholder="请填写您的签字" class="qztxt"></div>
+                </div>
+                <div class="tablebox">
+                    <ul class="tablelist" id="cartContent">
+                        @Html.Action("PartialIndex", "ShoppingCart")
+                    </ul>
+                    @*<div class="zztr tabli">
+                        <div class="check">
+                            <span class="checkbox"></span>
+                        </div>
+                        <div class="zzfw">
+                            <span class="word">增值服务：奶粉罐底签字￥50.00</span> 
+                            <input type="text" placeholder="请填写您的签字" class="qztxt">
+                        </div>
+                    </div>*@
+                </div>
+            </div>
+            <div class="operatebox">
+                <div class="check"><span class="checkbox checkallbox"></span><span class="word">全选</span></div>
+                <a href="javascript:;" class="delbtn" onclick="DeleteShoppingCartByListShow()">删除选中的商品</a>
+                <a href="javascript:;" class="accountbtn" onclick="CloseAccount()">去结算</a>
+                <div class="totalbox">
+                    <p class="top">
+                        <span>
+                            已选商品(件）：
+                            <i class="num" id="totalCount">5</i>
+                        </span>
+                        <span>
+                            合计（含运费）：
+                            <i class="price" id="totalPrice">￥83.00</i>
+                        </span>
+                    </p>
+                    <p class="money" id="total">
+                        商品总价：￥66.00
+                        <span class="yf" id="postage">运费：￥17.0</span>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@*<div>
+    <input type="text" id="productId" value="1" />
+    <input type="button" value="tianjia" onclick="test(1)" />
+</div>*@
+<script>
+    $(function () {
+        //全选
+        $(".checkallbox").on("click", function () {
+            $(this).toggleClass("active");
+            if ($(this).hasClass("active")) {
+                $(".checkbox").addClass("active");
+            } else {
+                $(".checkbox").removeClass("active");
+            }
+            SumMoney();
+        });
+    });
+
+    //删除一个商品全部提示
+    function DeleteProducts(productId, num)
+    {
+        layer.confirm('确定要删除这个商品吗？', {
+            btn: ['确定', '取消']
+        },
+            function () {
+                AddToShoppingCart(productId, num);
+        },
+            function () {
+
+        });
+    }
+
+    function test( num) {
+
+        var productId = $('#productId').val();
+        AddToShoppingCart(productId, num);
+    }
+
+    //购物车添加或者删除一个商品
+    function AddToShoppingCart(productId, num) {
+        if (productId <= 0) {
+            layer.msg('未获得商品Id', { icon: 2, time: 1200, offset: 'auto' });
+            return;
+        }
+        if (num==0) {
+            layer.msg('请添加或者删除一个商品', { icon: 2, time: 1200, offset: 'auto' });
+            return;
+        }
+
+         $.ajax({
+                url: '@Url.Content("~/ShoppingCart/UpdateShoppingCartModel")',
+                type: 'POST',
+                dataType: 'JSON',
+                data: { productId: productId, num: num},
+                success: function (res) {
+                    if (res.code == 0) {
+                        //layer.msg(res.msg, { time: 1200, offset: 'auto' });
+                        reloadView(res.msg);
+                    }
+                    else {
+                        layer.msg(res.msg, { time: 1200, offset: 'auto' });
+                    }
+                },
+                error: function (error) {
+
+                }
+            });
+    }
+
+    //修改购物车一个商品数量
+    function ChangeCount(obj, productId, num) {
+        var newCount = Number($(obj).val());
+        if (newCount<=0) {
+            layer.msg('商品数量必须大于0', { time: 1200, offset: 'auto' });
+            $(obj).val(num)
+            return;
+        }
+        if (newCount>200) {
+            layer.msg('商品数量不能大于200', { time: 1200, offset: 'auto' });
+            $(obj).val(num)
+            return;
+        }
+
+         $.ajax({
+                url: '@Url.Content("~/ShoppingCart/UpdateShoppingCartModel")',
+                type: 'POST',
+             dataType: 'JSON',
+             data: { productId: productId, num: newCount, isAdd: false },
+                success: function (res) {
+                    if (res.code == 0) {
+                        reloadView(res.msg);
+                    }
+                    else {
+                        layer.msg(res.msg, { time: 1200, offset: 'auto' });
+                    }
+                },
+                error: function (error) {
+
+                }
+            });
+
+    }
+
+    //删除一个商品全部提示
+    function DeleteShoppingCartByListShow() {
+        layer.confirm('确定要删除这些商品吗？', { btn: ['确定', '取消'] },function () {
+               DeleteShoppingCartByList();
+            },
+            function () {
+         });
+    }
+    //购物车批量删除商品
+    function DeleteShoppingCartByList() {
+        var dataList = $('#cartContent .tabli .checkbox.active').map(function () {
+            return $(this).attr("data-val");
+        }).toArray();
+        if (dataList == undefined || dataList.length==0) {
+            layer.msg('请选择要删除的商品', { icon: 2, time: 1200, offset: 'auto' });
+            return;
+        }
+
+        $.ajax({
+            url: '@Url.Content("~/ShoppingCart/DeleteShoppingCartByList")',
+            type: 'POST',
+            dataType: 'JSON',
+            data: { productIdList: dataList },
+            success: function (res) {
+                if (res.code == 0) {
+                    reloadView(res.msg);
+                }
+                else {
+                    layer.msg(res.msg, { time: 1200, offset: 'auto' });
+                }
+            },
+            error: function (error) {
+
+            }
+        });
+
+    }
+
+    //去结算
+    function CloseAccount() {
+        var dataList = $('#cartContent .tabli .tabbox .checkbox.active').map(function () {
+            return $(this).attr("data-val");
+        }).toArray();
+        if (dataList == undefined || dataList.length == 0) {
+            layer.msg('请选择要结算的商品', { icon: 2, time: 1200, offset: 'auto' });
+            return;
+        }
+
+           $.ajax({
+            url: '@Url.Content("~/ShoppingCart/SetProductChecked")',
+            type: 'POST',
+            dataType: 'JSON',
+            data: { productIdList: dataList },
+            success: function (res) {
+                if (res.code == 0) {
+                    window.location.href = "@Url.Content("~/ShoppingCart/CreateOrderAndAddress")";
+                    //window.location.href = "@Url.Content("~/UserCenter/GetOrderDetail?orderSn=")" + res.model;
+                }
+                else if (res.code == 3) {
+                    window.location.href = "@Url.Action("Index", "Login")";
+                }
+                else {
+                    layer.msg(res.msg, { time: 1200, offset: 'auto' });
+                }
+            },
+            error: function (error) {
+
+            }
+        });
+
+    }
+
+    //根据选中结算金额
+    function SumMoney() {
+        var totalPrice = 0;//商品总价
+        var totalCount = 0;//商品总数
+        var secondPostTypeCount = 0;//第二类邮寄类型商品数量
+        var postage = 0;//邮费
+        var isPostageFree = false;//是否有第三类商品
+        var htmlList = $('#cartContent .tabli .tabbox .checkbox.active');
+        if (htmlList != undefined && htmlList.length > 0) {
+            $.each(htmlList, function () {
+                var num = Number($(this).attr("data-num"));
+                totalCount += num;
+                totalPrice += parseFloat($(this).attr("data-totalfee"));
+                totalPrice = parseFloat(totalPrice.toFixed(2)); //Math.floor(totalPrice * 100) / 100;
+
+                var posttype = Number($(this).attr("data-posttype"));//商品邮费类型
+                if (!isPostageFree) {
+                    //套餐类商品，此类商品包邮，且订单中含有套餐类商品的订单一律包邮；即套餐类商品混合第二类第一类商品整单包邮。
+                    isPostageFree = posttype == @((int)PostTypeEnums.第三类); //(int)PostTypeEnums.第三类;
+                }
+                if (isPostageFree) {
+                    postage = 0;
+                } else {
+                    if (posttype == @((int)PostTypeEnums.第二类)&& totalPrice < 500 && secondPostTypeCount < 6)//(int)PostTypeEnums.第二类
+                     {
+                         secondPostTypeCount += num;
+
+                         if (isPostageFree || totalPrice >= 500 || secondPostTypeCount >= 6) //有第三类包邮商品 第二类商品中判断满6件或500元
+                         {
+                             postage = 0;
+                         } else if (secondPostTypeCount == 5)//5件产品，补运费5元；
+                         {
+                             postage = 5;
+
+                         }
+                         else if (secondPostTypeCount == 4)//4件产品，补运费10元；
+                         {
+                             postage = 10;
+                         }
+                         else if (secondPostTypeCount == 3)//3件产品，补运费15元；
+                         {
+                             postage = 15;
+                         }
+                         else if (secondPostTypeCount == 2)//2件产品，补运费20元；
+                         {
+                             postage = 20;
+                         }
+                         else if (secondPostTypeCount == 1)//1件产品，补运费25元。
+                         {
+                             postage = 25;
+                         }
+                     }
+                }
+            })
+        }
+
+        $('#totalCount').text(totalCount);
+        $('#totalPrice').text('￥' + (totalPrice + postage));
+        $('#total').html('商品总价：￥' + totalPrice + ' <span class="yf" id="postage"> 运费：￥' + (postage) +'</span>');
+    }
+
+    //重新加载部分视图
+    function reloadView(msg) {
+        $("#cartContent").load("/ShoppingCart/PartialIndex", {}, function () {
+            layer.msg(msg, { time: 1200, offset: 'auto' }, function () {
+                layer.closeAll();
+            });
+        });
+    }
+</script>

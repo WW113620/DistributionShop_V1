@@ -1,0 +1,210 @@
+﻿@using DistributionShop.Models.Utils;
+
+@{
+    ViewBag.Title = "后台管理员";
+    RoleEnums loginType = (RoleEnums)LoginHelper.UserType;
+}
+
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+            @if (loginType == RoleEnums.超级管理员)
+            {
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">登录名</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="UserName" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">昵称</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="NickName" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">姓名</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="RealName" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">角色</label>
+                        <div class="layui-input-block">
+                            <select name="RoleType">
+                                <option value="">不限</option>
+                                @if (LoginHelper.UserType == 1)
+                                {
+                                    var RoleList = ViewBag.RoleList as List<SelectOption>;
+                                    foreach (var item in RoleList)
+                                    {
+                                        <option value="@item.Value">@item.Text</option>
+                                    }
+                                }
+                                else
+                                {
+                                    var RoleList = ViewBag.RoleList as List<SelectOption>;
+                                    foreach (var item in RoleList)
+                                    {
+                                        if (item.Value == (int)RoleEnums.管理员)
+                                        {
+                                            <option value="@item.Value">@item.Text</option>
+                                        }
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="layui-form-item">
+
+                    <div class="layui-inline">
+                        <label class="layui-form-label">手机</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="Phone" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">邮箱</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="Email" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">微信</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="Weixin" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">状态</label>
+                        <div class="layui-input-block">
+                            <select name="State">
+                                <option value="">不限</option>
+                                @{
+                                    var UserStatusList = ViewBag.UserStatusList as List<SelectOption>;
+                                    foreach (var item in UserStatusList)
+                                    {
+                                        <option value="@item.Value">@item.Text</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <button class="layui-btn layuiadmin-btn-admin" lay-submit lay-filter="LAY-user-back-search">
+                            <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                        </button>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">登录名</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="UserName" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">手机</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="Phone" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">邮箱</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="Email" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
+                    <div class="layui-inline">
+                        <button class="layui-btn layuiadmin-btn-admin" lay-submit lay-filter="LAY-user-back-search">
+                            <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="layui-card-body">
+            @if (loginType == RoleEnums.超级管理员)
+            {
+                <div style="padding-bottom: 10px;">
+                    <button class="layui-btn layuiadmin-btn-admin" onclick="Add()">添加</button>
+                </div>
+            }
+
+            <table id="LAY-user-back-manage" lay-filter="LAY-user-back-manage"></table>
+            <script type="text/html" id="buttonTpl">
+                {{#  if(d.State == 0){ }}
+
+                {{#  if(d.UserName == '@LoginHelper.UserName'){ }}
+                <button class="layui-btn layui-btn-xs layui-btn-disabled">{{ d.StateName}}</button>
+                {{#  } else { }}
+                <button class="layui-btn layui-btn-xs" lay-event="checkState">{{ d.StateName}}</button>
+                {{#  } }}
+
+                {{#  } else { }}
+                <button class="layui-btn layui-btn-danger layui-btn-xs" lay-event="checkState">{{ d.StateName}}</button>
+                {{#  } }}
+            </script>
+            <script type="text/html" id="table-useradmin-admin">
+                {{#  if(d.State == 0||d.State == 1){ }}
+                <a class="layui-btn layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="password"><i class="layui-icon layui-icon-password"></i>修改密码</a>
+                {{#  if(d.UserName == '@LoginHelper.UserName'){ }}
+                <a class="layui-btn layui-btn-disabled layui-btn-xs"><i class="layui-icon layui-icon-delete"></i>删除</a>
+                {{#  } else { }}
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
+                {{#  } }}
+                {{#  } else { }}
+                <a class="layui-btn layui-btn-disabled layui-btn-xs"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+                <a class="layui-btn layui-btn-disabled layui-btn-xs"><i class="layui-icon layui-icon-password"></i>修改密码</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
+                {{#  } }}
+
+            </script>
+        </div>
+    </div>
+</div>
+<script>
+
+    function Add() {
+        location.href ="@Url.Content("~/Admin/Account/Add")";
+    }
+    layui.config({
+        base: '/Assets/layuiadmin/'
+    }).extend({
+        index: 'lib/index'
+    }).use(['index', 'useradmin', 'table'], function () {
+        var $ = layui.$
+            , form = layui.form
+            , table = layui.table;
+
+        //监听搜索
+        form.on('submit(LAY-user-back-search)', function (data) {
+            var field = data.field;
+
+            //执行重载
+            table.reload('LAY-user-back-manage', {
+                where: field
+            });
+        });
+
+
+        function CheckState(state) {
+            alert(state)
+        }
+
+
+        $('.layui-btn.layuiadmin-btn-admin').on('click', function () {
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+    });
+</script>

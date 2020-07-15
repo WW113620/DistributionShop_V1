@@ -1,0 +1,92 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.779
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DistributionShop.Web", "DistributionShop.Web\DistributionShop.Web.csproj", "{49026768-0723-48D6-88D3-7D92A8EE41CB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DistributionShop.Service", "DistributionShop.Service\DistributionShop.Service.csproj", "{F732E983-2F0E-4A81-A59D-15FDCC97EAEF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DistributionShop.Models", "DistributionShop.Models\DistributionShop.Models.csproj", "{F3C09F3B-914C-49EA-98BF-0811544C6C2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DistributionShop.Logic", "DistributionShop.Logic\DistributionShop.Logic.csproj", "{F15E420B-C0D0-4849-90A7-C2E0F165D1A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DistributionShop.WebApi", "DistributionShop.WebApi\DistributionShop.WebApi.csproj", "{A4C2F664-2C2B-46DA-99B4-7D322974962D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		dev_login|Any CPU = dev_login|Any CPU
+		dev_nologin|Any CPU = dev_nologin|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{49026768-0723-48D6-88D3-7D92A8EE41CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49026768-0723-48D6-88D3-7D92A8EE41CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49026768-0723-48D6-88D3-7D92A8EE41CB}.dev_login|Any CPU.ActiveCfg = debug_login|Any CPU
+		{49026768-0723-48D6-88D3-7D92A8EE41CB}.dev_login|Any CPU.Build.0 = debug_login|Any CPU
+		{49026768-0723-48D6-88D3-7D92A8EE41CB}.dev_nologin|Any CPU.ActiveCfg = dev_nologin|Any CPU
+		{49026768-0723-48D6-88D3-7D92A8EE41CB}.dev_nologin|Any CPU.Build.0 = dev_nologin|Any CPU
+		{49026768-0723-48D6-88D3-7D92A8EE41CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49026768-0723-48D6-88D3-7D92A8EE41CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F732E983-2F0E-4A81-A59D-15FDCC97EAEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F732E983-2F0E-4A81-A59D-15FDCC97EAEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F732E983-2F0E-4A81-A59D-15FDCC97EAEF}.dev_login|Any CPU.ActiveCfg = debug_login|Any CPU
+		{F732E983-2F0E-4A81-A59D-15FDCC97EAEF}.dev_login|Any CPU.Build.0 = debug_login|Any CPU
+		{F732E983-2F0E-4A81-A59D-15FDCC97EAEF}.dev_nologin|Any CPU.ActiveCfg = dev_nologin|Any CPU
+		{F732E983-2F0E-4A81-A59D-15FDCC97EAEF}.dev_nologin|Any CPU.Build.0 = dev_nologin|Any CPU
+		{F732E983-2F0E-4A81-A59D-15FDCC97EAEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F732E983-2F0E-4A81-A59D-15FDCC97EAEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3C09F3B-914C-49EA-98BF-0811544C6C2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3C09F3B-914C-49EA-98BF-0811544C6C2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3C09F3B-914C-49EA-98BF-0811544C6C2C}.dev_login|Any CPU.ActiveCfg = debug_login|Any CPU
+		{F3C09F3B-914C-49EA-98BF-0811544C6C2C}.dev_login|Any CPU.Build.0 = debug_login|Any CPU
+		{F3C09F3B-914C-49EA-98BF-0811544C6C2C}.dev_nologin|Any CPU.ActiveCfg = dev_nologin|Any CPU
+		{F3C09F3B-914C-49EA-98BF-0811544C6C2C}.dev_nologin|Any CPU.Build.0 = dev_nologin|Any CPU
+		{F3C09F3B-914C-49EA-98BF-0811544C6C2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3C09F3B-914C-49EA-98BF-0811544C6C2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F15E420B-C0D0-4849-90A7-C2E0F165D1A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F15E420B-C0D0-4849-90A7-C2E0F165D1A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F15E420B-C0D0-4849-90A7-C2E0F165D1A8}.dev_login|Any CPU.ActiveCfg = debug_login|Any CPU
+		{F15E420B-C0D0-4849-90A7-C2E0F165D1A8}.dev_login|Any CPU.Build.0 = debug_login|Any CPU
+		{F15E420B-C0D0-4849-90A7-C2E0F165D1A8}.dev_nologin|Any CPU.ActiveCfg = dev_nologin|Any CPU
+		{F15E420B-C0D0-4849-90A7-C2E0F165D1A8}.dev_nologin|Any CPU.Build.0 = dev_nologin|Any CPU
+		{F15E420B-C0D0-4849-90A7-C2E0F165D1A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F15E420B-C0D0-4849-90A7-C2E0F165D1A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4C2F664-2C2B-46DA-99B4-7D322974962D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4C2F664-2C2B-46DA-99B4-7D322974962D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4C2F664-2C2B-46DA-99B4-7D322974962D}.dev_login|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4C2F664-2C2B-46DA-99B4-7D322974962D}.dev_login|Any CPU.Build.0 = Debug|Any CPU
+		{A4C2F664-2C2B-46DA-99B4-7D322974962D}.dev_nologin|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4C2F664-2C2B-46DA-99B4-7D322974962D}.dev_nologin|Any CPU.Build.0 = Debug|Any CPU
+		{A4C2F664-2C2B-46DA-99B4-7D322974962D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4C2F664-2C2B-46DA-99B4-7D322974962D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D48B457D-4A1B-4252-9DD2-551F069A4309}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 6
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://mangotechgroup.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = DistributionShop.Logic\\DistributionShop.Logic.csproj
+		SccProjectName1 = DistributionShop.Logic
+		SccLocalPath1 = DistributionShop.Logic
+		SccProjectUniqueName2 = DistributionShop.Models\\DistributionShop.Models.csproj
+		SccProjectName2 = DistributionShop.Models
+		SccLocalPath2 = DistributionShop.Models
+		SccProjectUniqueName3 = DistributionShop.Service\\DistributionShop.Service.csproj
+		SccProjectName3 = DistributionShop.Service
+		SccLocalPath3 = DistributionShop.Service
+		SccProjectUniqueName4 = DistributionShop.Web\\DistributionShop.Web.csproj
+		SccProjectName4 = DistributionShop.Web
+		SccLocalPath4 = DistributionShop.Web
+		SccProjectUniqueName5 = DistributionShop.WebApi\\DistributionShop.WebApi.csproj
+		SccProjectName5 = DistributionShop.WebApi
+		SccLocalPath5 = DistributionShop.WebApi
+	EndGlobalSection
+EndGlobal

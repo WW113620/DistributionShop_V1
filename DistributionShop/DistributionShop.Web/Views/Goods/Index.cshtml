@@ -1,0 +1,286 @@
+﻿@{
+    ViewBag.Title = "商品列表";
+}
+@section head{
+    <link href="~/Assets/web/css/list.css" rel="stylesheet" />
+    @*<link href="~/Assets/layuiadmin/layui/css/layui.css" rel="stylesheet" />*@
+    
+}
+<script src="~/Scripts/jsRender.js"></script>
+<script src="~/Assets/layuiadmin/layui/layui.js"></script>
+<div class="listcon">
+    <div class="md1200">
+        <div class="breadnav" id="breadnav"></div>
+    
+
+        <!-- 列表筛选条件 -->
+        <div class="screenbox">
+            <dl class="ppdl" id="filterBrand">
+                <dt>品牌</dt>
+                <dd class="condd">
+                    <ul class="sclist"></ul>
+                </dd>
+                @*<dd class="optdd">
+                    <a href="javascript:;" class="expand expandbtn"><span class="word">展开</span><span class="icon"></span></a>
+                </dd>*@
+            </dl>
+           <div id="filterAttribute"></div>
+        </div>
+        <!-- 条件过滤 -->
+        <div class="filtrate">
+            <ul class="list">
+                <li class="active">综合</li>
+                <li class="pricefilter  on">价格 <div class="orderbox"><span class="uporder"></span><span class="downorder"></span></div></li>
+                <li>新品</li>
+                <li>折扣</li>
+            </ul>
+            <!-- 分页 -->
+            @*<div class="pagebox">
+                    <span class="total">共<span class="num">332</span>件商品</span>
+                    <span id="page1"></span>
+                </div>*@
+        </div>
+        <!-- 详情底部 -->
+        <div class="listbox">
+            <ul class="list" id="datalist">
+            </ul>
+            <!-- 分页 -->
+            <div class="pagebox">
+                <span class="total">共<span class="num" id="totalCount">0</span>件商品</span>
+                <span id="page1"></span>
+            </div>
+        </div>
+        <center>
+            <div class="NoGoods" style="display:none;">
+                <img src="@Url.Content("~/images/noimg.png")" />
+                <p>还没有任何商品哦!</p>
+            </div>
+        </center>
+       
+    </div>
+</div>
+
+<script id="filterBrandTmp" type="text/x-jsrender">
+    <li data-id="{{:Id}}"><span><i class="word">{{:Name}}</i><i class="close">x</i></span></li>
+</script>
+<script id="filterAttributeTmp" type="text/x-jsrender">
+    <dl class="" data-id="{{:AttributeParentId}}"  name="attribute">
+        <dt>{{:AttributeParentName}}</dt>
+        <dd class="condd">
+            <ul class="sclist">
+            </ul>
+        </dd>
+        @*<dd class="optdd">
+            <a href="javascript:;" class="expand expandbtn"><span class="word">展开</span><span class="icon"></span></a>
+        </dd>*@
+    </dl>
+</script>
+<script id="filterChildAttributeTmp" type="text/x-jsrender">
+ <li data-parentId="{{:ParentId}}" data-id="{{:Id}}"><span><i class="word">{{:Name}}</i><i class="close">x</i></span></li>
+</script>
+<script id="tbTmp" type="text/x-jsrender">
+    <li class="item" data-id="{{:Id}}">
+        <a href="@Url.Content("~/Goods/Item/"){{:Id}}" class="imgbox" target="_blank">
+            <img src="@Url.Content("~/api/MediaApi/GetCoverFileName?fileName="){{:CoverFileName}}" onerror="javascript:this.src='@Url.Content("~/Assets/web/images/banner1.png")'" alt="">
+            <div>{{:~InitDiscount(OriginalPrice,WebPrice)}}</div>
+        </a>
+        <div class="infobox">
+            <p class="name">{{:~InitCutStr(ProductName,10)}}</p>
+            <a class="instro" href="@Url.Content("~/Goods/Item/"){{:Id}}" >{{:~InitCutStr(Description,20)}}</a>
+            <div class="price"><span class="preprice">￥{{:OriginalPrice}}</span><span class="nowprice">￥{{:WebPrice}}</span></div>
+            <a href="javascript:;" class="addshopcar" data-id="{{:Id}}">
+            <img src="@Url.Content("~/Assets/web/images/icon_shopcar.png")" alt="" id="AddShoppingCartImg"></a>
+        </div>
+    </li>
+</script>
+<script>
+    $.views.helpers({
+        "InitCutStr": function (value, length) {
+            if (value && value.length > length) {
+                return value.substr(0, length) + "...";
+            } else {
+                return value;
+            }
+        },
+        "InitDiscount": function (originalPrice, webPrice) {
+            var rtnHtml = "";
+            if (parseFloat(originalPrice) > parseFloat(webPrice)) {
+                var discount = Math.round((parseFloat(webPrice) / parseFloat(originalPrice)) * 100) + '%OFF';
+                rtnHtml = '<div class="discount">'+discount+'</div>';
+            }
+            return rtnHtml;
+        }
+    });
+
+    function getParams(page) {
+        var params = {
+            page: page,
+            limit:10
+        };
+          
+            var productName = $("#keyWord").val();
+            var brandIds = "";
+            var AttributeParentIds = "";
+            var AttributeIds = "";
+            var orderby = "";
+            var orderByType = "";
+            var isNew = "";
+            var isDiscount = "";
+        var auditStatus = "@ViewBag.AuditStatus";
+        var FiristCategoryId = $("#FiristCategoryId").val();
+         var SecondCategoryId = $("#SecondCategoryId").val();
+            $("#filterBrand .sclist li.active").each(function (i, item) {
+                var id = $(this).attr("data-id");
+                if (id) {
+                    brandIds += id + ",";
+                }
+            });
+       
+          $("#filterAttribute .sclist li.active").each(function (i, item) {
+              var AttributeId = $(this).attr("data-id");
+              var AttributeParentId= $(this).attr("data-parentId");
+              AttributeIds += AttributeId + ",";
+              AttributeParentIds += AttributeParentId + ",";
+          });
+      
+        var index = $(".filtrate li").index($(".filtrate li.active"));
+        switch (index) {
+            case 0:
+                orderby = "id";
+                orderByType = "desc";
+                break;
+            case 1:
+                orderby = "webprice";
+                orderByType = $(".filtrate li").eq(index).hasClass("on") ? "desc" : "asc";
+                break;
+            case 2:
+                isNew = 1;
+                break;
+             case 3:
+                isDiscount = 1;
+                break;
+        }
+     
+        params.productName = productName;
+        params.brandIds = brandIds;
+        params.AttributeParentIds = AttributeParentIds;
+        params.AttributeIds = AttributeIds;
+        params.orderby = orderby;
+        params.orderByType = orderByType;
+        params.isNew = isNew;
+        params.isDiscount = isDiscount;
+        params.FiristCategoryId = FiristCategoryId;
+        params.SecondCategoryId = SecondCategoryId;
+        return params;
+    }
+    function search(pageIndex,isclickFilter) {
+        var params = getParams(pageIndex);
+        console.log(params);
+        $.post("@Url.Content("~/Goods/GetList")", params, function (result) {
+            if (result && result.data && result.data.length > 0) {
+                var html = $("#tbTmp").render(result.data);
+                $("#datalist").html(html);
+                 $(".listbox").show();
+                $(".NoGoods").hide();
+                if (!isclickFilter) {
+                 initBrandFilter();
+                 initParentAttribute();
+                }
+               
+            } else {
+                $("#datalist").html("");
+                $(".listbox").hide();
+                $(".NoGoods").show();
+            }
+            $("#totalCount").text(result.count);
+             InitPage(pageIndex, $("#pageSize").val(), result.count,"page1");
+        });
+    }
+    function initBrandFilter() {
+         var params = getParams(0);
+        $.post("@Url.Content("~/Goods/GetBrandList")", params, function (result) {
+            if (result && result.data && result.data.length > 0) {
+                var html = $("#filterBrandTmp").render(result.data);
+                $("#filterBrand ul").html(html);
+                  $("#filterBrand").show();
+            } else {
+                $("#filterBrand ul").html("");
+                $("#filterBrand").hide();
+            }
+        });
+    }
+    function initParentAttribute() {
+         var params = getParams(0);
+        $.post("@Url.Content("~/Goods/GetParentAttributeList")", params, function (result) {
+   
+            if (result && result.data && result.data.length > 0) {
+                var html = $("#filterAttributeTmp").render(result.data);
+                $("#filterAttribute").html(html);
+                for (var i = 0; i < result.data.length; i++) {
+                    var parentId = result.data[i].AttributeParentId;
+                    initChildAttribute(parentId);
+                }
+                $("#filterAttribute").show();
+            } else {
+                $("#filterAttribute").html("");
+                $("#filterAttribute").hide();
+            }
+        });
+    }
+    function initChildAttribute(parentId) {
+        $.post("@Url.Content("~/Goods/GetChildrenAttributeList")", { parentId: parentId}, function (result) {
+       
+            if (result&& result.length > 0) {
+                var html = $("#filterChildAttributeTmp").render(result);
+                $("#filterAttribute dl[name='attribute'][data-id='" + parentId + "'] .sclist").html(html);
+            } else {
+                $("#filterAttribute dl[name='attribute'][data-id='" + parentId + "'] .sclist").html("");
+                $("#filterAttribute dl[name='attribute'][data-id='" + parentId + "']").hide();
+            }
+        });
+    }
+    
+    document.onkeydown = function (e) {
+         // 回车提交表单
+        // 兼容FF和IE和Opera
+            var theEvent = window.event || e;
+            var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+            if (code == 13) {
+                search(1);
+            }
+    }
+      //多选操作
+        $(".screenbox").on("click", " .sclist li",function () {
+            $(this).addClass("active");
+            search(1,true);
+        });
+        $(".screenbox").on("click"," .sclist .close", function (e) {
+            e.stopPropagation();
+            $(this).parents("li").removeClass("active");
+            search(1,true);
+        });
+        //条件过滤
+        $(".filtrate ul li").on("click", function () {
+            $(this).addClass("active").siblings("li").removeClass("active");
+            search(1,true);
+        });
+     $(".pricefilter").on("click",function(e){
+                $(this).toggleClass("on");
+     });
+    //添加购物车
+    $("#datalist").on("click", ".addshopcar", function () {
+        var productId = $(this).attr("data-id");
+        
+        MainPageAddToShoppingCartMethod(productId, 1,1);
+    })
+    $(function () {
+        search(1);
+    })
+    
+   
+     
+</script>
+
+
+
+

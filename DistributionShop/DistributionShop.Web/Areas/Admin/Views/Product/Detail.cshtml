@@ -1,0 +1,341 @@
+﻿@using DistributionShop.Models.ViewModels;
+@using DistributionShop.Models.Data;
+@using DistributionShop.Models.Utils;
+@model DistributionShop.Models.ViewModels.ProductViewModel
+@{
+    ViewBag.Title = "查看商品";
+    string display = "display:none;";
+    if (!string.IsNullOrEmpty(Model.CoverFileName))
+    {
+        display = "display:block;";
+    }
+
+
+}
+
+<style>
+    .layui-input-inline, .layui-unselect.layui-form-select, layui-select-title {
+        width: 350px !important;
+    }
+
+    .layui-input {
+        width: 100% !important;
+    }
+
+    #category0 .layui-unselect.layui-form-select, #category0 layui-select-title {
+        width: 170px !important;
+    }
+
+    .layui-upload-img {
+        width: 150px;
+        margin: 10px;
+    }
+    .layui-select-disabled .layui-disabled {
+        color: #584d4d !important;
+    }
+    .layui-input-inline .layui-input, .layui-textarea {
+        color: #6f5959 !important
+    }
+</style>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">查看商品</div>
+                <div class="layui-card-body" pad15>
+
+                    <div class="layui-form" lay-filter="layuiadmin-form-admin" id="layuiadmin-form-admin">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">商品名称</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="ProductName" value="@Model.ProductName" readonly lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" maxlength="100">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">品牌名称</label>
+                            <div class="layui-input-inline">
+                                <select name="BrandId" disabled>
+                                    @{
+                                        var BrandList = ViewBag.BrandList as List<Brand>;
+                                        foreach (var item in BrandList)
+                                        {
+                                            if (item.Id == Model.BrandId)
+                                            {
+                                                <option value="@item.Id" selected="selected">@item.Name</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.Id">@item.Name</option>
+                                            }
+
+                                        }
+                                    }
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">所属店铺</label>
+                            <div class="layui-input-inline">
+                                <select name="ShopId" disabled>
+                                    @{
+                                        var ShopList = ViewBag.ShopList as List<Shop>;
+                                        foreach (var item in ShopList)
+                                        {
+                                            if (item.Id == Model.ShopId)
+                                            {
+                                                <option value="@item.Id" selected="selected">@item.ShopName</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.Id">@item.ShopName</option>
+                                            }
+
+                                        }
+                                    }
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item" id="category0">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">商品分类</label>
+                                <div class="layui-input-block">
+                                    <select id="category1" lay-filter="category1" disabled>
+                                        <option value="-1">一级分类</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <select id="category2" lay-filter="category2" disabled>
+                                    <option value="-1">二级分类</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">原始价格</label>
+                            <div class="layui-input-inline">
+                                <input type="number" step="0.01" readonly lay-verify="required" name="OriginalPrice" value="@Model.OriginalPrice" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">折扣后价格</label>
+                            <div class="layui-input-inline">
+                                <input type="number" step="0.01" readonly name="WebPrice" lay-verify="required" value="@Model.WebPrice" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">封面图片</label>
+                            <div class="layui-input-inline">
+                                <div class="layui-upload">
+
+                                    <div class="layui-upload-list" id="coverDiv" style="@display">
+                                        <img class="layui-upload-img" src="@Model.CoverMediaPath" id="CoverName" style="max-height: 200px;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">是否置顶</label>
+                            <div class="layui-input-inline">
+                                <select name="IsTop" disabled>
+                                    @{
+                                        var ProductTopEnums = ViewBag.ProductTopEnums as List<SelectOption>;
+                                        foreach (var item in ProductTopEnums)
+                                        {
+                                            if (item.Value == Model.IsTop)
+                                            {
+                                                <option value="@item.Value" selected="selected">@item.Text</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.Value">@item.Text</option>
+                                            }
+                                        }
+                                    }
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">是否新品</label>
+                            <div class="layui-input-inline">
+                                <select name="IsNew" disabled>
+                                    @{
+                                        var ProductNewEnums = ViewBag.ProductNewEnums as List<SelectOption>;
+                                        foreach (var item in ProductNewEnums)
+                                        {
+                                            if (item.Value == Model.IsNew)
+                                            {
+                                                <option value="@item.Value" selected="selected">@item.Text</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.Value">@item.Text</option>
+                                            }
+                                        }
+                                    }
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">发货方式</label>
+                            <div class="layui-input-inline">
+                                <select name="SendType" disabled>
+                                    @{
+                                        var SendTypeEnums = ViewBag.SendTypeEnums as List<SelectOption>;
+                                        foreach (var item in SendTypeEnums)
+                                        {
+                                            if (item.Value == Model.SendType)
+                                            {
+                                                <option value="@item.Value" selected="selected">@item.Desction</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.Value">@item.Desction</option>
+                                            }
+                                        }
+                                    }
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">是否包邮</label>
+                            <div class="layui-input-inline">
+                                <select name="PostType" disabled>
+                                    @{
+                                        var PostTypeEnums = ViewBag.PostTypeEnums as List<SelectOption>;
+                                        foreach (var item in PostTypeEnums)
+                                        {
+                                            if (item.Value == Model.PostType)
+                                            {
+                                                <option value="@item.Value" selected="selected">@item.Desction</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.Value">@item.Desction</option>
+                                            }
+                                        }
+                                    }
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">产品描述</label>
+                            <div class="layui-input-inline">
+                                <textarea name="Description" readonly placeholder="请对商品进行简单描述" lay-verify="required" style="width:350px;height:150px;resize:none" class="layui-textarea" maxlength="200">@Model.Description</textarea>
+                            </div>
+                        </div>
+                        @if (Model.Id > 0)
+                        {
+                            <div id="mediaList">
+                                @{ Html.RenderAction("PartailMedia", "Product", new { area = "Admin", productId = Model.Id }); }
+                            </div>
+                        }
+                    
+                        <input type="hidden" id="ProductId" name="Id" value="@Model.Id" />
+                        <input type="hidden" id="CoverFileName" name="CoverFileName" value="@Model.CoverFileName" />
+                        <input type="hidden" id="CategoryPath" name="CategoryPath" value="@Model.CategoryPath" />
+                        <input type="hidden" id="CategoryId" name="CategoryId" value="@Model.CategoryId" />
+                        <input type="hidden" id="FirstCategoryId" name="FirstCategoryId" value="@Model.FirstCategoryId" />
+                        <input type="hidden" id="MediaCollection" name="MediaCollection" value="" />
+
+                        <div class="layui-form-item">
+                            <div class="layui-input-block" style="margin-top:60px;margin-left:15%;">
+                                <button class="layui-btn layui-btn-primary" onclick="List()">返回列表</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function List() {
+         location.href ="@Url.Content("~/Admin/Product/Index")";
+    }
+
+    layui.config({
+        base: '/Assets/layuiadmin/'
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'form', 'product','set'], function () {
+        var $ = layui.$
+            , form = layui.form
+            , upload = layui.upload;
+
+        
+        var productId = parseInt($("#ProductId").val());
+        var firstCategoryId = $("#FirstCategoryId").val();
+        initCateList(0, "#category1");
+        if (productId) {
+            initCateList(firstCategoryId, "#category2");
+        }
+
+       //初始化商品分类下拉
+        function initCateList(parentId, el) {
+            var categoryId = $("#CategoryId").val();
+            if (!categoryId)
+                categoryId = 0;
+
+            $.post('@Url.Action("GetListByParentId","Category",new { Area="Admin"})', { parentid: parentId }, function (result) {
+                if (result && result.code == 200) {
+                    var catestr = "一级分类";
+                    switch (el) {
+                        case "#category1":
+                            catestr = "一级分类";
+                            break;
+                        case "#category2":
+                            catestr = "二级分类";
+                            break;
+                    }
+                    var html = "<option   value='-1'>" + catestr + "</option>";
+                    if (result.model && result.model.length > 0) {
+                        for (var i = 0; i < result.model.length; i++) {
+                            var item = result.model[i];
+                            var strName = CuteStr(item.Name, 10);
+                            if (productId) {
+                                if (item.Id == firstCategoryId || item.Id == categoryId) {
+                                    html += "<option value='" + item.Id + "' selected='selected'>" + strName + "</option>";
+                                } else {
+                                    html += "<option value='" + item.Id + "'>" + strName + "</option>";
+                                }
+                            } else {
+                                html += "<option value='" + item.Id + "'>" + strName + "</option>";
+                            }
+
+                        }
+                    }
+                    $(el).html(html);
+                    form.render('select');
+                }
+            })
+        }
+
+        //监听分类
+        form.on("select(category1)", function (data) {
+            var parentId = data.elem[data.elem.selectedIndex].value;
+            initCateList(parentId, "#category2");
+            $("#CategoryPath").val(parentId);
+            $("#CategoryId").val(-1);
+        })
+        form.on("select(category2)", function (data) {
+            var parentId = data.elem[data.elem.selectedIndex].value;
+            $("#CategoryId").val(parentId);
+            $("#CategoryPath").val($("#category1").val());
+        })
+
+    })
+</script>

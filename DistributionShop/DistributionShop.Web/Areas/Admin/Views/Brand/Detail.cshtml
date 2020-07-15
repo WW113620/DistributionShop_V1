@@ -1,0 +1,40 @@
+﻿
+@{
+    Layout = null;
+}
+@model DistributionShop.Models.Data.Brand
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="/Assets/layuiadmin/layui/css/layui.css?v=1.0" media="all">
+    <link rel="stylesheet" href="/Assets/layuiadmin/style/admin.css" media="all">
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+</head>
+<body class="">
+    <div class="layui-form" style="margin-top:20px;">
+
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">品牌名称</label>
+                <div class="layui-input-inline" style="width: 300px;">
+                    <input type="text" name="Name" id="Name" class="layui-input" value="@Model.Name" maxlength="100">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">品牌描述</label>
+                <div class="layui-input-inline">
+                    <textarea id="Description" style="width:300px;height:100px;resize:none" class="layui-textarea">@Model.Description</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

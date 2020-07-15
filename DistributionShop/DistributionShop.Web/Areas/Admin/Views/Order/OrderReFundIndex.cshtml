@@ -1,0 +1,229 @@
+﻿@using DistributionShop.Models.Utils;
+@{
+    ViewBag.Title = "退款申请";
+}
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">订单编号</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="OrderSn" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">申请人姓名</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="ReUserName" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">退款状态</label>
+                    <div class="layui-input-block">
+                        <select name="ReStatus">
+                            <option value="">不限</option>
+                            @{
+                                var WebReFundStatusEnums = ViewBag.WebReFundStatusEnums as List<SelectOption>;
+                                foreach (var item in WebReFundStatusEnums)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn layuiadmin-btn-useradmin" lay-submit lay-filter="LAY-user-front-search" id="btnSearch">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="layui-card-body">
+
+            <table id="LAY-product-manage" lay-filter="LAY-product-manage"></table>
+            <script type="text/html" id="tb-operate">
+                <a class="layui-btn layui-btn-xs layui-btn-primary" lay-event="preview">查看</a>
+                {{# if(d.Status==1||d.Status==3){ }}
+                <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="refuse">拒绝</a>
+                <a class="layui-btn layui-btn-xs" lay-event="agree">同意</a>
+                {{# } }}
+
+            </script>
+
+        </div>
+    </div>
+</div>
+<script type="text/html" id="zizeng">
+    {{d.LAY_TABLE_INDEX+1}}
+</script>
+<script>
+    layui.config({
+        base: '/Assets/layuiadmin/'
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'layer', 'table', 'laydate'], function () {
+        var $ = layui.$
+            , form = layui.form
+            , table = layui.table
+            , layer = layui.layer //弹层
+
+
+        table.render({
+            elem: '#LAY-product-manage'
+            , url: layui.setter.baseUrl + 'order/GetOrderReFundList'
+            , cols: [[
+                  {field:'zizeng', width:80, title: '序号',align: 'center',templet:'#zizeng'}
+                , {
+                    field: 'OrderSn', minWidth: 150, title: '订单编号', templet: function (d) {
+                        return '<a href="/Order/detail?ordersn=' + d.OrderSn + '" target="_blank">' + d.OrderSn + '</a>';
+                    }
+                }
+                , { field: 'ProductName', title: '退款商品', minWidth: 250 }
+                , { field: 'ReUserName', title: '退款人', width: 100 }
+                , { field: 'ReApplyFee', title: '退款金额(元)', width: 100 }
+                , {
+                    field: 'Status', title: '退款状态', width: 100, templet: function (d) {
+                        var status = d.Status;
+                        var rtnVal = "";
+                        switch (status) {
+                            default:
+                            case 1:
+                                rtnVal = "<span style='color:#FF4500;'>申请中</span>";
+                                break;
+                            case 2:
+                                rtnVal = "<span style='color:#008000;'>已退款</span>";
+                                break;
+                            case 3:
+                                rtnVal = "<span style='color:#c00;'>退款失败</span>";
+                                break;
+                            case 4:
+                                rtnVal = "<span style='color:#c00;'>已拒绝</span>";
+                                break;
+                        }
+                        return rtnVal;
+                    }
+                }
+                , {
+                    field: 'ReFundType', title: '退款种类', width: 100, templet: function (d) {
+                        var ReFundType = d.ReFundType;
+                        var rtnVal = "";
+                        switch (ReFundType) {
+                            default:
+                            case 0:
+                                rtnVal = "退款退货";
+                                break;
+                            case 1:
+                                rtnVal = "仅退款";
+                                break;
+                            case 2:
+                                rtnVal = "仅退货";
+                                break;
+                        }
+                        return rtnVal;
+                    }
+                }
+                , {
+                    field: 'ReFundMethod', title: '退款方式', width: 100, templet: function (d) {
+                        var ReFundMethod = d.ReFundMethod;
+                        var rtnVal = "";
+                        switch (ReFundMethod) {
+                            default:
+                            case 1:
+                                rtnVal = "全部退款";
+                                break;
+                            case 2:
+                                rtnVal = "部分退款";
+                                break;
+                        }
+                        return rtnVal;
+                    }
+                }
+                , {
+                    field: 'ReFundReason', title: '退款原因', width: 100, templet: function (d) {
+                        var ReFundReason = d.ReFundReason;
+                        var rtnVal = "";
+                        switch (ReFundReason) {
+                            default:
+                            case 0:
+                                rtnVal = "订单信息拍错";
+                                break;
+                            case 1:
+                                rtnVal = "我不想要了";
+                                break;
+                            case 2:
+                                rtnVal = "地址电话信息填写错误";
+                                break;
+                            case 3:
+                                rtnVal = "缺货";
+                                break;
+                        }
+                        return rtnVal;
+                    }
+                }
+                , { field: 'Description', title: '退款说明', width: 250 }
+
+                , { field: 'AddTimeValue', width: 150, title: '申请时间' }
+                , { title: '操作', minWidth: 200, align: 'center', fixed: 'right', toolbar: '#tb-operate' }
+            ]]
+            , done: function (res, curr, count) {
+
+            }
+            , page: true
+            , limit: 10
+            , height: 'full-220'
+            , text: {
+                none: '暂无相关数据'
+            }
+        });
+        //监听工具条
+        table.on('tool(LAY-product-manage)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'preview') {
+                var winp = window.open();
+                winp.location.href = "@Url.Content("~/admin/order/orderrefunddetail/")" + data.Id;
+            }
+            else if (obj.event === 'agree') {
+               layer.open({
+                    type: 2
+                   , title: '同意退款'
+                   , content: layui.setter.baseUrl + 'Order/OrderReFundAuditIndex?id=' + data.Id + '&status=0&ordersn=' + data.OrderSn
+                    , maxmin: true
+                    , area: ['450px', '280px']
+
+                });
+            }
+            else if (obj.event === 'refuse') {
+                layer.open({
+                    type: 2
+                    , title: '拒绝退款'
+                   , content: layui.setter.baseUrl + 'Order/OrderReFundAuditIndex?id=' + data.Id + '&status=1&ordersn=' + data.OrderSn
+                    , maxmin: true
+                    , area: ['450px', '280px']
+
+                });
+
+            }
+        });
+
+        //监听搜索
+        form.on('submit(LAY-user-front-search)', function (data) {
+            var field = data.field;
+            //执行重载
+            table.reload('LAY-product-manage', {
+                where: field
+            });
+        });
+
+    });
+
+
+
+
+
+</script>
+

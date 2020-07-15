@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DistributionShopDBModelStoreContainer" CdmEntityContainer="DataContextEntities">
+    <EntitySetMapping Name="TestUsers">
+      <EntityTypeMapping TypeName="DistributionShopDBModel.TestUser">
+        <MappingFragment StoreEntitySet="TestUser">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="NickName" ColumnName="NickName" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="AvatarUrl" ColumnName="AvatarUrl" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="DistributionShopDBModel.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="RoleType" ColumnName="RoleType" />
+          <ScalarProperty Name="AvatarUrl" ColumnName="AvatarUrl" />
+          <ScalarProperty Name="OpenId" ColumnName="OpenId" />
+          <ScalarProperty Name="Weixin" ColumnName="Weixin" />
+          <ScalarProperty Name="QQ" ColumnName="QQ" />
+          <ScalarProperty Name="IdCard" ColumnName="IdCard" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="RealName" ColumnName="RealName" />
+          <ScalarProperty Name="NickName" ColumnName="NickName" />
+          <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ConfigInfos">
+      <EntityTypeMapping TypeName="DistributionShopDBModel.ConfigInfo">
+        <MappingFragment StoreEntitySet="ConfigInfos">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Describtion" ColumnName="Describtion" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Key" ColumnName="Key" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="DistributionShopDBModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="PayTime" ColumnName="PayTime" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+          <ScalarProperty Name="IsDel" ColumnName="IsDel" />
+          <ScalarProperty Name="PayChannel" ColumnName="PayChannel" />
+          <ScalarProperty Name="Platform" ColumnName="Platform" />
+          <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
+          <ScalarProperty Name="TotalPayPrice" ColumnName="TotalPayPrice" />
+          <ScalarProperty Name="PayState" ColumnName="PayState" />
+          <ScalarProperty Name="OrderSn" ColumnName="OrderSn" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShoppingCarts">
+      <EntityTypeMapping TypeName="DistributionShopDBModel.ShoppingCart">
+        <MappingFragment StoreEntitySet="ShoppingCart">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+          <ScalarProperty Name="GoodNum" ColumnName="GoodNum" />
+          <ScalarProperty Name="GoodsId" ColumnName="GoodsId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderDetails">
+      <EntityTypeMapping TypeName="DistributionShopDBModel.OrderDetail">
+        <MappingFragment StoreEntitySet="OrderDetail">
+          <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+          <ScalarProperty Name="IsDel" ColumnName="IsDel" />
+          <ScalarProperty Name="OrderProductAmount" ColumnName="OrderProductAmount" />
+          <ScalarProperty Name="WebPrice" ColumnName="WebPrice" />
+          <ScalarProperty Name="OriginalPrice" ColumnName="OriginalPrice" />
+          <ScalarProperty Name="ShopName" ColumnName="ShopName" />
+          <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="OrderSn" ColumnName="OrderSn" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

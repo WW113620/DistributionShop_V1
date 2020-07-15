@@ -1,0 +1,3062 @@
+.personalcon{
+    background:rgba(240,242,243,1);
+    margin-top:151px;
+    overflow: hidden;
+}
+.personalcon .breadnav{
+   margin:0px auto 28px;
+}
+.personalcon .md1200{
+    overflow: hidden;
+    margin:30px auto 200px;
+}
+.personalcon .md1200 .lfmenu{
+    float: left;
+    width:145px;
+    background:rgba(255,255,255,1);
+    text-align:center;
+    border:1px solid rgba(234,238,246,1);
+    box-sizing:border-box;
+    height:450px;
+}
+.personalcon .lfmenu .title{
+    height:64px;
+    line-height:64px;
+    background:rgba(249,249,249,1);
+    font-size:16px;
+    font-family:PingFangSC-Medium,PingFang SC;
+    font-weight:500;
+    color:rgba(55,55,55,1);
+}
+.personalcon .lfmenu li.active a{
+    color:#33A58E;
+    font-weight:500;
+}
+.personalcon .lfmenu  a{
+    height:40px;
+    line-height:40px;
+    color:rgba(116,116,116,1);
+    font-weight:400;
+    display:block;
+    width:96px;
+    margin:0 auto;
+    border-bottom:1px solid #EAEEF6;
+}
+.tablebox.consigneetable .ptablist .ptabli.address {
+    display: flex;
+    align-items: flex-start;
+    line-height: 1.2;
+    padding-top: 30px;
+}
+.rtcon {
+    width: 935px;
+    float: right;
+}
+.rtpersonal{
+    overflow: hidden;
+}
+.rtpersonal .bottomcon{
+    border:1px solid #EAEEF6;
+    background-color:#fff;
+}
+.rtpersonal .bottomcon .title{
+    height:60px;
+    line-height:60px;
+    padding-left:45px;
+    font-weight:500;
+    color:rgba(55,55,55,1);
+    border-bottom: 1px solid #EAEEF6;
+}
+.rtpersonal .bottomcon .tipbox{
+    background:rgba(252,252,252,1);
+    border-bottom:1px solid #EAEEF6;
+    padding:12px 0 12px 45px;
+    color:#747474;
+    font-size: 12px;
+}
+.rtpersonal .bottomcon .tipbox p{
+    line-height:22px;
+}
+.rtpersonal .bottomcon  .linkbox{
+    height:90px;
+    line-height:90px;
+    padding-left:45px;
+    color:#747474;
+    font-size: 12px;
+}
+.rtpersonal  .linkbox .link{
+    width:316px;
+    height:29px;
+    background:rgba(255,255,255,1);
+    border-radius:2px;
+    border:1px solid rgba(234,238,246,1);
+    display: inline-block;
+    line-height:29px;
+    padding-left:15px;
+}
+.rtpersonal  .linkbox .copybtn{
+    width:20px;
+    height:20px;
+    display:inline-block;
+    background:url(../images/icon_copy.png) no-repeat 0 0/100% 100%;
+    position: relative;
+    top:5px;
+    left:80px;
+    border-radius:100%;
+}
+.rtpersonal .topcon{
+    overflow: hidden;
+    margin-bottom:24px;
+}
+.rtpersonal .topcon .infobox{
+    background:rgba(252,252,252,1);
+    width:250px;
+    text-align:center;
+    float: left;
+    height:220px;
+    position: relative;
+}
+.rtpersonal .topcon .infobox:after{
+    content:"";
+    display:block;
+    width: 0;
+    height: 0;
+    border-bottom:13px solid #DBE2EB;
+    border-right:13px solid transparent;
+    position: absolute;
+    right:-13px;
+    top:0;
+}
+.rtpersonal .topcon .infobox:before{
+    content:"";
+    display:block;
+    width: 0;
+    height: 0;
+    border-top:13px solid #DBE2EB;
+    border-right:13px solid transparent;
+    position: absolute;
+    right:-13px;
+    bottom:0;
+}
+.rtpersonal .infobox .userimg{
+    width:78px;
+    height:78px;
+    border-radius:100%;
+    margin:30px auto 12px;
+}
+.rtpersonal .infobox .userimg img{
+    width:100%;
+    height:100%;
+    border-radius:100%;
+}
+.rtpersonal .infobox .username{
+    color:#2B57A2;
+    margin-bottom:12px;
+}
+.rtpersonal .username .name{
+    font-size:12px;
+}
+.rtpersonal .userrank{
+    border:1px solid rgba(149,171,208,1);
+    height:28px;
+    line-height:28px;
+    border-radius:23px;
+    text-align:center;
+    display: inline-block;
+    font-size:12px;
+    color:#95ABD0;
+    padding:0 10px;
+    margin-bottom:35px;
+}
+.rtpersonal .topcon .title{
+    height:50px;
+    line-height:50px;
+    padding-left: 25px;
+    font-weight:500;
+    color:rgba(55,55,55,1);
+    border-bottom:1px solid rgba(234,238,246,1);
+}
+.rtpersonal .topcon .numbox{
+    background:#fff;
+    width: 335px;
+    float: left;
+    margin-top:13px;
+}
+.rtpersonal .topcon .orderbox{
+    background:#fff;
+    width: 335px;
+    float:right;
+    margin-top:13px;
+}
+.rtpersonal .orderbox .ordercon,.rtpersonal .numcon{
+    height:143px;
+    overflow: hidden;
+}
+.rtpersonal .orderbox .noorder{
+    margin-top:28px;
+    text-align:center;
+}
+.rtpersonal .noorder img{
+    width:32px;
+    height:29px;
+    margin:0 auto 14px;
+}
+.rtpersonal .numlist{
+    overflow: hidden;
+    padding: 22px 0 0 25px;
+}
+.rtpersonal .numlist li{
+    float: left;
+    width:30%;
+}
+.rtpersonal .numlist .number{
+    height:25px;
+    font-size:18px;
+    font-family:PingFangSC-Semibold,PingFang SC;
+    font-weight:600;
+    color:rgba(55,55,55,1);
+    line-height:25px;
+    margin-bottom:11px;
+}
+.rtpersonal .numlist .word{
+    height:17px;
+    line-height:17px;
+    font-size:12px;
+    font-weight:400;
+    margin-bottom:11px;
+}
+.rtpersonal .numlist .btn{
+    color:#33A58E;
+    font-size:12px;
+}
+.rtpersonal .numlist .btn:hover{
+    text-decoration:underline;
+}
+.rtpersonal .yesorder{
+    padding-left: 25px;
+    padding-top:40px;
+}
+.rtpersonal .yesorder dl{
+    float:left;
+    width:33.33%;
+    position: relative;
+    cursor: pointer;
+}
+.rtpersonal .yesorder dt{
+    position:absolute;
+    left:0;
+    top:0;
+}
+.rtpersonal .yesorder dt img{
+    margin-top:20px;
+}
+.rtpersonal .yesorder dd{
+    padding-left:50px;
+}
+.rtpersonal .yesorder img{
+    width:32px;
+    height:32px;
+    overflow: hidden;
+    border-radius:100%;
+}
+.rtpersonal .yesorder .num{
+    display:block;
+    height:25px;
+    font-size:18px;
+    font-family:PingFangSC-Semibold,PingFang SC;
+    font-weight:600;
+    color:rgba(51,165,142,1);
+    line-height:25px;
+}
+.rtpersonal .yesorder .word{
+    height:17px;
+    font-size:12px;
+    font-family:PingFangSC-Regular,PingFang SC;
+    font-weight:400;
+    color:rgba(55,55,55,1);
+    line-height:17px;
+}
+.rtdocument .title,.rtsecurity .title,.rtcoupon .title,.rtwallet .title,.rtinvite .title,.rtconsignee .title,.profitcon .title,.ordercon .title,.rtagent .title{
+    width:100%;
+    height:51px;
+    line-height:51px;
+    background:rgba(255,255,255,1);
+    border:1px solid rgba(234,238,246,1);
+    padding-left:38px;
+    font-weight:500;
+    box-sizing:border-box;
+}
+.rtconsignee .title{
+    border-bottom: none;
+}
+.rtdocument .doccon,.rtsecurity .doccon{
+    background-color:#fff;
+    margin-top:11px;
+    overflow: hidden;
+    height:385px;
+}
+.doccon .red{
+    color:#FF4338;
+    padding-right:3px;
+}
+.doccon .tip{
+    font-size:12px;
+    color:#747474;
+    margin:29px 0 0 138px;
+}
+.doccon dl{
+    margin-top:19px;
+    position: relative;
+}
+.doccon dl dt{
+    width:100px;
+    text-align:right;
+    color:#747474;
+    font-size:12px;
+    position: absolute;
+    left:0;
+    top:0;
+    height:30px;
+    line-height:30px;
+}
+.doccon dl dd{
+    padding-left:138px;
+}
+.doccon .savebtn{
+    width:78px;
+    height:30px;
+    background:rgba(51,165,142,1);
+    border-radius:23px;
+    line-height:30px;
+    text-align:center;
+    font-weight:400;
+    color:rgba(255,255,255,1);
+    font-size:12px;
+    margin:25px 0 0 140px;
+    cursor: pointer;
+}
+.savebtn:hover{
+    opacity:0.8;
+    filter:alpha(opacity=80);
+}
+.doccon input[type='text']{
+    font-size:12px;
+}
+.doccon .inputtxt {
+    width:316px;
+    height:29px;
+    line-height:29px;
+    background:rgba(255,255,255,1);
+    border-radius:2px;
+    border:1px solid rgba(234,238,246,1);
+    padding-left:15px;
+    font-size:12px;
+    box-sizing:border-box;
+}
+.doccon .inputtxt:disabled{
+    background:rgba(240,242,243,1);
+}
+.doccon .selbox{
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    -ms-appearance:none;
+    border-radius:2px;
+    border:1px solid rgba(234,238,246,1);
+    background:url("../images/icon_trangle.png") no-repeat scroll 280px center #fff;
+    background-size:18px 18px;
+    color:#373737;
+    padding: 3px 15px;
+    outline:none;
+    height:29px;
+    box-sizing:border-box;
+}
+.doccon .countrybox{
+   
+    width:316px;
+    
+}
+.doccon .phonebox{
+    width:316px;
+    border:1px solid rgba(234,238,246,1);
+    height:29px;
+    line-height:29px;
+    box-sizing:border-box;
+}
+.doccon .phonebox .areabox{
+    width: 90px;
+    border:none;
+    background-position: 65px center;
+    height: 18px;
+    line-height: 18px;
+    position: relative;
+    border-right: 1px solid rgba(234,238,246,1);
+    border-radius: 0;
+    padding: 0 15px;
+    vertical-align: middle;
+    margin-top: -5px;
+}
+
+.doccon .phonebox  .phonetxt{
+    height:26px;
+    line-height:26px;
+    display:inline-block;
+    vertical-align:middle;
+    margin-top: -5px;
+    position: relative;
+    padding-left: 15px;
+}
+.doccon .phonebox  .phonetxt:after{
+    content:'';
+    display:block;
+    height:14px;
+    width:1px;
+    background-color:#DBDFE1;
+    position: absolute;
+    left:0;
+    top:5px;
+}
+.doccon .phonebox .tipbox{
+    display:inline-block;
+    font-weight:400;
+    color:rgba(166,166,166,1);
+    font-size:12px;
+    vertical-align:middle;
+    margin-top: -5px;
+}
+.tabbox{
+    height:62px;
+    line-height:62px;
+    background:#fff;
+    box-sizing:border-box;
+    border: 1px solid rgba(234,238,246,1);
+    border-top:none;
+}
+.tabbox .tablist{
+    overflow:hidden;
+}
+.tabbox .tablist li{
+    float:left;
+    width:100px;
+    text-align:center;
+    cursor:pointer;
+}
+.tabbox .tablist li.active{
+    color:#33A58E;
+}
+.rtcoupon .couponcon{
+    margin-top:11px;
+    background:#fff;
+    padding:38px 48px 50px;
+}
+.rtcoupon .couponcon ul{
+    overflow:hidden;
+    margin-right:-35px;
+}
+.rtcoupon .couponcon li{
+    width: 33.33%;
+    height: 232px;
+    background:url(../images/couponyes.png) no-repeat 0 0/100% 100%;
+    padding:0 24px;
+    box-sizing:border-box;
+    color:#fff;
+    float:left;
+    border-right: 35px solid #fff;
+    border-bottom: 30px solid #fff;
+}
+.rtcoupon .couponcon .ycouponbox li,.rtcoupon .couponcon .gcouponbox li{
+    background-image:url(../images/couponno.png);
+}
+.rtcoupon .couponcon .couponbox{
+    display:none;
+}
+.rtcoupon .couponcon .couponbox.active{
+    display:block;
+}
+.rtcoupon .couponcon .info{
+    padding-top:18px;
+}
+.couponcon li .price{
+    font-size:18px;
+}
+.couponcon li .type{
+    float:right;
+}
+.couponcon li .discount{
+    font-size:12px;
+    color:#fff;
+}
+.couponcon li .syfw{
+    margin-top:35px;
+    color:#747474;
+    font-size:12px;
+}
+.couponcon li .syqx{
+    color:#747474;
+    font-size:12px;
+    margin-top:10px;
+}
+.couponcon li .btn{
+    width:86px;
+    height:30px;
+    line-height:30px;
+    text-align:center;
+    background:rgba(51,165,142,1);
+    border-radius:23px;
+    display:block;
+    margin:16px auto 0;
+    font-size:12px;
+    color:#fff;
+}
+.couponcon li .btn:hover{
+    opacity:0.8;
+    filter:alpha(opacity=80);
+}
+.couponcon li .btn.ysybtn,.couponcon li .btn.ygqbtn{
+    background:rgba(202,202,202,1);
+}
+.pagebox a{
+    border:1px solid rgba(234,238,246,1)
+}
+.invitenum{
+    background:#fff;
+    overflow:hidden;
+    padding:22px 0 32px 34px;
+    box-sizing:border-box;
+    border: 1px solid rgba(234,238,246,1);
+    border-top:none;
+}
+.invitenum dl,.agentcon .agentleft dl{
+    width:20%;
+    float:left;
+    position:relative;
+}
+.invitenum dl img,.agentleft dl img{
+    width:32px;
+    height:32px;
+    border-radius:100%;
+    margin-top:40px;
+}
+.invitenum dl dt,.agentleft dl dt{
+    position:absolute;
+    left:0;
+    top:0;
+}
+.invitenum dl dd,.agentleft dl dd{
+    padding-left:50px;
+}
+.invitenum dl .num,.agentleft dl .num{
+    height:30px;
+    font-size:22px;
+    font-family:PingFangSC-Semibold,PingFang SC;
+    font-weight:600;
+    color:rgba(51,165,142,1);
+    line-height:30px;
+}
+.invitenum dl .word,.agentleft dl .word{
+    height:17px;
+    font-size:12px;
+    font-family:PingFangSC-Regular,PingFang SC;
+    font-weight:400;
+    color:rgba(55,55,55,1);
+    line-height:17px;
+    margin-top:19px;
+}
+.yqtitle{
+    margin-top:11px;
+}
+.tablebox{
+    width: 100%;
+    color: #373737;
+    font-weight: 400;
+    text-align: left;
+    margin-bottom:50px;
+}
+.tablebox thead,.tablebox .ptitlist{
+    background:#FCFCFC;
+    border-bottom:1px solid #EAEEF6;
+    box-sizing:border-box;
+    margin-bottom:11px;
+    color:#747474;
+    overflow: hidden;
+    border:1px solid rgba(234,238,246,1);
+    border-top:none;
+    width:100%;
+}
+.tablebox .ptitlist li{
+    float: left;
+    height:50px;
+    line-height:50px;
+    padding-top:0;
+}
+.tablebox .ptablist{
+    background-color:#fff;
+}
+.tablebox .ptablist li{
+    overflow: hidden;
+    border-bottom:1px solid #EAEEF6;
+}
+.tablebox .ptablist .ptabli{
+    float: left;
+    height:80px;
+    line-height:80px;
+}
+.tablebox .ptablist .ptabli .checkbtn{
+    color:#33A58E;
+}
+.wallettable .date,.wallettable .money{
+    width:28%;
+}
+.invitetable .regtime,.invitetable .xftime,.invitetable .userjl,.invitetable .yjl{
+    width:20%;
+}
+.tablebox tbody tr{
+    height:80px;
+    line-height:80px;
+    border-bottom:1px solid #EAEEF6;
+}
+.tablebox tbody tr.blank{
+    height:11px;
+    line-height:11px;
+    background: rgba(240,242,243,1);
+}
+.invitetable .username,.wallettable .source{
+    width:180px;
+}
+.tablebox.consigneetable .ptablist .ptabli{
+    height:105px;;
+}
+.consigneetable .consignee{
+    width:130px;
+}
+.consigneetable .idcard{
+    width:170px;
+}
+.consigneetable .link{
+    width:140px;
+}
+.consigneetable .state{
+    width:130px;
+}
+.invitetable span.name,.wallettable span.name,.consigneetable span.name{
+    padding-left:38px;
+}
+.wallettable span.money,.wallettable .number{
+     color:#33A58E;
+}
+.consigneetable .operation{
+    width:120px;
+}
+.consigneetable .address{
+    line-height:22px;
+    display:block;
+    width:26%;
+    padding-right: 10px;
+    box-sizing: border-box;
+}
+.consigneetable .modifybtn,.consigneetable .deletebtn{
+    display: inline-block;
+    line-height:normal;
+    position:relative;
+    top:0px;
+}
+.consigneetable .btn{
+    color: #373737;
+}
+.consigneetable .setbtn{
+    display:block;
+    line-height:normal;
+    color:#373737;
+    position:relative;
+    top: -20px;
+}
+.consigneetable .setbtn.active{
+    color:#33A58E;
+}
+.tablebox.consigneetable tbody tr{
+    height: 86px;
+    line-height: 86px;
+}
+.tablebox.consigneetable tbody tr.blank{
+     height:11px;
+     line-height:11px;
+}
+.consigneeeditcon{
+    background:rgba(240,242,243,1);
+    margin-top:151px;
+    overflow: hidden;
+}
+.consigneeeditcon .breadnav a{
+    color:rgba(55,55,55,1);
+    font-weight:500;
+}
+.consigneeeditbox{
+    background:#fff;
+    border:1px solid #EAEEF6;
+    box-sizing:border-box;
+}
+.consigneeeditbox .title{
+    border-bottom:1px solid #EAEEF6;
+    height:60px;
+    line-height:60px;
+    color:#373737;
+    padding-left:70px;
+    font-family:PingFangSC-Medium,PingFang SC;
+    font-weight:500;
+}
+.consigneeeditbox .tipbox{
+    height:60px;
+    background:rgba(252,252,252,1);
+    border-bottom:1px solid rgba(234,238,246,1);
+    padding-left:70px;
+    padding-top:12px;
+    box-sizing:border-box;
+}
+.consigneeeditbox .tipbox p{
+    color:#BC5A54;
+    font-size:12px;
+}
+.consigneeeditbox .editcon{
+    overflow:hidden;
+}
+.consigneeeditbox .editleft{
+    float:left;
+    width: 588px;
+}
+.consigneeeditbox .editright{
+    float:right;
+    width: 500px;
+    border-left:1px solid #EAEEF6;
+    padding-left:20px;
+    box-sizing:border-box;
+    margin-top: 60px;
+}
+.consigneeeditbox .editright .imgbox{
+    width:270px;
+    height:148px;
+}
+.consigneeeditbox .editright dl{
+    position:relative;
+    padding-left:150px;
+    margin-bottom:20px;
+}
+.consigneeeditbox .red{
+    color:#FF4338;
+    font-size:12px;
+    margin-right:3px;
+}
+.consigneeeditbox .editright dt{
+    position:absolute;
+    left:0;
+    top:10px;
+    width:150px;
+    color:#747474;
+}
+.editright .imgbox img{
+    width:100%;
+    height:100%;
+}
+.consigneeeditbox .editleft .musttip{
+    margin:24px 0 19px 148px;
+}
+.consigneeeditbox .editleft dl{
+    position:relative;
+    padding-left:148px;
+    margin-bottom:18px;
+}
+.consigneeeditbox .editleft dt{
+    position:absolute;
+    left:0;
+    top:5px;
+    width:148px;
+    padding-right:17px;
+    box-sizing:border-box;
+    text-align:right;
+    font-size:12px;
+    color:#747474;
+}
+.consigneeeditbox .editleft .inputtxt,.consigneeeditbox .phonebox{
+    width:316px;
+    height:29px;
+    line-height:29px;
+    background:rgba(255,255,255,1);
+    border-radius:2px;
+    border:1px solid rgba(234,238,246,1);
+    box-sizing:border-box;
+    padding-left:16px;
+}
+.consigneeeditbox .editleft .inputtxt:disabled{
+    background:rgba(240,242,243,1);
+}
+.consigneeeditbox .editleft .sfztip,.consigneeeditbox .editleft .nametip{
+    color:#95ABD0;
+    font-size:12px;
+    padding-top:9px;
+    display:inline-block;
+}
+.consigneeeditbox .editleft .savebtn{
+    width:78px;
+    height:30px;
+    line-height:30px;
+    background:rgba(51,165,142,1);
+    border-radius:23px;
+    font-size:12px;
+    font-family:PingFangSC-Regular,PingFang SC;
+    font-weight:400;
+    color:#fff;
+    margin:25px 0 34px 148px;
+    cursor:pointer;
+}
+.consigneeeditbox .editleft .tjbox{
+    margin:40px 0 0 107px;
+    font-size:12px;
+}
+.consigneeeditbox .editleft .tjbox .check{
+    display:inline-block;
+    width:18px;
+    height:18px;
+    background:url(../images/checked.png) no-repeat 0 0/100% 100%;
+    vertical-align:middle;
+    margin:-2px 24px 0 0;
+}
+.consigneeeditbox .editleft .addresstxt{
+    width: 413px;
+    height:58px;
+    background:rgba(255,250,250,1);
+    border-radius:2px;
+    border:1px solid rgba(255,67,56,0.3);
+    outline:none;
+    resize: none;
+    font-family:PingFangSC-Regular,PingFang SC;
+}
+.consigneeeditbox .editleft .jtdztip{
+    color:#BC5A54;
+    font-size:12px;
+    padding-top:9px;
+    display:inline-block;
+}
+.consigneeeditbox .selbox{
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    -ms-appearance:none;
+    border-radius:2px;
+    border:1px solid rgba(234,238,246,1);
+    background:url("../images/icon_trangle.png") no-repeat scroll 75px center #fff;
+    background-size:18px 18px;
+    color:#373737;
+    padding: 3px 15px;
+    outline:none;
+    height:29px;
+    box-sizing:border-box;
+    width:100px;
+}
+.consigneeeditbox .phonebox{
+    padding-left:0;
+}
+.consigneeeditbox .phonebox .areabox {
+    width: 100px;
+    border: none;
+    background-position: 75px center;
+    height: 17px;
+    line-height: 17px;
+    position: relative;
+    border-right: 1px solid rgba(234,238,246,1);
+    border-radius: 0;
+    padding: 0 10px;
+    margin-top: -5px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.rtconsignee .addbtn{
+    float:right;
+    color:#33A58E;
+    font-size:12px;
+    margin-right:27px;
+}
+.rtconsignee .addbtn img{
+    width:24px;
+    height:24px;
+    border-radius:100%;
+    vertical-align:middle;
+    margin:-2px 5px 0 0;
+}
+.ordertable .detail{
+    width: 390px;
+    padding-left:38px;
+    box-sizing:border-box;
+}
+.ordertable .unitprice{
+    width: 120px;
+    padding-left:38px;
+    box-sizing:border-box;
+}
+.ordertable .consignee{
+    width: 140px;
+    text-align:center;
+    box-sizing:border-box;
+}
+.ordertable .state{
+    width: 140px;
+    text-align:center;
+    padding-top:29px;
+    box-sizing:border-box;
+}
+.ordertable .operate{
+    padding-left:30px;
+    padding-top:29px;
+    box-sizing:border-box;
+}
+.ordertab{
+    background-color:#fff;
+    height:60px;
+    line-height:60px;
+    border: 1px solid rgba(234,238,246,1);
+    box-sizing:border-box;
+    border-top:none;
+}
+.ordertab .tablist{ 
+    margin-left:38px;
+    overflow: hidden;
+    display:inline-block;
+}
+.ordertab .tablist li{
+    margin-right:20px;
+    float: left;
+    cursor: pointer;
+}
+.ordertab .tablist li.active{
+    color:#33A58E;
+}
+.ordertab .condition,.agentcon .agentright .condition{
+    float:right;
+    margin-right:70px;
+    overflow: hidden;
+}
+.ordertab .condition .seabox,.agentright .condition .seabox{
+    width:198px;
+    height:29px;
+    line-height:29px;
+    background:rgba(255,255,255,1);
+    border-radius:2px;
+    font-size:0;
+    float: left;
+    margin-top:15px;
+}
+.ordertab .condition .seatxt,.agentright .condition .seatxt{
+    border:1px solid rgba(234,238,246,1);
+    width:152px;
+    height:29px;
+    line-height:29px;
+    box-sizing:border-box;
+    display:inline-block;
+    border-right:none;
+    padding-left:10px;
+    box-sizing:border-box;
+    font-size:12px;
+}
+.ordertab .condition .seatxt::placeholder,.agentright .condition .seatxt::placeholder{
+    color: #A6A6A6;
+
+}
+.ordertab .condition .seabtn,.agentright .condition .seabtn{
+    width:46px;
+    height:31px;
+    line-height:31px;
+    text-align:center;
+    background:rgba(43,87,162,1);
+    border-radius:0px 2px 2px 0px;
+    border:1px solid rgba(234,238,246,1);
+    box-sizing:border-box;
+    color:#fff;
+    display:inline-block;
+    vertical-align:middle;
+    margin-top:-8px;
+    cursor: pointer;
+}
+.ordertab .selbox,.agentright .selbox{
+    float: left;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    -ms-appearance:none;
+    border:1px solid rgba(234,238,246,1);
+    background:url("../images/icon_trangle_down.png") no-repeat scroll 95px center #fff;
+    background-size:9px 6px;
+    color:#373737;
+    padding: 3px 15px;
+    outline:none;
+    height:29px;
+    line-height:29px;
+    box-sizing:border-box;
+    width:120px;
+    position: relative;
+    border-radius: 0;
+    padding: 0 15px;
+    vertical-align: middle;
+    margin-top: 15px;
+    margin-right:10px;
+    font-size:12px;
+}
+.orderlist .orderli{
+    margin-bottom:11px;
+    border:1px solid rgba(234,238,246,1);
+    box-sizing:border-box;
+    background-color:#fff;
+}
+.orderlist .orderli .ordertop{
+    height:62px;
+    line-height:62px;
+    background:rgba(252,252,252,1);
+    border-bottom:1px solid rgba(234,238,246,1);
+    padding-left:38px;
+    color:#747474;
+    border: none;
+    border-bottom: 1px solid rgba(234,238,246,1);
+    overflow: hidden;
+}
+.orderlist .orderli .orderbh{
+    margin-right:30px;
+}
+.orderlist .orderli .ordertime{
+    margin-right: 58px;
+}
+.orderlist .orderli .orderperson{
+    display: none;
+}
+.orderlist .ordermoney .premoney{
+    text-decoration:line-through;
+    margin-right:15px;
+}
+.orderlist .orderli .imgbox{
+    width:90px;
+    height:90px;
+    float: left;
+    margin-top:29px;
+}
+.orderlist .orderli .imgbox img{
+    width:100%;
+    height:100%;
+}
+.orderlist .orderli  .ordercon{
+    overflow: hidden;
+    position: relative;
+}
+.orderlist .orderli  .libox{
+    float: left;
+    border-right:1px solid rgba(234,238,246,1);
+    height:100%;
+}
+.orderlist .orderli  .libox:last-child{
+    border:none;
+    padding-left: 30px;
+}
+.orderlist .orderli .goodinfo{
+    width:55%;
+}
+.orderlist .orderli .goodinfo .detail{
+    border-bottom:1px solid rgba(234,238,246,1);
+    width:100%;
+    height:139px;
+    overflow: hidden;
+}
+.orderlist .orderli .goodinfo .detail:last-child{
+    border:none
+}
+.orderlist .orderli .name{
+    width: 220px;
+    float: left;
+    margin:29px 0 0 7px;
+    line-height:20px;
+}
+.orderlist .orderli .num{
+    width:62px;
+    float: left;
+    margin:29px 0 0 7px;
+    line-height:20px;
+}
+.orderlist .orderli .operate .btn{
+    display:block;
+    color:#373737;
+    height:25px;
+    line-height:25px;
+}
+.orderlist .orderli .operate .btn:hover{
+    text-decoration:underline;
+}
+.orderlist .orderli .operate .lkfkbtn,.orderlist .orderli .operate .xgddbtn{
+    color:#33A58E;
+}
+.orderlist .orderli  .unitprice{
+    width:80px;
+    padding:0;
+    float: left;
+    margin-top:29px;
+}
+.orderlist .orderli .libox.consignee{
+    position:absolute;
+    left: 515px;
+    top:0;
+    bottom:0;
+    padding-top:29px;
+}
+.orderlist .orderli .libox.state{
+    position:absolute;
+    left: 658px;
+    top:0;
+    bottom:0;
+    padding-top:29px;
+}
+.orderlist .orderli .libox.operate{
+    position:absolute;
+    left: 795px;
+    top:0;
+    bottom:0;
+    padding-top:29px;
+}
+.paymentcon .title{
+    height:62px;
+    line-height:62px;
+    background:rgba(255,255,255,1);
+    border:1px solid rgba(234,238,246,1);
+    padding-left:47px;
+    font-weight:500;
+    box-sizing: border-box;
+}
+.paymentcon  .paymentbox{
+    background:rgba(255,255,255,1);
+    border:1px solid rgba(234,238,246,1);
+    border-top:none;
+    box-sizing: border-box;
+    font-size:12px;
+    padding: 13px 0px 13px 47px;
+}
+.paymentcon  .paymentbox p{
+    height: 25px;
+    line-height: 25px;
+}
+.paymentcon  .paymentbox .money{
+    padding-left:46px;
+}
+.paymentcon  .paymentbox .num{
+    color:#FF4338;
+    font-size:16px;
+    font-weight:600;
+}
+.paymentcon .paywaybox{
+    margin-top:28px;
+}
+.paywaycon{
+    background:#FCFCFC;
+    border:1px solid rgba(234,238,246,1);
+    border-top:none;
+    box-sizing: border-box;
+    padding:31px 0 40px 51px;
+    overflow: hidden;
+}
+.paywaycon .wechatpay{
+    float: left;
+    text-align:center;
+    cursor: pointer;
+}
+.paywaycon .wechatpay+.wechatpay{
+	margin-left: 15px;
+}
+.paywaycon .wechatpay .box{
+    width:197px;
+    height:47px;
+    background:rgba(255,255,255,1);
+    border-radius:5px;
+    border:1px solid rgba(219,223,225,1);
+    overflow: hidden;
+}
+.paywaycon .wechatpay.active .box{
+    height:258px;
+}
+.paywaycon .wechatpay .payimg{
+    width:94px;
+    height:30px;
+    margin:8px auto 13px;
+}
+.paywaycon .wechatpay .codeimg{
+    width:185px;
+    height:185px;
+}
+.paywaycon .wechatpay .word{
+    text-align: center;
+    font-size:12px;
+    margin-top:10px;
+    display:none;
+}
+.paywaycon .wechatpay.active .word{
+    display:block;
+}
+.paywaycon .alipay{
+    width:197px;
+    height:47px;
+    background:rgba(255,255,255,1);
+    border-radius:5px;
+    border:1px solid rgba(219,223,225,1);
+    margin-left:30px;
+    float: left;
+    text-align:center;
+    cursor: pointer;
+}
+.paywaycon .alipay.active,.paywaycon .wechatpay.active .box{
+    border-color: rgba(51,165,142,1);;
+}
+.paywaycon .alipay img{
+    width:83px;
+    height:30px;
+    margin-top:9px;
+}
+.ddxxcon .title{
+    height:62px;
+    line-height:62px;
+    background:rgba(255,255,255,1);
+    border:1px solid rgba(234,238,246,1);
+    padding-left:47px;
+    font-weight:500;
+    box-sizing: border-box;
+}
+.ddxxcon .ddxxbox{
+    overflow: hidden;
+    background:rgba(255,255,255,1);
+    border:1px solid rgba(234,238,246,1);
+    box-sizing: border-box;
+    border-top:none;
+}
+.ddxxcon .ddxxbox .ddxxleft{
+    float: left;
+    width:434px;
+    background-color:#FCFCFC;
+    border-right:1px solid rgba(234,238,246,1);
+    padding:16px 0 28px 47px;
+    box-sizing:border-box;
+}
+.ddxxbox .ddxxleft dl{
+    position: relative;
+    padding-left:70px;
+    margin-bottom:8px;
+}
+.ddxxbox .ddxxleft dt{
+    position: absolute;
+    left:0;
+    top:0;
+    width:80px;
+    text-align:left;
+    font-weight:500;
+}
+.ddxxbox .ddxxleft dd{
+    font-size:12px;
+}
+.ddxxbox .ddxxleft p{
+    height:20px;
+    line-height:20px;
+}
+.ddxxbox .ddxxright {
+    float: left;
+    width: 600px;
+}
+.ddxxright .infobox{
+    margin:16px 0 0 40px;
+    float: left;
+}
+.ddxxright .infobox p{
+    margin-bottom:13px;
+}
+.ddxxright .infobox .money{
+    color:#FF4338;
+    font-size:18px;
+    font-weight:500;
+}
+.ddxxright .optbox{
+    float: right;
+}
+.ddxxright .optbox .txtbtn{
+    font-size:12px;
+    font-family:PingFangSC-Regular,PingFang SC;
+    font-weight:400;
+    color:rgba(55,55,55,1);
+    line-height:17px;
+}
+.ddxxright .optbox .inputbtn{
+    width:78px;
+    text-align:center;
+    height:30px;
+    line-height:30px;
+    background:rgba(51,165,142,1);
+    border-radius:23px;
+    font-size:12px;
+    color:#fff;
+    display:inline-block;
+}
+.ddxxright .optbox .inputbtn:hover{
+    opacity:0.8;
+    filter:alpha(opacity=80);
+}
+.ddxxright .optbox .txtbtn:hover{
+    text-decoration:underline;
+}
+.ddxxright .optbox .cancelbtn{
+    margin:51px 50px 0 0;
+    display: inline-block;
+}
+.ddxxright .optbox .refundbtn{
+    margin:51px 0 0 0;
+    display: inline-block;
+}
+.ddxxright .optbox .showwl{
+    margin-top:13px;
+}
+.ddxxright .optbox .checkbtn{
+    display:block;
+    margin-top:8px;
+}
+.refundbox{
+    margin-top:28px;
+    border:1px solid rgba(234,238,246,1)
+}
+.refundbox .title{
+    border-top:none;
+    border-left:none;
+    border-right:none;
+}
+.refundbox .tip{
+    background-color:#FCFCFC;
+    border-bottom:1px solid rgba(234,238,246,1);
+    box-sizing: border-box;
+    border-top:none;
+    height:62px;
+    line-height:62px;
+    padding-left:47px;
+    overflow: hidden;
+}
+.refundbox .tip p{
+    height:40px;
+    font-size:12px;
+    font-family:PingFangSC-Regular,PingFang SC;
+    font-weight:400;
+    color:rgba(116,116,116,1);
+    line-height:20px;
+    width:380px;
+    margin-top:10px;
+}
+.refundbox .formbox{
+    background-color:#fff;
+    box-sizing: border-box;
+    border-top:none;
+    padding:30px 0 77px 47px;
+}
+.refundbox .formbox dl{
+    position: relative;
+    margin-bottom: 18px;
+    padding-left:77px;
+    font-size:12px;
+    overflow: hidden;
+}
+.refundbox .formbox dl.overauto{
+	overflow: initial;
+}
+.refundbox .formbox dt{
+    position:absolute;
+    left:0;
+    top:5px;
+    width:77px;
+    color:#747474;
+    font-size:12px;
+}
+.refundbox .formbox .submitbtn{
+    text-align:center;
+    width:99px;
+    height:30px;
+    line-height:30px;
+    background:rgba(51,165,142,1);
+    border-radius:23px;
+    font-size:12px;
+    color:#fff;
+    margin-left:77px;
+}
+.refundbox .formbox .submitbtn:hover{
+    opacity:0.8;
+    filter:alpha(opacity=80);
+}
+.refundbox .formbox .moneytxt{
+    width:316px;
+    height:29px;
+    line-height:29px;
+    padding-left:16px;
+    background:rgba(255,255,255,1);
+    border-radius:2px;
+    border:1px solid rgba(234,238,246,1);
+    box-sizing:border-box;
+    color:#FF4338;
+}
+.refundbox .formbox .tipbox{
+    color:#747474;
+    padding-top:9px;
+}
+.refundbox .formbox .reasontxt{
+    width:316px;
+    height:58px;
+    background:rgba(255,250,250,1);
+    border-radius:2px;
+    border:1px solid rgba(255,67,56,0.3);
+    box-sizing:border-box;
+    padding-left:16px;
+    height:17px;
+    font-size:12px;
+    font-family:PingFangSC-Regular,PingFang SC;
+    font-weight:400;
+    height:58px;
+    outline:none;
+    padding-top:6px;
+    resize:none;
+}
+.refundbox .formbox .selbox{
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    -ms-appearance:none;
+    border:1px solid rgba(234,238,246,1);
+    background:url("../images/icon_trangle.png") no-repeat scroll 280px center #fff;
+    background-size:18px 18px;
+    color:#373737;
+    padding: 3px 15px;
+    outline:none;
+    height:29px;
+    line-height:29px;
+    box-sizing:border-box;
+    width:316px;
+    position: relative;
+    border-radius: 0;
+    padding: 0 15px;
+    vertical-align: middle;
+}
+.refundbox .formbox .selbox:disabled{
+    background-color:#F0F2F3;
+}
+.refundbox .refundsuccess{
+    background-color: #fff;
+    font-size: 12px;
+    text-align: center;
+    padding:68px 0 90px;
+    display:none;
+}
+.refundbox .refundsuccess .tit{
+    height:33px;
+    font-size:24px;
+    font-family:PingFangSC-Semibold,PingFang SC;
+    font-weight:600;
+    color:rgba(101,206,163,1);
+    line-height:33px;
+}
+.refundbox .refundsuccess img{
+    display:inline-block;
+    vertical-align:top;
+    margin:5px 9px 0 0;
+}
+.refundbox .refundsuccess .word{
+    display:inline-block;
+    text-align:left;
+}
+.processbox{
+    background:rgba(252,252,252,1);
+    border:1px solid rgba(234,238,246,1);
+    padding:14px 120px 20px 0;
+    box-sizing:border-box;
+    margin-top:11px;
+    overflow: hidden;
+    min-height:228px;
+}
+.processbox .innerbox{
+    float: right;
+    color:#747474;
+}
+.processbox .innerbox .name{
+    display: inline-block;
+    width:85px;
+    text-align:right;
+    font-size:14px;
+}
+.processbox .innerbox .num{
+    display: inline-block;
+    min-width: 75px;
+    text-align:right;
+    font-size:14px;
+}
+.processbox .innerbox .totalnum{
+    color:#373737;
+    font-weight:400;
+}
+.processbox .innerbox  .nownum{
+    font-size:18px;
+    font-family:PingFangSC-Medium,PingFang SC;
+    font-weight:500;
+    color:rgba(255,67,56,1);
+}
+.processbox .innerbox p{
+    margin-bottom:6px;
+    font-size:0;
+}
+.processbox .innerbox .nowp,.processbox .innerbox .resultp,.processbox .innerbox .mresultp{
+    margin-top:15px;
+    position: relative;
+}
+.processbox .innerbox .mresultp{
+    margin-top:0;
+    display:none;
+}
+.processbox .innerbox .resultp{
+    display:none;
+}
+.processbox .innerbox .resultp .num{
+    text-decoration:line-through;
+    color:#747474;
+    font-size:18px;
+}
+.ordertable{
+    margin-top:28px;
+}
+.ordertable .orderhead{
+    background-color:#fff;
+    height:62px;
+    background:rgba(255,255,255,1);
+    border:1px solid rgba(234,238,246,1);
+    line-height:62px;
+    box-sizing:border-box;
+    overflow: hidden;
+}
+.ordertable .orderhead li{
+    float: left;
+    color:#747474;
+}
+.ordertable .orderhead li.detailbox{
+    font-weight:500;
+    color:rgba(55,55,55,1);
+}
+.ordertable .detailbox{
+    width:559px;
+    padding-left:47px;
+    padding-right:115px;
+    box-sizing:border-box;
+}
+.ordertable .pricebox,.ordertable .numbox{
+    width:225px;
+}
+.ordertable .orderbody{
+    margin-top:11px;
+}
+.ordertable .ordertop{
+    height:62px;
+    line-height:62px;
+    padding-left:47px;
+    background:rgba(252,252,252,1);
+    border:1px solid rgba(234,238,246,1);
+    box-sizing:border-box;
+    color:#747474;
+}
+.ordertable .ordertop .ordernum{
+    margin-right:18px;
+}
+.ordertable .orderblist{
+    background-color: #fff;
+    border: 1px solid rgba(234,238,246,1);
+    border-top: 0;
+    border-bottom: 0;
+}
+.ordertable .orderblist li{
+    height:139px;
+    padding:25px 0;
+    box-sizing:border-box;
+    overflow: hidden;
+    border-bottom:1px solid rgba(234,238,246,1);
+}
+.ordertable .orderblist .orderbli{
+    float: left;
+}
+.ordertable .orderblist .preprice{
+    color:#747474;
+    text-decoration:line-through;
+    margin-left:3px;
+}
+.ddxxcon .ordertable .imgbox{
+    width:90px;
+    height:90px;
+    float: left;
+    margin-right:67px;
+}
+.ordertable .imgbox img{
+    width:100%;
+    height:100%;
+}
+.ordertable .infobox .name{
+    height:40px;
+    line-height:20px;
+    overflow: hidden;
+}
+.ordertable .infobox .type{
+    color:#BC5A54;
+    height:20px;
+    line-height:20px;
+    margin-top:5px;
+}
+.ordertable .zzfw{
+    background-color:#fff;
+    border: 1px solid rgba(234,238,246,1);
+    height:68px;
+    line-height:68px;
+    padding-left:47px;
+    box-sizing:border-box;
+    border-top: none;
+}
+.ordertable .zzfw input{
+    display:inline-block;
+    width:197px;
+    height:47px;
+    line-height:47px;
+    background:rgba(252,252,252,1);
+    border-radius:24px;
+    border:1px solid rgba(219,223,225,1);
+    box-sizing:border-box;
+    padding-left:26px;
+    margin-left:35px;
+}
+.ordertable .ordertotal{
+    height:42px;
+    line-height:42px;
+    background:rgba(252,252,252,1);
+    text-align:right;
+    padding-right:120px;
+    border: 1px solid rgba(234,238,246,1);
+    border-top: none;
+}
+.ordertable .ordertotal .num{
+    color:#FF4338;
+    font-size:18px;
+    font-weight:500;
+}
+.logisticsinfo{
+    border:1px solid rgba(234,238,246,1);
+    box-sizing:border-box;
+    background-color:#fff;
+}
+.logisticsinfo .logisticsbox{
+    background-color:#FCFCFC;
+    height:122px;
+    padding:23px 0 23px 47px;
+    box-sizing:border-box;
+    display:none;
+}
+.logisticsinfo .logisticsbox.active{
+    display:block;
+}
+.logisticsinfo .logisticsbox p{
+    height:25px;
+    line-height:25px;
+    font-size:12px;
+}
+.logisticsinfo .logisticsbox .name{
+    font-size:14px;
+}
+.logisticsinfo .titlist{
+    overflow: hidden;
+    border-bottom:1px solid rgba(234,238,246,1);
+    padding-left:47px;
+}
+.logisticsinfo .titlist li{
+    height:62px;
+    line-height:62px;
+    margin-right:40px;
+    float: left;
+    cursor: pointer;
+}
+.logisticsinfo .titlist li.active{
+    color: #33A58E;
+}
+.logisticscon .trackbox{
+    margin-top:11px;
+    background-color:#fff;
+    border:1px solid rgba(234,238,246,1);
+    box-sizing:border-box;
+}
+.logisticscon .trackbox .title{
+    height:62px;
+    line-height:62px;
+    background:rgba(255,255,255,1);
+    border-bottom:1px solid rgba(234,238,246,1);
+    padding-left:47px;
+}
+.logisticscon .trackcon{
+    overflow: hidden;
+}
+.logisticscon .trackcon .trackleft{
+    width: 635px;
+    padding:44px 0 100px 47px;
+    box-sizing:border-box;
+    float: left;
+}
+.logisticscon .trackcon .trackright{
+    width: 450px;
+    float:right;
+    border-left:1px solid rgba(234,238,246,1);
+    box-sizing:border-box;
+}
+.logisticscon .trackright ul{
+    overflow: hidden;
+    margin-bottom: -1px;
+}
+.logisticscon .trackright li{
+   height:90px;
+   overflow: hidden;
+   padding:15px 0 ;
+   box-sizing:border-box;
+   border-bottom:1px solid rgba(234,238,246,1);
+}
+.logisticscon .trackright li:last-child{
+    border-bottom:none;
+}
+.logisticscon .trackright  .imgbox{
+    width:60px;
+    height:60px;
+    float: left;
+    margin-left: 25px;
+}
+.logisticscon .trackright img{
+    width:100%;
+    height:100%;
+}
+.logisticscon .trackright .namebox{
+    width: 220px;
+    line-height:17px;
+    overflow: hidden;
+    margin: 5px 0 0 25px;
+    float: left;
+}
+.logisticscon .trackright .numbox{
+    float: left;
+    margin:18px 0 0 66px;
+}
+.logisticscon .trackleft dl{
+    position: relative;
+    padding:0 0 20px 200px;
+}
+.logisticscon .trackleft dt{
+    position:absolute;
+    left:0;
+    top:0;
+    width:180px;
+}
+.logisticscon .trackleft .date{
+    font-size:12px;
+}
+.logisticscon .trackleft .line{
+    position:absolute;
+    left:180px;
+    top:5px;
+    width:180px;
+    height:100%;
+    width:2px;
+    border-right:1px dashed #DBDFE1;
+    display: inline-block;
+}
+.logisticscon .trackleft .info{
+    margin-left:10px;
+    color:#747474;
+    font-size:12px;
+}
+.logisticscon .trackleft .spot{
+    display:block;
+    width:9px;
+    height:9px;
+    background-color:#DBDFE1;
+    border-radius:100%;
+    margin:0 0 0 -2px;
+}
+.logisticscon .trackleft dl:last-child .line{
+    height:0;
+}
+.logisticscon .trackleft dl.end .info{
+    color: #373737;
+}
+.logisticscon .trackleft dl .state{
+    font-size:14px;
+    font-family:PingFangSC-Medium,PingFang SC;
+    font-weight:500;
+    margin-bottom:4px;
+}
+.logisticscon .trackleft dl.end .spot{
+    width:15px;
+    height:15px;
+    background:rgba(51,165,142,0.53);
+    margin: -3px 0 0 -5px;
+    position: relative;
+}
+.logisticscon .trackleft dl.end .spot:after{
+    content:"";
+    display:block;
+    width:9px;
+    height:9px;
+    background:rgba(51,165,142,1);
+    position:absolute;
+    left:3px;
+    top:3px;
+    z-index:1;
+    border-radius:100%;
+}
+.agenttable .phone{
+    width:150px;
+}
+.agenttable .regtime,.agenttable .userjl{
+     width:18%;
+}
+.rtagent .agentcon{
+    overflow: hidden;
+}
+.rtagent .agentcon .agentbox{
+    overflow: hidden;
+}
+.rtagent .agentcon .tit{
+    padding-left:38px;
+    height:51px;
+    line-height:51px;
+    border:none;
+    border-bottom:1px solid rgba(234,238,246,1);
+}
+.rtagent .agentcon .agentleft{
+    float:left;
+    width: 395px;
+    border:1px solid rgba(234,238,246,1);
+    box-sizing:border-box;
+    background-color:#fff;
+}
+.agentcon .agentleft .agentbox{
+    padding:26px 0 0 32px;
+    height:127px;
+    box-sizing:border-box;
+}
+.rtagent .agentcon .agentright{
+    float:right;
+    width: 530px;
+    border:1px solid rgba(234,238,246,1);
+    box-sizing:border-box;
+    background-color:#fff;
+}
+ .agentcon .agentleft dl {
+    width: 140px;
+}
+.agentcon .agentright .agentbox{
+    height:127px;
+    box-sizing:border-box;
+}
+.agentcon .agentright .condition{
+    float: left;
+    margin-left:41px;
+}
+.ddxxright .infobox p .btn{
+   width:25px;
+   height:25px;
+   display:inline-block;
+   vertical-align:middle;
+   margin:-7px 0 0 6px;
+}
+.ddxxright .infobox .btn img{
+    width:25px;
+    height:25px;
+}
+.ddxxright .infobox p .savebtn{
+    display:none;
+}
+.ddxxright .infobox .money .premoney{
+    text-decoration:line-through;
+    color: #373737;
+    font-size:14px;
+    font-weight:normal;
+    margin-right:3px;
+    display:none;
+}
+.ddxxright .infobox p .moneytxt,.processbox p .moneytxt{
+    width:134px;
+    height:29px;
+    line-height:29px;
+    background:rgba(255,255,255,1);
+    border-radius:2px;
+    border:1px solid rgba(234,238,246,1);
+    box-sizing: border-box;
+    padding-left:16px;
+    vertical-align:middle;
+    font-size:12px;
+    margin-top:-5px;
+    display:none;
+}
+.ddxxright .infobox p .moneytxt::placeholder,.processbox p .moneytxt::placeholder{
+    color:#747474;
+}
+.processbox  p .btn{
+    width:25px;
+    height:25px;
+    border-radius:100%;
+    position: absolute;
+    right:-33px;
+    top:-1px;
+}
+.processbox  p .btn img{
+    width:25px;
+    height:25px;
+}
+.processbox .modifyp{
+    position: relative;
+    top:6px;
+    display:none;
+}
+.processbox .modifyp .moneytxt{
+    position: absolute;
+    left:80px;
+    top:0;
+    display:inline-block;
+}
+.processbox  p .savebtn{
+    left: 225px;
+    top: -3px;
+}
+.rtdocument .doccon{
+    overflow: hidden;
+    padding-bottom:94px;
+    height: auto;
+}
+.rtdocument .doccon .uploadimg{
+    float: left;
+    width: 132px;
+    height: 132px;
+    text-align: center;
+    margin:30px 66px 0 66px;
+    position: relative;
+    cursor: pointer;
+}
+.rtdocument .uploadimg .camera{
+    position: absolute;
+    left: 45px;
+    top: 51px;
+    z-index: 8;
+    width: 42px;
+}
+.rtdocument .uploadimg .filebtn{
+    width:132px;
+    height:132px;
+    border-radius:100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 9;
+    opacity: 0;
+    cursor: pointer;
+}
+.rtdocument .uploadimg .imgbox{
+    width:132px;
+    height:132px;
+    border-radius: 100%;
+    margin:0 auto 11px;
+}
+.rtdocument .uploadimg .uploadtip{
+    font-size:12px;
+    color: #747474;
+}
+.rtdocument .uploadimg .imgbox img{
+    width:100%;
+    height:100%;
+    border-radius: 100%;
+}
+.rtdocument .doccon .rightdocbox{
+    float: left;
+}
+@media screen and (max-width:1200px) {
+    .personalcon .md1200{
+        width:100%;
+        padding:0 30px;
+        box-sizing:border-box;
+    }
+    .personalcon .md1200 .lfmenu{
+        width:16.5%;
+    }
+    .rtcon{
+        width:82%;
+    }
+    .rtpersonal .topcon .infobox{
+        width:28%;
+    }
+    .rtpersonal .topcon .orderbox,.rtpersonal .topcon .numbox{
+        width:35%;
+    }
+    .ordertab .condition, .agentcon .agentright .condition{
+        margin-right:50px;
+    }
+    .ordertable .detail{
+        width:35%;
+    }
+    .ordertable .consignee{
+        width:15%;
+    }
+    .ordertable .state{
+        width:15%;
+    }
+    .orderlist .orderli .goodinfo{
+        width:55%;
+    }
+    .ordertable .unitprice{
+        width:15%;
+    }
+    .orderlist .orderli .libox.consignee{
+        left:55%;
+    }
+    .orderlist .orderli .libox.state{
+        left:70%;
+    }
+    .orderlist .orderli .libox.operate{
+        left:85%;
+        padding-left:0;
+        text-align: center;
+        width:15%;
+    }
+    .invitetable .username, .wallettable .source{
+        width:20%;
+    }
+    .wallettable .date, .wallettable .money{
+        width:20%;
+    }
+    .rtagent .agentcon .agentleft{
+        width:45%;
+    }
+    .rtagent .agentcon .agentright{
+        width:52%;
+    }
+    .invitetable .regtime, .invitetable .xftime, .invitetable .userjl, .invitetable .yjl{
+        width:17%;
+    }
+    .agenttable .phone{
+        width:17%;
+    }
+    .ddxxcon .ddxxbox .ddxxleft{
+        width:45%;
+    }
+    .ddxxcon .ddxxbox .ddxxright{
+        width:55%;
+    }
+    .ordertable .detailbox{
+        width:50%;
+        padding-right:50px;
+    }
+    .ordertable .pricebox, .ordertable .numbox{
+        width:18%;
+    }
+    .ddxxright .optbox,.ddxxright .infobox{
+        float:none;
+        width:100%;
+        box-sizing:border-box;
+    }
+    .ddxxright .optbox{
+        margin:-20px 0 0 40px;
+    }
+    .logisticscon .trackcon .trackleft{
+        width:60%;
+    }
+    .logisticscon .trackcon .trackright{
+        width:40%;
+    }
+    .logisticscon .trackright .namebox{
+        width:50%;
+        margin-left:15px;
+    }
+    .logisticscon .trackright .numbox{
+        margin-top:10px;
+        margin-left:10px;
+        display:block;
+    }
+    .consigneeeditbox .tipbox{
+        height:auto;
+        padding-bottom:12px;
+    }
+    .consigneeeditbox .editleft, .consigneeeditbox .editright{
+        display:block;
+        border:none;
+        float:none;
+        width:100%;
+    }
+    .tablebox.consigneetable .ptitlist li.idcard,.consigneetable .idcard{
+       width:20%;
+    }
+    .tablebox.consigneetable .ptitlist li.consignee,.consigneetable .consignee{
+        width:12%;
+    }
+    .tablebox.consigneetable .ptitlist li.address,.consigneetable .address{
+        width:22%;
+    }
+    .tablebox.consigneetable .ptitlist li.link,.consigneetable .link{
+        width:10%;
+    }
+    .tablebox.consigneetable .ptitlist li.state,.consigneetable .state{
+        width:15%;
+    }
+    .tablebox.consigneetable .ptablist .ptabli{
+        overflow: hidden;
+    }
+}
+@media screen and (max-width:1000px) {
+    .rtdocument .doccon .uploadimg{
+        float: none;
+        display:block;
+        width:100%;
+        text-align: left;
+        margin-left:50px;
+        margin-bottom:30px;
+    }
+    .rtdocument .uploadimg .imgbox{
+        margin:11px 0;
+    }
+    .rtpersonal .yesorder {
+        padding-left:10px;
+    }
+    .rtpersonal .yesorder dl{
+        text-align:center;
+    }
+    .rtpersonal .yesorder dd{
+        padding:0;
+    }
+    .rtpersonal .yesorder dt img{
+        display:none;
+    }
+    .ordertab{
+        padding:15px 0;
+        height:auto;
+        line-height:normal;
+        overflow: hidden;
+    }
+    .ordertab .condition{
+        display:block;
+        margin-left:25px;
+        float: left;
+    }
+    
+    .orderlist .orderli .imgbox{
+        width:80px;
+        height:80px;
+    }
+    .orderlist .orderli .ordertime,.orderlist .orderli .orderbh{
+        margin-right:10px;
+    }
+    .consigneeeditbox .title,.consigneeeditbox .tipbox,.rtdocument .title, .rtsecurity .title, .rtcoupon .title, .rtwallet .title, .rtinvite .title, .rtconsignee .title, .profitcon .title, .ordercon .title, .rtagent .title{
+        padding-left:25px;
+    }
+    .invitetable span.name, .wallettable span.name, .consigneetable span.name{
+        padding-left:25px;
+    }
+    .ordertab .tablist{
+        margin-left:25px;
+    }
+    .ordertable .detail,.orderlist .orderli .ordertop{
+        padding-left:25px;
+    }
+    .orderlist .orderli .name{
+        width:55%;
+    }
+    .invitenum dl img, .agentleft dl img{
+        display:none;
+    }
+    .agentcon .agentleft dl{
+        width:50%;
+        text-align: center;
+    }
+    .agentcon .agentleft .agentbox{
+        padding:30px 0;
+    }
+    .invitenum dl dd, .agentleft dl dd{
+        padding-left:0;
+    }
+    .ddxxcon .ordertable .imgbox{
+        margin-right:20px;
+    }
+  
+}
+
+
+@media screen and (max-width:768px) {
+	
+	.paywaycon .wechatpay+.wechatpay{
+		margin-left: 0;
+	}
+    .personalcon{
+        margin-top:146px;
+        background:#fff;
+       
+    }
+    .ordercon{
+        padding:0 11px;
+        box-sizing:border-box;
+    }
+    .rtcon{
+        float:none;
+        width:100%;
+    }
+    .personalcon .lfmenu{
+        display:none;
+    }
+    .personalcon .lfmenu .title{
+        display:none;
+    }
+    .personalcon .md1200 .lfmenu{
+        position:fixed;
+        left:0;
+        top:92px;
+        height:100%;
+        width:100%;
+        float: none;
+        overflow: hidden;
+    }
+    .personalcon .lfmenu a{
+        height:60px;
+        line-height:60px;
+        width:100%;
+        text-align:left;
+        padding-left:34px;
+        font-weight:500;
+        position: relative;
+        box-sizing:border-box;
+    }
+    .personalcon .lfmenu a:after{
+        content:'';
+        display:block;
+        width:7px;
+        height:12px;
+        background:url(../images/icon_next.png) no-repeat 0 0/100% 100%;
+        position: absolute;
+        right:25px;
+        top:25px;
+    }
+    .ordercon .title{
+        display:none;
+    }
+    .ordertab{
+        position: relative;
+        height:88px;
+        line-height:normal;
+        border: 1px solid rgba(234,238,246,1);
+    }
+    .ordertab .condition{
+        position:absolute;
+        left:0;
+        top:0;
+        width:100%;
+        margin:0;
+        padding:0 8px 12px 8px;
+        box-sizing:border-box;
+        border-bottom: 1px solid rgba(234,238,246,1);
+    }
+    .ordertab .condition .seabox, .agentright .condition .seabox{
+        margin-top:12px;
+        width:62%;
+    }
+    .ordertab .selbox, .agentright .selbox{
+        margin-top:12px;
+        width:35%;
+        margin-right:3%;
+        background-position: 92% center;
+    }
+    .ordertab .condition .seatxt{
+        width:calc(100% - 46px);
+    }
+    .ordertab .tablist{
+        position:absolute;
+        left:0;
+        top:55px; 
+        margin:6px 0 0 0;
+        padding:0 8px;
+        width:100%;
+        box-sizing:border-box;
+    }
+    .ordertab .tablist{
+        margin-right:-6.6%;
+    }
+    .ordertab .tablist li{
+        margin-right:6.6%;
+    }
+    .tablebox .ptitlist,.orderlist .orderli .name,.orderlist .orderli .num,.orderlist .orderli .unitprice{
+        display:none;
+    }
+    .orderlist .orderli{
+        position: relative;
+        height:218px;
+        border:none;
+        border-top:1px solid rgba(234,238,246,1);
+    }
+    .orderlist .orderli .ordertop{
+        height:36px;
+        line-height:36px;
+        padding-left:15px;
+        font-size:12px;
+    }
+    .orderlist .orderli .goodinfo{
+        width:100%;
+        float:none;
+        overflow: hidden;
+        padding:13px 7px;
+        box-sizing:border-box;
+        height:109px;
+        border:none;
+    }
+    .orderlist .orderli .goodinfo .detail{
+        border:none;
+        padding:0;
+        width:25%;
+        float: left;
+    }
+    .orderlist .orderli .imgbox{
+        margin:0;
+        width:100%;
+        height:80px;
+    }
+    .orderlist .orderli .ordercon{
+        position:initial;
+        border-bottom: 1px solid rgba(234,238,246,1);
+    }
+    .orderlist .orderli:last-child{
+        border-bottom: 1px solid rgba(234,238,246,1);
+    }
+    .orderlist .orderli .libox.state{
+        top:0px;
+        left:auto;
+        right:15px;
+        float:none;
+        height:36px;
+        line-height:36px;
+        padding:0;
+        width:auto;
+        bottom:auto;
+        border:none;
+        font-size:12px;
+    }
+    .orderlist .orderli .libox.operate{
+        left:auto;
+        bottom:0;
+        padding:0;
+        top:auto;
+        height:70px;
+        right:12px;
+        font-size:12px;
+    }
+    .orderlist .orderli .operate .btn{
+        height:22px;
+        line-height:22px;
+    }
+    .orderlist .orderli .ordermoney{
+        position:absolute;
+        left:12px;
+        top:153px;
+        font-size:12px;
+        line-height:normal;
+    }
+    .orderlist .orderli .ordertime{
+        position:absolute;
+        left:12px;
+        top:173px;
+        font-size:12px;
+        line-height:normal;
+    }
+    .orderlist .orderli .orderperson{
+        position:absolute;
+        left:12px;
+        top:193px;
+        font-size:12px;
+        line-height:normal;
+        display:block;
+    }
+    .rtpersonal{
+        padding:0 11px;
+        box-sizing:border-box;
+        width:100%;
+    }
+    .personalcon .md1200{
+        margin:0 auto;
+        padding:0;
+    }
+    .rtpersonal .topcon .infobox{
+        width:100%;
+        float: none;
+        overflow: hidden;
+        height:175px;
+    }
+    .rtpersonal .infobox .userimg{
+        width:65px;
+        height:65px;
+        margin:19px auto 5px;
+    }
+    .rtpersonal .infobox .username{
+        font-size:12px;
+    }
+    .rtpersonal .userrank{
+        margin-bottom:25px;
+    }
+    .rtpersonal .topcon{
+        margin-bottom:0;
+    }
+    .rtpersonal .topcon .title{
+        display:none;
+    }
+    .rtpersonal .topcon .numbox{
+        float:none;
+        border:1px solid rgba(234,238,246,1);
+        height:107px;
+        box-sizing:border-box;
+        margin:0;
+        border-top:none;
+        border-bottom:none;
+        width:100%;
+    }
+    .rtpersonal .topcon .orderbox{
+        float:none;
+        border:1px solid rgba(234,238,246,1);
+        width:100%;
+        box-sizing:border-box;
+        margin:0;
+        padding:15px 0;
+    }
+    .rtpersonal .orderbox .ordercon, .rtpersonal .numcon{
+        height:auto;
+        padding:0;
+    }
+    .rtpersonal .orderbox .noorder{
+        margin:10px 0;
+    }
+    .rtpersonal .bottomcon{
+        margin-bottom:100px;
+    }
+    .rtpersonal .bottomcon .title{
+        height:45px;
+        line-height:45px;
+        padding-left:15px;
+        border-bottom:1px solid rgba(234,238,246,1);
+        font-size:12px;
+        box-sizing:border-box;
+    }
+    .rtpersonal .bottomcon .tipbox{
+        padding:12px 15px;
+        font-size:12px;
+        overflow: hidden;
+    }
+    .rtpersonal .bottomcon .tipbox p{
+        height:auto;
+        line-height:22px;
+    }
+    .rtpersonal .bottomcon .linkbox{
+        padding:11px 15px;
+        line-height:normal;
+        height:78px;
+        box-sizing:border-box;
+    }
+    .rtpersonal .linkbox .link{
+        margin-top:8px;
+    }
+    .rtpersonal .numlist{
+        padding:0;
+        margin-top: 10px;
+    }
+    .rtpersonal .numlist li{
+        width:33.33%;
+        text-align:center;
+    }
+    .rtpersonal .yesorder{
+        padding:0;
+        overflow: hidden;
+    }
+    .rtpersonal .yesorder dl{
+       float: left;
+       width:33.33%;
+       text-align:center;
+    }
+    .rtpersonal .yesorder dt{
+        display:none;
+    }
+    .rtpersonal .yesorder dd{
+        padding:0;
+    }
+    .rtpersonal .yesorder .num{
+        color:#373737;
+    }
+    .personalcon .breadnav{
+        height:44px;
+        line-height:44px;
+        background-color:#F0F2F3;
+        padding-left:11px;
+        box-sizing:border-box;
+        margin-bottom:0;
+    }
+    .ddxxcon{
+        padding:15px 11px;
+        box-sizing:border-box;
+    }
+    .ddxxcon .title{
+        height:45px;
+        line-height:45px;
+        padding-left:15px;
+    }
+    .ddxxcon .ddxxbox .ddxxleft{
+        display:block;
+        padding:12px 15px;
+        border-bottom:1px solid rgba(234,238,246,1);
+        float: none;
+        display:block;
+        box-sizing:border-box;
+        width:100%;
+        border-right:none;
+    }
+    .ddxxcon .ddxxbox .ddxxright{
+        padding:12px 0;
+        float: none;
+        display:block;
+        box-sizing:border-box;
+        width:100%;
+    }
+    .ddxxright .infobox{
+        margin:0;
+        float: none;
+        display:block;
+        padding:0 15px;
+        box-sizing:border-box;
+        width:100%;
+    }
+    .ddxxright .infobox p{
+        margin-bottom:8px;
+    }
+    .ddxxright .infobox .money{
+        font-size:12px;
+    }
+    .ddxxright .optbox{
+        float: none;
+        display:block;
+        text-align:center;
+    }
+    .ddxxright .optbox .cancelbtn{
+        margin-top:18px;
+    }
+    .ddxxcon .ordertable{
+        margin-top:20px;
+    }
+    .ddxxcon .ordertable .orderhead{
+        height:45px;
+        line-height:45px;
+        padding-left: 15px;
+    }
+    .ddxxcon .ordertable .orderhead li{
+        padding-left:0;
+    }
+    .ddxxcon .ordertable .orderblist li{
+        border:1px solid rgba(234,238,246,1);
+        border-top:none;
+    }
+    .ddxxcon .ordertable .ordertop{
+        display:none;
+    }
+    .ddxxcon .ordertable .orderbody{
+        margin-top:0;
+    }
+    .ddxxcon .ordertable .imgbox{
+        width:80px;
+        height:80px;
+        margin-right:18px;
+        margin-top:20px;
+    }
+    .ddxxcon .ordertable .detailbox{
+        padding-left:15px;
+       
+    }
+    .ddxxcon .ordertable .infobox .name{
+        width:40%;
+        font-size:12px;
+    }
+    .ddxxcon .ordertable .orderblist li{
+        padding:10px 0 13px;
+        position: relative;
+    }
+    .ddxxcon .ordertable .orderblist .orderbli.pricebox{
+        float: none;
+        position:absolute;
+        left:110px;
+        top:80px;
+        font-size:12px;
+    }
+    .ddxxcon .ordertable .numbox{
+        float: none;
+        position:absolute;
+        left:110px;
+        top:102px;
+        font-size:12px;
+    }
+    .ddxxcon .ordertable .moneybox{
+        float: none;
+        position:absolute;
+        left:160px;
+        top:102px;
+        font-size:12px;
+    }
+    .ddxxcon .ordertable .infobox .type{
+        font-size:12px;
+    }
+    .ddxxcon .ordertable .zzfw{
+        border: 1px solid rgba(234,238,246,1);
+        border-top:none;
+        padding-left:27px;
+        box-sizing:border-box;
+        height:84px;
+        line-height:normal;
+    }
+    .ddxxcon .ordertable .zzfw .word{
+        display:block;
+        padding-top:16px;
+    }
+    .ddxxcon .ordertable .zzfw input{
+        height:30px;
+        line-height:30px;
+        margin:8px 0 0 0;
+        width:163px;
+    }
+    .ddxxcon .ordertable .ordertotal{
+        border: 1px solid rgba(234,238,246,1);
+        border-top:none;
+        padding-right:0;
+        text-align:left;
+        padding-left:20px;
+    }
+    .ddxxcon .ordertable .ordertotal .num{
+        font-size:14px;
+    }
+    .processbox{
+        margin:0;
+        border-top:none;
+        padding:15px 20px;
+        box-sizing:border-box;
+        min-height:auto;
+    }
+    .processbox .innerbox{
+        float: none;
+    }
+    .processbox .innerbox .name{
+        text-align:left;
+    }
+    .processbox .innerbox .num{
+        float:right;
+    }
+    .ddxxcon .ordertable .orderhead .numbox,.ddxxcon .ordertable .orderhead .moneybox{
+        display:none;
+    }
+    .logisticsinfo .titlist{
+        padding-left:15px;
+    }
+    .logisticsinfo .titlist li{
+        height:45px;
+        line-height:45px;
+    }
+    .logisticsinfo .logisticsbox{
+        padding:15px;
+        height:auto;
+    }
+    .logisticscon .trackbox .title{
+        border:none;
+        height:45px;
+        line-height:45px;
+        padding-left:15px;
+        border-bottom: 1px solid rgba(234,238,246,1);
+    }
+    .logisticscon .trackcon .trackleft{
+        display:block;
+        padding:15px;
+        box-sizing:border-box;
+        float:none;
+        border-bottom: 1px solid rgba(234,238,246,1);
+        width:100%;
+    }
+    .logisticscon .trackleft dt{
+        width:80px;
+        font-size:12px;
+    }
+    .logisticscon .trackleft dl{
+        padding: 0 0 20px 100px;
+    }
+    .logisticscon .trackleft .line{
+        left:90px;
+    }
+    .logisticscon .trackleft .info{
+        width:40%;
+    }
+    .logisticscon .trackcon .trackright{
+        float:none;
+        border-left:none;
+        width:100%;
+    }
+    .logisticscon .trackright .imgbox{
+        margin-left:12px;
+    }
+    .logisticscon .trackright .namebox{
+        margin:0 0 0 85px;
+        width:40%;
+        display:block;
+        float:none;
+        font-size:12px;
+    }
+    .logisticscon .trackright .numbox{
+        display:block;
+        float:none;
+        margin:12px 0 0 85px;
+    }
+    .paymentcon{
+        padding:15px 11px;
+    }
+    .paymentcon .title{
+        height:45px;
+        line-height:45px;
+        padding-left:15px;
+    }
+    .paymentcon .paymentbox{
+        padding: 13px 0px 13px 15px;
+    }
+    .paywaycon{
+        padding:15px;
+    }
+    .paywaycon .wechatpay{
+        float:none;
+        margin-bottom:25px;
+    }
+    .paywaycon .alipay{
+        float:none;
+        margin:0 auto;
+    }
+    .paywaycon .wechatpay .box{
+        margin:0 auto;
+    }
+    .paywaycon .wechatpay.active .box{
+        height:175px;
+    }
+    .paywaycon .wechatpay .codeimg{
+        width:100px;
+        height:100px;
+    }
+    .refundbox .tip{
+        padding:0 15px;
+        height:auto;
+        box-sizing:border-box;
+    }
+    .refundbox .tip p{
+        height:auto;
+        margin-bottom:10px;
+        width:100%;
+    }
+    .refundbox .formbox{
+        padding:15px;
+    }
+    .overauto .multi-select-button{
+    	width: 100%;
+    }
+    .refundbox .formbox .selbox,.overauto .multi-select-button{
+	    background: url(../images/icon_trangle.png) no-repeat scroll 95% center #fff;
+	    background-size:20px;
+    }
+    .refundbox .formbox .selbox,.refundbox .formbox .moneytxt,.refundbox .formbox .reasontxt,.overauto .multi-select-container{
+        width:90%;
+        font-size:12px;
+    }
+    .rtcoupon,.rtinvite,.rtagent,.consigneeeditbox{
+        padding:0 11px;
+        box-sizing:border-box;
+    }
+    .rtcoupon .title,.rtsecurity .title,.rtdocument .title,.rtwallet .title,.rtinvite .title,.rtagent .title,.rtagent .agentcon .tit,.rtconsignee .title,.consigneeeditbox .title{
+        height:45px;
+        line-height:45px;
+        padding-left:15px;
+    }
+    .rtconsignee .title{
+        border-bottom:1px solid rgba(234,238,246,1);
+    }
+    .rtcoupon .tabbox{
+        height:45px;
+        line-height:45px;
+    }
+    .rtcoupon .couponcon{
+        padding:15px 0;
+    }
+    .rtcoupon .couponcon ul{
+        margin-right:-7px;
+    }
+    .rtcoupon .couponcon li{
+        width:50%;
+        padding:0 10px;
+        box-sizing:border-box;
+        border-right:7px solid #fff;
+        border-bottom:7px solid #fff;
+        height: 205px;
+    }
+    .couponcon li .btn{
+        font-size:12px;
+        width:75px;
+        height:28px;
+        line-height:28px;
+        margin-top: 12px;
+    }
+    .rtcoupon .couponcon .info{
+        padding-top:16px;
+        font-size:12px;
+    }
+    .couponcon li .price{
+        font-size:14px;
+    }
+    .rtsecurity,.rtdocument,.rtwallet,.rtconsignee{
+        padding:0 11px;
+        box-sizing:border-box;
+    }
+    .rtdocument .doccon, .rtsecurity .doccon{
+        border:1px solid rgba(234,238,246,1);
+        margin-top:0;
+        border-top:0;
+        margin-bottom:100px;
+        height:auto;
+    }
+    .doccon dl dt{
+        width:88px;
+        font-size:12px;
+    }
+    .doccon dl dd{
+        padding-left:100px;
+    }
+    .doccon .tip{
+        margin:25px 0 0 100px;
+    }
+    .doccon .inputtxt{
+        width:90%;
+        font-size:12px;
+    }
+    .doccon .savebtn{
+        margin-left:100px;
+        margin-bottom:70px;
+    }
+    .doccon .phonebox,.doccon .countrybox{
+        width:90%;
+        font-size:12px;
+    }
+    .doccon .phonebox .areabox,.consigneeeditbox .phonebox .areabox{
+        font-size:12px;
+        width:30%;
+        background-position: 90% center;
+    } 
+    .doccon .phonebox .phonetxt{
+        margin-top:-5px;
+        width:40%;
+    }
+    .tablebox{
+        border:1px solid rgba(234,238,246,1);
+        border-top:none;
+        border-bottom:none;
+        box-sizing:border-box;
+    }
+    .tablebox .ptablist li{
+        padding:12px 15px;
+        width:100%;
+        box-sizing:border-box;
+    }
+    .tablebox .ptablist .ptabli{
+        display:block;
+        float:none;
+        width:100%;
+        height:25px;
+        line-height:25px;
+        box-sizing:border-box;
+    }
+    .invitetable span.name, .wallettable span.name, .consigneetable span.name{
+        padding-left:0;
+    }
+    .invitenum{
+        padding:15px 0;
+        border-bottom:none;
+    }
+    .invitenum dl{
+        width:33%;
+        text-align:center;
+    }
+    .invitenum dl img, .agentleft dl img{
+        display:none;
+    }
+    .invitenum dl dd, .agentleft dl dd{
+        padding:0;
+    }
+    .invitenum dl .word, .agentleft dl .word{
+        margin-top:15px;
+    }
+    .rtagent .agentcon .agentleft,.rtagent .agentcon .agentright{
+        display:block;
+        float:none;
+        width:100%;
+        border-bottom: none;
+    }
+    .agentcon .agentleft .agentbox{
+        padding:15px 0;
+        height:auto;
+    }
+    .agentcon .agentleft dl{
+        width:50%;
+        text-align:center;
+    }
+    .yqtitle{
+        margin-top:0;
+    }
+    .agentcon .agentright .condition{
+        float:none;
+        margin:0;
+        padding:0 15px 15px;
+    }
+    .agentcon .agentright .agentbox{
+        height:auto;
+    }
+    .orderlist .ordermoney .premoney{
+        display: inline-block;
+    }
+    .orderlist .ordermoney .nowmoney{
+        display: inline-block;
+        padding-left:60px;
+    }
+    .orderlist .orderli.ordermodifyli .ordertime{
+        top:190px;
+    }
+
+    .processbox .modifyp .moneytxt{
+        left:auto;
+        right:11%;
+        height:25px;
+        line-height:25px;
+        font-size:12px;
+    }
+    .processbox p .savebtn{
+        left:auto;
+        right:0;
+        top:-5px;
+    }
+    .processbox .innerbox .nowpm .num{
+        margin-right:30px;
+    }
+    .processbox .innerbox .nowpm .btn{
+        right:0;
+    }
+    .checkordercon .breadnav{
+        margin:0 -11px 12px -11px;
+    }
+    .tablebox.consigneetable .ptablist .ptabli{
+        height:25px;
+        line-height:25px;
+        padding:0 15px;
+    }
+    .tablebox.consigneetable .ptablist .ptabli.operation{
+        overflow: hidden;
+        border-top:1px solid rgba(234,238,246,1);
+        height:50px;
+        line-height:50px;
+        margin-top:10px;
+    }
+    .consigneetable .btn{
+        float: left;
+        display:block;
+        height:50px;
+        line-height:50px;
+        margin-right:25px;
+        top: auto;
+    }
+    .tablebox.consigneetable  .ptablist li{
+       padding:10px 0 0;
+    }
+    .consigneeeditbox{
+        border:none;
+        padding:15px 11px;
+    }
+    .consigneeeditbox .title{
+        border:1px solid #EAEEF6;
+    }
+    .consigneeeditbox .tipbox{
+        height:auto;
+        padding:11px 15px;
+        border:1px solid #EAEEF6;
+        border-top:none;
+    }
+    .consigneeeditbox .editcon{
+        padding:15px;
+        border:1px solid #EAEEF6;
+        border-top:none;
+    }
+    .consigneeeditbox .editleft,.consigneeeditbox .editright{
+        width:100%;
+        display:block;
+        border:none;
+    }
+    .consigneeeditbox .editleft dt{
+        width:100px;
+    }
+    .consigneeeditbox .editleft dl{
+        padding-left:90px;
+    }
+    .consigneeeditbox .editleft .musttip{
+        margin-left:100px;
+        margin-top:0;
+    }
+    .consigneeeditbox .editleft .inputtxt, .consigneeeditbox .phonebox{
+        width:100%;
+        font-size:12px;
+    }
+    .consigneeeditbox .editright{
+        border-top:1px solid #EAEEF6;
+        padding:0;
+    }
+    .consigneeeditbox .editright dl{
+        padding:0;
+    }
+    .consigneeeditbox .editright dt{
+        display: block;
+        position: initial;
+        left: auto;
+        top: auto;
+        margin:12px 0;
+    }
+    .consigneeeditbox .editright dd{
+        display:block;
+    }
+    .consigneeeditbox .phonebox .areabox{
+        width:40%;
+        margin-bottom:0;
+    }
+    .consigneeeditbox .phonebox .phonetxt{
+        width:50%;
+        font-size:12px;
+        height:26px;
+        line-height:26px;
+        vertical-align:middle;
+        margin-top:-5px;
+        padding-left:5px;
+        box-sizing:border-box;
+    }
+    .consigneeeditbox .selbox{
+        font-size:12px;
+        margin-bottom:10px;
+        width:48%;
+    }
+    .consigneeeditbox .editleft .tjbox{
+        margin:20px 0 0 90px;
+    }
+    .consigneeeditbox .editleft .savebtn{
+        margin:20px 0 0 90px;
+    }
+    .consigneeeditbox .editright .imgbox{
+        width:90%;
+    }
+    .orderlist .orderli .libox.consignee{
+        display:none;
+    }
+    .rtdocument .uploadimg .filebtn,.rtdocument .uploadimg .imgbox{
+        width:100px;
+        height:100px;
+    }
+    .rtdocument .uploadimg .camera{
+        left: 33px;
+        top: 36px;
+        width: 32px;
+    }
+    .rtdocument .doccon .uploadimg{
+        margin-bottom: 20px;
+    }
+}

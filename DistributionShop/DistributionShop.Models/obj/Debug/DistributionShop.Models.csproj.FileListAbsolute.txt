@@ -1,0 +1,73 @@
+D:\Mangotech New\PhoenixProject\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\DistributionShop.Models.dll
+D:\Mangotech New\PhoenixProject\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\DistributionShop.Models.pdb
+D:\Mangotech New\PhoenixProject\Distribution\DistributionShop\DistributionShop.Models\obj\Debug\DistributionShop.Models.csprojAssemblyReference.cache
+D:\Mangotech New\PhoenixProject\Distribution\DistributionShop\DistributionShop.Models\obj\Debug\DistributionShop.Models.csproj.CoreCompileInputs.cache
+D:\Mangotech New\PhoenixProject\Distribution\DistributionShop\DistributionShop.Models\obj\Debug\DistributionShop.Models.dll
+D:\Mangotech New\PhoenixProject\Distribution\DistributionShop\DistributionShop.Models\obj\Debug\DistributionShop.Models.pdb
+D:\Mangotech New\PhoenixProject\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\AutoMapper.dll
+D:\Mangotech New\PhoenixProject\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\AutoMapper.pdb
+D:\Mangotech New\PhoenixProject\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\AutoMapper.xml
+D:\Mangotech New\PhoenixProject\Distribution\DistributionShop\DistributionShop.Models\obj\Debug\DistributionShop.Models.csproj.CopyComplete
+D:\Mangotech New\PhoenixProject\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\DistributionShop.Models.dll.config
+D:\Mangotech New\PhoenixProject\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\EntityFramework.dll
+D:\Mangotech New\PhoenixProject\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\EntityFramework.SqlServer.dll
+D:\Mangotech New\PhoenixProject\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\EntityFramework.xml
+D:\Mangotech New\PhoenixProject\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\EntityFramework.SqlServer.xml
+D:\Mangotech New\PhoenixProject\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\Mangotech New\PhoenixProject\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+D:\Mangotech New\PhoenixProject\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\Dapper.dll
+D:\Mangotech New\PhoenixProject\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\Dapper.xml
+D:\Mangotech New\The Phoenix Project\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\DistributionShop.Models.dll.config
+D:\Mangotech New\The Phoenix Project\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\DistributionShop.Models.dll
+D:\Mangotech New\The Phoenix Project\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\DistributionShop.Models.pdb
+D:\Mangotech New\The Phoenix Project\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\AutoMapper.dll
+D:\Mangotech New\The Phoenix Project\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\Dapper.dll
+D:\Mangotech New\The Phoenix Project\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\EntityFramework.dll
+D:\Mangotech New\The Phoenix Project\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\EntityFramework.SqlServer.dll
+D:\Mangotech New\The Phoenix Project\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\Newtonsoft.Json.dll
+D:\Mangotech New\The Phoenix Project\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\StackExchange.Redis.dll
+D:\Mangotech New\The Phoenix Project\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\AutoMapper.pdb
+D:\Mangotech New\The Phoenix Project\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\AutoMapper.xml
+D:\Mangotech New\The Phoenix Project\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\Dapper.xml
+D:\Mangotech New\The Phoenix Project\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\EntityFramework.xml
+D:\Mangotech New\The Phoenix Project\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\EntityFramework.SqlServer.xml
+D:\Mangotech New\The Phoenix Project\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\Newtonsoft.Json.xml
+D:\Mangotech New\The Phoenix Project\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\StackExchange.Redis.xml
+D:\Mangotech New\The Phoenix Project\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\Mangotech New\The Phoenix Project\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+D:\Mangotech New\The Phoenix Project\Distribution\DistributionShop\DistributionShop.Models\obj\Debug\DistributionShop.Models.csproj.CoreCompileInputs.cache
+D:\Mangotech New\The Phoenix Project\Distribution\DistributionShop\DistributionShop.Models\obj\Debug\DistributionShop.Models.csproj.CopyComplete
+D:\Mangotech New\The Phoenix Project\Distribution\DistributionShop\DistributionShop.Models\obj\Debug\DistributionShop.Models.dll
+D:\Mangotech New\The Phoenix Project\Distribution\DistributionShop\DistributionShop.Models\obj\Debug\DistributionShop.Models.pdb
+D:\Mangotech New\The Phoenix Project\Distribution\DistributionShop\DistributionShop.Models\obj\Debug\DistributionShop.Models.csprojAssemblyReference.cache
+D:\Mangotech New\The Phoenix Project\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\log4net.dll
+D:\Mangotech New\The Phoenix Project\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\log4net.xml
+D:\Mangotech New\The Phoenix Project\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\RestSharp.dll
+D:\Mangotech New\The Phoenix Project\Distribution\DistributionShop\DistributionShop.Models\bin\Debug\RestSharp.xml
+D:\Mangotech New\DistributionShopDB\Distribution V1.0\DistributionShop\DistributionShop.Models\bin\Debug\DistributionShop.Models.dll.config
+D:\Mangotech New\DistributionShopDB\Distribution V1.0\DistributionShop\DistributionShop.Models\bin\Debug\DistributionShop.Models.dll
+D:\Mangotech New\DistributionShopDB\Distribution V1.0\DistributionShop\DistributionShop.Models\bin\Debug\DistributionShop.Models.pdb
+D:\Mangotech New\DistributionShopDB\Distribution V1.0\DistributionShop\DistributionShop.Models\bin\Debug\AutoMapper.dll
+D:\Mangotech New\DistributionShopDB\Distribution V1.0\DistributionShop\DistributionShop.Models\bin\Debug\Dapper.dll
+D:\Mangotech New\DistributionShopDB\Distribution V1.0\DistributionShop\DistributionShop.Models\bin\Debug\EntityFramework.dll
+D:\Mangotech New\DistributionShopDB\Distribution V1.0\DistributionShop\DistributionShop.Models\bin\Debug\EntityFramework.SqlServer.dll
+D:\Mangotech New\DistributionShopDB\Distribution V1.0\DistributionShop\DistributionShop.Models\bin\Debug\log4net.dll
+D:\Mangotech New\DistributionShopDB\Distribution V1.0\DistributionShop\DistributionShop.Models\bin\Debug\Newtonsoft.Json.dll
+D:\Mangotech New\DistributionShopDB\Distribution V1.0\DistributionShop\DistributionShop.Models\bin\Debug\RestSharp.dll
+D:\Mangotech New\DistributionShopDB\Distribution V1.0\DistributionShop\DistributionShop.Models\bin\Debug\StackExchange.Redis.dll
+D:\Mangotech New\DistributionShopDB\Distribution V1.0\DistributionShop\DistributionShop.Models\bin\Debug\AutoMapper.pdb
+D:\Mangotech New\DistributionShopDB\Distribution V1.0\DistributionShop\DistributionShop.Models\bin\Debug\AutoMapper.xml
+D:\Mangotech New\DistributionShopDB\Distribution V1.0\DistributionShop\DistributionShop.Models\bin\Debug\Dapper.xml
+D:\Mangotech New\DistributionShopDB\Distribution V1.0\DistributionShop\DistributionShop.Models\bin\Debug\EntityFramework.xml
+D:\Mangotech New\DistributionShopDB\Distribution V1.0\DistributionShop\DistributionShop.Models\bin\Debug\EntityFramework.SqlServer.xml
+D:\Mangotech New\DistributionShopDB\Distribution V1.0\DistributionShop\DistributionShop.Models\bin\Debug\log4net.xml
+D:\Mangotech New\DistributionShopDB\Distribution V1.0\DistributionShop\DistributionShop.Models\bin\Debug\Newtonsoft.Json.xml
+D:\Mangotech New\DistributionShopDB\Distribution V1.0\DistributionShop\DistributionShop.Models\bin\Debug\RestSharp.xml
+D:\Mangotech New\DistributionShopDB\Distribution V1.0\DistributionShop\DistributionShop.Models\bin\Debug\StackExchange.Redis.xml
+D:\Mangotech New\DistributionShopDB\Distribution V1.0\DistributionShop\DistributionShop.Models\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\Mangotech New\DistributionShopDB\Distribution V1.0\DistributionShop\DistributionShop.Models\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+D:\Mangotech New\DistributionShopDB\Distribution V1.0\DistributionShop\DistributionShop.Models\obj\Debug\DistributionShop.Models.csprojAssemblyReference.cache
+D:\Mangotech New\DistributionShopDB\Distribution V1.0\DistributionShop\DistributionShop.Models\obj\Debug\DistributionShop.Models.csproj.CoreCompileInputs.cache
+D:\Mangotech New\DistributionShopDB\Distribution V1.0\DistributionShop\DistributionShop.Models\obj\Debug\DistributionShop.Models.csproj.CopyComplete
+D:\Mangotech New\DistributionShopDB\Distribution V1.0\DistributionShop\DistributionShop.Models\obj\Debug\DistributionShop.Models.dll
+D:\Mangotech New\DistributionShopDB\Distribution V1.0\DistributionShop\DistributionShop.Models\obj\Debug\DistributionShop.Models.pdb

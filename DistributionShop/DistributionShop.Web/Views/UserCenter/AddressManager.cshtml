@@ -1,0 +1,152 @@
+﻿
+@{
+    ViewBag.Title = "收货人管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section head{
+    <link rel="stylesheet" href="~/Assets/web/css/personal.css">
+    <script src="~/Scripts/axios.min.js"></script>
+        
+    <link rel="stylesheet" type="text/css" href="http://unpkg.com/view-design/dist/styles/iview.css">
+    <script src="~/Scripts/vue.min.js"></script>
+    <script type="text/javascript" src="http://unpkg.com/view-design/dist/iview.min.js"></script>
+}
+<div class="rtcon rtconsignee">
+    <div class="title">
+        收货人管理 <a href="@Url.Content("~/UserCenter/EditAddress")" class="addbtn">
+            <img src="~/Images/banner1.png">新增收货人
+        </a>
+    </div>
+    <div class="consigneecon" id="vueContent">
+        <div class="tablebox consigneetable">
+            <ul class="ptitlist">
+                <li class="consignee"><span class="name">收货人</span></li>
+                <li class="link">联系方式</li>
+                <li class="address">地址</li>
+                <li class="idcard">身份证号码</li>
+                <li class="state">身份证上传</li>
+                <li class="operation">操作</li>
+            </ul>
+            <ul class="ptablist">
+                <li v-for="(address, index) in addressList" :key="index">
+                    <div class="ptabli consignee">
+                        <span class="name">{{address.RealName }}</span>
+                    </div>
+                    <div class="ptabli link">{{address.PhoneStr}}</div>
+                    <div class="ptabli address">{{address.Address }}66号</div>
+                    <div class="ptabli idcard">{{address.IdentityCard }}</div>
+                    <div class="ptabli state">{{address.IDImageStatus }}</div>
+                    <div class="ptabli operation">
+                        <a :href="'@Url.Content("~/UserCenter/EditAddress?addressId=")'+address.Id" class="btn modifybtn">修改</a>
+                        <a href="javascript:;" class="btn deletebtn" @@click="DelAddress(address.Id)">删除</a>
+                        <a href="javascript:;" class="btn setbtn" @@click="SetDefault(address.Id)" v-if="!address.IsDefault">设为默认地址</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- 分页 -->
+        <div style="float: right;">
+            <Page :total="count" />
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+
+   var vm = new Vue({
+       el: '#vueContent',
+        data: {
+            addressList: [],
+            count:10,
+       },
+        mounted() {
+            this.show();
+        },
+        methods: {
+            show:  function () {
+                axios
+                    .get("@Url.Content("~/UserCenter/GetList")")
+                    .then(function (response) {
+                        var res = response.data;
+                        if (res.code == 0) {
+                            vm.addressList = [];
+                            for (var i = 0; i < res.data.length; i++) {
+                                vm.addressList.push(res.data[i]);
+                            }
+                            vm.count = res.count;
+                        }
+                    })
+                    .catch(function (error) {
+                        alert(error)
+                    })
+            },
+            DelAddress: function (id) {
+                var vm = this;
+                 axios
+                     .post("@Url.Content("~/UserCenter/DelAddress")", { addressId:id})
+                    .then(function (response) {
+                        var res = response.data;
+                        if (res.code == 0) {
+                            layer.msg(res.msg, { time: 1200, offset: 'auto' }, function () {
+                                vm.show();
+                            });
+                        }else if (res.code == 3) {
+                            window.location.href = "@Url.Action("Index", "Login")";
+                        }
+                        else {
+                            layer.msg(res.msg, { time: 1200, offset: 'auto' });
+                        }
+                    })
+                    .catch(function (error) {
+                        alert(error)
+                    })
+            },
+            SetDefault: function (id) {
+                 axios
+                     .post("@Url.Content("~/UserCenter/SetDefaultAddress")", { addressId:id})
+                    .then(function (response) {
+                        var res = response.data;
+                        if (res.code == 0) {
+                            layer.msg(res.msg, { time: 1200, offset: 'auto' }, function () {
+                                vm.show();
+                            });
+                        }
+                    })
+                    .catch(function (error) {
+                        alert(error)
+                    })
+            }
+        }
+    })
+
+    @*var v = new Vue({
+        el: '#vueContent',
+        data: {
+            addressList:[]
+        },
+        methods: {
+            test: function () {
+                axios
+                    .get("@Url.Content("~/UserCenter/GetList")")
+                    .then(function (res) {
+                        if (res.code == 0) {
+                            addressList = res.data
+                        }
+                    })
+                    .catch(function (error) {
+
+                    })
+                    .finally(function () {
+
+                    })
+            },
+            test1: function () {
+                alert(1);
+            }
+        },
+        created: {
+            test()
+        }
+    })*@
+</script>

@@ -1,0 +1,56 @@
+﻿
+<script>
+
+    function isMobilePhone(phonePrefix, phone) {
+        var phone = StrTrim(phone);
+        if (!phone)
+            return false;
+
+        if (phonePrefix == 1) {//11位
+            return (/^1[3456789]\d{9}$/.test(phone))
+        } else if (phonePrefix == 2) {//9 位
+            return (/^\d{9}$/.test(phone));
+        }
+        return false;
+    }
+
+    function changePhonePrefix(val, domId) {
+        if (val == 1) {
+            $("#" + domId).attr("maxlength", 11);
+        } else if (val == 2) {
+            $("#" + domId).attr("maxlength", 9);
+        }
+        $("#" + domId).val("");
+    }
+
+    
+    function sendPhoneCode(phone, PhonePrefix) {
+         $ajaxFunc("@Url.Content("~/Login/VerifyCode")", { "phone": phone, "prefix": PhonePrefix}, function (res) {
+            if (res.code === 0) {
+                layer.msg("发送成功", { time: 1000, offset: 'auto' });
+            } else {
+                layer.msg(res.msg, { time: 1200, offset: 'auto', icon: 5 });
+            }
+         });
+    }
+
+
+    var second = 60;
+    function setTime(domId) {
+        $("#" + domId).attr("disabled", true);
+        $("#" + domId).css("cursor", "not-allowed");
+        var timer = setInterval(function () {
+            second--;
+            if (second > 0) {
+                $("#" + domId).html(second + "秒后重新发送")
+            } else {
+                clearInterval(timer);
+                second = 60;
+                $("#" + domId).attr("disabled", false)
+                $("#" + domId).html("重新发送");
+                $("#" + domId).css("cursor", "pointer");
+            }
+        }, 1000);
+    }
+
+</script>

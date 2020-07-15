@@ -1,0 +1,82 @@
+﻿@using DistributionShop.Models.Utils;
+@model DistributionShop.Models.Data.Account
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_DialogLayout.cshtml";
+    string roleName = Enum.GetName(typeof(RoleEnums), Model.RoleType.ToInt(2));
+}
+
+<div class="layui-form" lay-filter="layuiadmin-form-useradmin" id="layuiadmin-form-useradmin" style="padding: 20px 0 0 0;">
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户名</label>
+        <div class="layui-input-inline">
+            <input type="text" name="UserName" value="@Model.UserName" readonly class="layui-input">
+        </div>
+        <div class="layui-form-mid layui-word-aux">用户名不可修改</div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户角色</label>
+        <div class="layui-input-inline">
+            <select name="RoleType" lay-verify="">
+                @{
+                    var RoleList = ViewBag.RoleList as List<SelectOption>;
+                    foreach (var item in RoleList)
+                    {
+                        if (item.Value == Model.RoleType.ToInt(0))
+                        {
+                            <option value="@item.Value" selected="selected">@item.Text</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    }
+                }
+            </select>
+        </div>
+        <div class="layui-form-mid layui-word-aux">用户角色请谨慎修改</div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">昵称</label>
+        <div class="layui-input-inline">
+            <input type="text" name="NickName" value="@Model.NickName" lay-verify="nickname" autocomplete="off" placeholder="请输入昵称" maxlength="20" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">真实姓名</label>
+        <div class="layui-input-inline">
+            <input type="text" name="RealName" value="@Model.RealName" lay-verify="realname" autocomplete="off" placeholder="请输入姓名" class="layui-input" maxlength="20">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">手机</label>
+        <div class="layui-input-inline">
+            <input type="text" name="Phone" value="@Model.Phone" lay-verify="newPhone" autocomplete="off" class="layui-input" maxlength="20">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">邮箱</label>
+        <div class="layui-input-inline">
+            <input type="text" name="Email" value="@Model.Email" lay-verify="email" autocomplete="off" class="layui-input" maxlength="50">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">微信号</label>
+        <div class="layui-input-inline">
+            <input type="text" name="Weixin" value="@Model.Weixin" lay-verify="weixin" autocomplete="off" class="layui-input" maxlength="50">
+        </div>
+    </div>
+    <div class="layui-form-item layui-hide">
+        <input type="button" lay-submit lay-filter="LAY-user-front-submit" id="LAY-user-front-submit" value="确认">
+    </div>
+</div>
+<script>
+    layui.config({
+        base: '/Assets/layuiadmin/'
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'form', 'set']);
+</script>

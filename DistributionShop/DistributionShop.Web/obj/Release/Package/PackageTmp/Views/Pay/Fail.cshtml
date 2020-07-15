@@ -1,0 +1,33 @@
+﻿@model DistributionShop.Models.ViewModels.OrderViewModel
+@{
+    ViewBag.Title = "订单支付失败";
+}
+@section head{
+    <link href="~/Assets/web/css/index.css" rel="stylesheet" />
+}
+
+<div class="content">
+    <div class="md1200" style="overflow: hidden;">
+        <div class="payresultbox">
+            <div class="resulttopbox">
+                <img src="@Url.Content("~/Assets/web/images/icon_payfail.png")" alt="">
+                <div class="word">
+                    <p class="result failresult">支付失败 ！</p>
+                    <p>对不起，您的订单已经支付失败</p>
+                </div>
+            </div>
+            <div class="resultbottombox">
+                <div class="showbox">
+                    <dl><dt>订单号：</dt><dd>@Model.OrderSn</dd></dl>
+                    <dl><dt>订单金额：</dt><dd class="money">￥@Model.TotalPayPrice</dd></dl>
+                    <dl><dt>下单时间：</dt><dd>@Model.AddTimeValue</dd></dl>
+                    <dl><dt>支付方式：</dt><dd>@Model.PayChannelName</dd></dl>
+                </div>
+                <div class="btns">
+                    <a href="@Url.Action("GetOrderDetail","UserCenter",new { orderSn=Model.OrderSn})" class="btn checkbtn">查看订单</a>
+                    <a href="@Url.Content("~/Pay/Index/"+Model.OrderSn)" class="btn buybtn">重新支付</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

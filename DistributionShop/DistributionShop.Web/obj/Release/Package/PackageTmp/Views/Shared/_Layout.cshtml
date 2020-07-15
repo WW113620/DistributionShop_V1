@@ -1,0 +1,379 @@
+﻿@using DistributionShop.Models.Utils;
+
+@{
+    bool IsAuthenticated = User.Identity.IsAuthenticated;
+    string LoginUserName = string.IsNullOrEmpty(LoginHelper.NickName) ? User.Identity.Name : LoginHelper.NickName;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Assets/web/css/style.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/layer/layer.js"></script>
+    <script src="~/Scripts/public.js"></script>
+    <script src="~/Scripts/jsRender.js"></script>
+    @RenderSection("head", false)
+
+    <link href="~/Content/main.css" rel="stylesheet" />
+</head>
+<body>
+    <input type="hidden" id="FiristCategoryId" value="@ViewBag.cate1" />
+    <input type="hidden" id="SecondCategoryId" value="@ViewBag.cate2" />
+
+    <!-- 头部 -->
+    <div class="header">
+        <div class="headtop">
+            <div class="md1200">
+                <span class="email">客服邮箱：<i>service@maomaoonline.com.au</i></span>
+                <div class="explain">
+                    <a href="javascript:;">包邮政策</a>
+                    <a href="javascript:;">购物须知</a>
+                    <a href="javascript:;">会员管理</a>
+                    <a href="javascript:;">关于我们</a>
+                    <a target="_blank" href="@Url.Content("~/UserCenter/Index")">个人中心</a>
+                </div>
+            </div>
+        </div>
+        <div class="headcon">
+            <div class="md1200">
+                <a href="@Url.Content("~/Home/Index")" class="logobox"><img src="@Url.Content("~/Assets/web/images/logo.png")" alt="">毛毛雨<span>健康生活馆</span></a>
+                <a style="cursor:pointer;" class="typebtn" id="typebtn">
+                    <img src="@Url.Content("~/Assets/web/images/icon_menu.png")" alt="">商品分类
+                </a>
+                <div class="seabox">
+                    <input type="text" placeholder="搜索商品" class="seatxt" id="keyWord" value="@ViewBag.kw">
+                    <a href="javascript:void(0)"  class="searchbtn"></a>
+                </div>
+            
+                @if (IsAuthenticated)
+                {
+                    <div class="lginfo">欢迎您，@LoginUserName <a href="@Url.Content("~/Login/Logout")" class="logoutbtn">/<span class="word">退出</span></a></div>
+                }
+                else
+                {
+                    <span class="lgbtn"><a href="@Url.Content("~/Login/Index")">登录</a> / <a href="@Url.Content("~/Login/Index?p=1")">注册</a></span>
+                }
+                <div class="shopcarbox" id="mainPageShopCarbox">
+                    <div class="shopcarbtn" onclick="ToShopCar()">
+                        <img src="@Url.Content("~/Assets/web/images/icon_shopcar_small.png")" alt="">购物车 <span class="num" id="MainPageTotalCount">1</span>
+                        <div class="carbox" id="mainPageAddToShoppingCartList">
+                            @Html.Action("PartialMainShoppingCart", "ShoppingCart")
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="goodtype" id="headCateList">
+                <div class="md1200">
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    @if (ViewBag.IsUserCenter != null && ViewBag.IsUserCenter)
+    {
+        int type = ViewBag?.PageType ?? (int)PageTypeEnums.个人中心;
+
+        <div class="personalcon">
+            <div class="md1200">
+                <div class="lfmenu">
+                    <div class="title">用户中心</div>
+                    <ul class="menulist">
+                        @*class="active"*@
+                        <li @(type == (int)PageTypeEnums.个人中心 ? "class=active" : "")>
+                            <a href="@Url.Action("Index","UserCenter")">个人中心</a>
+                        </li>
+                        <li @(type == (int)PageTypeEnums.我的订单 ? "class=active" : "")>
+                            <a href="@Url.Action("MyOrder","UserCenter")">我的订单</a>
+                        </li>
+                        <li @(type == (int)PageTypeEnums.优惠券 ? "class=active" : "")>
+                            <a href="@Url.Action("Coupon","UserCenter")">优惠券</a>
+                        </li>
+                        <li @(type == (int)PageTypeEnums.我的钱包 ? "class=active" : "")>
+                            <a href="@Url.Action("MyWallet","UserCenter")">我的钱包</a>
+                        </li>
+                        <li @(type == (int)PageTypeEnums.收货人管理 ? "class=active" : "")>
+                            <a href="@Url.Action("AddressManager","UserCenter")">收货人管理</a>
+                        </li>
+                        <li @(type == (int)PageTypeEnums.我的邀请 ? "class=active" : "")>
+                            <a href="@Url.Action("MyInvite","UserCenter")">我的邀请</a>
+                        </li>
+                        <li @(type == (int)PageTypeEnums.我的代理 ? "class=active" : "")>
+                            <a href="@Url.Action("MyAgent","UserCenter")">我的代理</a>
+                        </li>
+                        <li @(type == (int)PageTypeEnums.个人资料 ? "class=active" : "")>
+                            <a href="@Url.Action("PersonalInfo","UserCenter")">个人资料</a>
+                        </li>
+                        <li @(type == (int)PageTypeEnums.安全中心 ? "class=active" : "")>
+                            <a href="@Url.Action("SecurityCenter","UserCenter")">安全中心</a>
+                        </li>
+                    </ul>
+                </div>
+                @RenderBody()
+            </div>
+        </div>
+    }
+    else
+    {
+        @RenderBody()
+    }
+    <!-- 底部 -->
+    <div class="footer">
+        <div class="foottop">
+            <div class="md1200">
+                <div class="word">
+                    <div class="title">本网站郑重承诺</div>
+                    <p>本网站销售的商品均为优质海外采购商品，本网站，展示或销售的所有商品100%为品牌方正品且本网站有权展示或销售该商品。同时，本网站承诺所有在售商品质量均符合原产地国家或行业质量检测标准。</p>
+                </div>
+                <div class="icons">
+                    <div class="icon iconcr1"></div>
+                    <div class="icon iconcr2"></div>
+                    <div class="icon iconcr3"></div>
+                    <div class="icon iconcr4"></div>
+                    <div class="icon iconcr5"></div>
+                </div>
+            </div>
+        </div>
+        <div class="footcon">
+            <div class="md1200">
+                <div class="ftbox lxwmbox">
+                    <div class="title">联系我们</div>
+                    <p>Ph: (03) 8524 6576</p>
+                    <p>Add: Suite 2 ,Level 1/49-55 Myrtle St, Glen</p>
+                    <p>Waverley VIC 3150</p>
+                </div>
+                <div class="ftbox fkfsbox">
+                    <div class="title">付款方式</div>
+                    <p><a href="javascript:;">支付宝付款</a></p>
+                    <p><a href="javascript:;">微信支付</a></p>
+                </div>
+                <div class="ftbox wlpsbox">
+                    <div class="title">物流配送</div>
+                    <p><a href="javascript:;">配送相关</a></p>
+                    <p><a href="javascript:;">运送区域、方式与运费</a></p>
+                    <p><a href="javascript:;">大货商品</a></p>
+                    <p><a href="javascript:;">海关及税项</a></p>
+                </div>
+                <div class="ftbox shfwbox">
+                    <div class="title">售后服务/退款</div>
+                    <p><a href="javascript:;">退换货政策</a></p>
+                    <p><a href="javascript:;">我要投诉</a></p>
+                    <p><a href="javascript:;">退款方式</a></p>
+                    <p><a href="javascript:;">联系我们</a></p>
+                </div>
+                <!-- 移动端底部 -->
+                <div class="mbftbox">
+                    <ul class="mbftlist">
+                        <li><a href="javascript:;">包邮政策</a></li>
+                        <li><a href="javascript:;">购物须知</a></li>
+                        <li><a href="javascript:;">会员管理</a></li>
+                        <li><a href="javascript:;">关于我们</a></li>
+                        <li><a href="javascript:;">常见问题Q&A</a></li>
+                    </ul>
+                    <p class="copyright">Copyright 2019 MyAus</p>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+    $(function () {
+        //购物车鼠标指针悬浮
+        var show = false;
+        $("#mainPageShopCarbox").hover(function () {
+            if (!show) {
+                show = true;
+                $("#mainPageAddToShoppingCartList").load("/ShoppingCart/PartialMainShoppingCart");
+            }
+        }, function () {
+                show = false;
+        })
+
+    })
+
+
+    function ToShopCar() {
+            window.location.href="@Url.Action("Index", "ShoppingCart")"
+    }
+    //购物车添加或者删除一个商品
+        function MainPageAddToShoppingCartMethod(productId, num, isRefresh) {
+            event.stopPropagation();
+        if (productId <= 0) {
+            layer.msg('未获得商品Id', { icon: 2, time: 1200, offset: 'auto' });
+            return;
+        }
+        if (num==0) {
+            layer.msg('请添加或者删除一个商品', { icon: 2, time: 1200, offset: 'auto' });
+            return;
+            }
+         $.ajax({
+                url: '@Url.Content("~/ShoppingCart/UpdateShoppingCartModel")',
+                type: 'POST',
+                dataType: 'JSON',
+                data: { productId: productId, num: num},
+                success: function (res) {
+                    if (res.code == 0) {
+                        if (isRefresh != undefined && isRefresh > 0) {
+                            $("#mainPageAddToShoppingCartList").load("/ShoppingCart/PartialMainShoppingCart");
+                        }
+                        layer.msg(res.msg, { time: 1200, offset: 'auto' });
+                    }
+                    else {
+                        layer.msg(res.msg, { time: 1200, offset: 'auto' });
+                    }
+                },
+                error: function (error) {
+
+                }
+            });
+        }
+
+        $("#typebtn").bind("click", function (e) {
+            e.stopPropagation();
+            $(".goodtype").toggle();
+        });
+        $("body").click(function () {
+            $(".goodtype").hide();
+        })
+
+        $(".typebox .list .openbtn").on("click", function (e) {
+            $(".typebox .list").toggleClass("active");
+        });
+
+    </script>
+
+</body>
+</html>
+<script id="categoryParentTmp" type="text/x-jsrender">
+    <dl data-id="{{:Id}}">
+        <dt>{{:Name}}<span class="next"></span></dt>
+        <dd></dd>
+    </dl>
+</script>
+<script id="categoryChildTmp" type="text/x-jsrender">
+    <a href="javascript:void(0);" data-id="{{:Id}}">{{:Name}}</a>
+</script>
+
+<script>
+    function InitPage(pageIndex,pageSize,totalCount ,el) {
+        layui.use('laypage', function () {
+            if (totalCount <= 0 || totalCount <= pageSize) {
+                $("#"+el).html("");
+                return false;
+            }
+            var laypage = layui.laypage;
+            //执行一个laypage实例
+            laypage.render({
+                elem: el, //注意，这里的 test1 是 ID，不用加 # 号
+                curr: pageIndex || 1,
+                limit:pageSize,
+                count: totalCount, //数据总数，从服务端得到
+                jump: function (obj, first)
+                {
+                    if (!first)
+                    {
+                        search(obj.curr);
+                    }
+                }
+            });
+        });
+    }
+    //父级分类
+     function initParentCategoryList(id,tmp,el) {
+            $.post("@Url.Content("~/Goods/GetCategoryList")", { id:id }, function (result) {
+                if (result && result.length > 0) {
+                    var html = $(tmp).render(result);
+                    $(el).html(html);
+                    if (parseInt(id) == 0) {
+                        initChildCategoryList();
+                    }
+                }
+            })
+    }
+
+    function initChildCategoryList() {
+        for (var i = 0; i < $("#headCateList div.md1200 dl").length; i++) {
+            var id = $("#headCateList div.md1200 dl").eq(i).attr("data-id");
+            initParentCategoryList(id,"#categoryChildTmp","#headCateList div.md1200 dl[data-id='" + id + "'] dd")
+        }
+    }
+    $("#headCateList div.md1200").on("click", "dl dt", function () {
+        var FiristCategoryId = $(this).parent("dl").attr("data-id");
+        var FiristCategoryName = $(this).text();
+        $("#FiristCategoryId").val(FiristCategoryId);
+        $("#SecondCategoryId").val("");
+        var breadnavHtml = ' <a href="javascript:;" id="firstPage">首页</a><span>></span><a href="javascript:void(0);" data-id="'+FiristCategoryId+'" name="first">' + FiristCategoryName + '</a>';
+        $("#breadnav").html(breadnavHtml);
+        var thislocation = window.location.href;
+        if (thislocation.toLowerCase().indexOf("goods/index")!=-1) {
+            search(1,true);
+        } else {
+            window.location.href = "@Url.Content("~/goods/index")?kw=" + $("#keyWord").val()+"&cate1="+FiristCategoryId;
+        }
+
+    })
+     $("#headCateList div.md1200").on("click", "dl dd a", function () {
+         var FiristCategoryId = $(this).parents("dl").attr("data-id");
+         var FiristCategoryName = $(this).parents("dl").children("dt").text();
+         var SecondCategoryId = $(this).attr("data-id");
+         var SecondCategoryName = $(this).text();
+         $("#FiristCategoryId").val(FiristCategoryId);
+         $("#SecondCategoryId").val(SecondCategoryId);
+         $("#FiristCategoryName").val(FiristCategoryName);
+         $("#SecondCategoryName").val(SecondCategoryName);
+          var breadnavHtml = ' <a href="javascript:;" id="firstPage">首页</a><span>></span><a href="javascript:void(0);" data-id="'+FiristCategoryId+'" name="first">' + FiristCategoryName + '</a><span>></span><a href="javascript:void(0);" data-id="'+SecondCategoryId+'" name="second">' + SecondCategoryName + '</a>';
+         $("#breadnav").html(breadnavHtml);
+         var thislocation = window.location.href;
+        if (thislocation.toLowerCase().indexOf("goods/index")!=-1) {
+            search(1,true);
+        } else {
+            window.location.href = "@Url.Content("~/goods/index")?kw=" + $("#keyWord").val()+"&cate1="+FiristCategoryId+"&cate2="+SecondCategoryId;
+        }
+     })
+    $("#breadnav").on("click", "#firstPage", function () {
+        window.location = "@Url.Content("~/home/index")";
+    })
+      $("#breadnav").on("click", "a[name='first']", function () {
+          var FiristCategoryId = $(this).attr("data-id");
+          var FiristCategoryName = $(this).text();
+          var breadnavHtml = ' <a href="javascript:;" id="firstPage">首页</a><span>></span><a href="javascript:void(0);" data-id="' + FiristCategoryId + '" name="first">' + FiristCategoryName + '</a>';
+          $("#breadnav").html(breadnavHtml);
+         $("#FiristCategoryId").val(FiristCategoryId);
+          $("#SecondCategoryId").val("");
+          search(1);
+      })
+    $(".seabox a").click(function () {
+        var thislocation = window.location.href;
+        if (thislocation.toLowerCase().indexOf("goods/index")!=-1) {
+            search(1);
+        } else {
+            window.location.href = "@Url.Content("~/goods/index")?kw=" + $("#keyWord").val();
+        }
+    })
+       document.onkeydown = function (e) {
+         // 回车提交表单
+        // 兼容FF和IE和Opera
+            var theEvent = window.event || e;
+            var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+            if (code == 13) {
+                //search(1);
+                  var thislocation = window.location.href;
+                    if (thislocation.toLowerCase().indexOf("goods/index")!=-1) {
+                        search(1);
+                    } else {
+                        window.location.href = "@Url.Content("~/goods/index")?kw=" + $("#keyWord").val();
+                    }
+            }
+    }
+    initParentCategoryList(0, "#categoryParentTmp", "#headCateList div.md1200");
+    //setTimeout(function () { initChildCategoryList(); }, 2000);
+
+</script>

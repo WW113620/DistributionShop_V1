@@ -1,0 +1,41 @@
+﻿@using DistributionShop.Models.Utils
+@model DistributionShop.Models.ViewModels.RetShoppingCartIndexVModel
+@{
+    int totalCount = 0;
+    decimal totalPrice = 0;//商品总价
+}
+
+<ul class="carlist">
+    @if (Model.ShoppingCartList != null && Model.ShoppingCartList.Any())
+    {
+        foreach (var shoppingCar in Model.ShoppingCartList)
+        {
+            if (shoppingCar.CartProductList != null && shoppingCar.CartProductList.Any())
+            {
+                foreach (var cartProduct in shoppingCar.CartProductList)
+                {
+                    totalCount += cartProduct.Num;
+                    totalPrice += cartProduct.TotalFee;
+                    <li>
+                        <a href="javascript:;" class="imgbox">
+                            <img src="@Url.Content("~/api/MediaApi/GetCoverFileName?fileName="+cartProduct.FileName)" onerror="onerror=null;src='@Url.Content("~/Assets/web/images/logo.png")'">
+                        </a>
+                        <a href="javascript:;" class="name">@(cartProduct.ProductName)</a>
+                        <div class="operate">
+                            <div class="price">￥@(cartProduct.WebPrice) x @(cartProduct.Num)</div>
+                            <a href="javascript:;" class="delbtn" onclick="MainPageAddToShoppingCartMethod(@cartProduct.ProductId,@(-cartProduct.Num),1)">删除</a>
+                        </div>
+                    </li>
+                }
+            }
+        }
+    }
+</ul>
+<div class="showbox">
+    <span class="word">共<i>@(totalCount)</i>件商品</span>
+    <span class="price">￥@(totalPrice.ToMoney())</span>
+    <a href="javascript:;" class="gobtn">去购物</a>
+</div>
+<script type="text/javascript">
+    $('#MainPageTotalCount').text('@(totalCount)');
+</script>

@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "个人中心";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section head{
+    <link rel="stylesheet" href="~/Assets/web/css/personal.css">
+}
+<div class="rtcon rtpersonal">
+    <div class="topcon">
+        <div class="infobox">
+            <div class="userimg"><img src="~/Images/banner1.png" alt=""></div>
+            <div class="username">欢迎您，<span class="name">12309876543</span></div>
+            <div class="userrank">普通用户 V.1</div>
+        </div>
+        <div class="orderbox">
+            <div class="title">我最近的订单</div>
+            <div class="ordercon">
+                <!-- 零订单 -->
+                <div class="noorder" style="display:none;"><img src="~/Images/icon_data.png" alt=""><div class="word">您最近还没有购买过任何物品哦！</div></div>
+                <!-- 已有订单 -->
+                <div class="yesorder">
+                    <dl><dt><img src="~/Images/icon_dzf.png" alt=""></dt><dd><span class="num">2</span><span class="word">待付款</span></dd></dl>
+                    <dl><dt><img src="~/Images/icon_dfh.png" alt=""></dt><dd><span class="num">3</span><span class="word">待发货</span></dd></dl>
+                    <dl><dt><img src="~/Images/icon_dsh.png" alt=""></dt><dd><span class="num">5</span><span class="word">待收货</span></dd></dl>
+                </div>
+            </div>
+        </div>
+        <div class="numbox">
+            <div class="title">个人中心</div>
+            <div class="numcon">
+                <ul class="numlist">
+                    <li>
+                        <p class="number">1</p>
+                        <p class="word">优惠券(张)</p>
+                        <a href="javascrpt:;" class="btn ckbtn">查看</a>
+                    </li>
+                    <li>
+                        <p class="number">1</p>
+                        <p class="word">积分</p>
+                        <a href="javascrpt:;" class="btn jfbtn">赚积分</a>
+                    </li>
+                    <li>
+                        <p class="number">500.00</p>
+                        <p class="word">钱包（￥）</p>
+                        <a href="javascrpt:;" class="btn mxbtn">明细</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="bottomcon">
+        <div class="title">邀请好友获得奖励</div>
+        <div class="tipbox">
+            <p>邀请好友加入毛毛雨健康生活馆</p>
+            <p>你的朋友需要使用从未注册过毛毛雨生活健康馆的手机号码进行注册，并且使用以下专属邀请链接。</p>
+        </div>
+        <div class="linkbox">
+            <span class="word">邀请链接：</span>
+            <div class="link">http://www.maomaohealth.com.au <a href="javascript:;" class="copybtn"></a></div>
+        </div>
+    </div>
+</div>
+

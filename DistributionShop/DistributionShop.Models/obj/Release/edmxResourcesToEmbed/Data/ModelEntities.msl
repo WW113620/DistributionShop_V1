@@ -1,0 +1,407 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DistributionShopDBModelStoreContainer" CdmEntityContainer="DataContextEntities">
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="DistributionShopDBModel.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+          <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="RoleType" ColumnName="RoleType" />
+          <ScalarProperty Name="AvatarUrl" ColumnName="AvatarUrl" />
+          <ScalarProperty Name="OpenId" ColumnName="OpenId" />
+          <ScalarProperty Name="Weixin" ColumnName="Weixin" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="PrePhoneType" ColumnName="PrePhoneType" />
+          <ScalarProperty Name="RealName" ColumnName="RealName" />
+          <ScalarProperty Name="NickName" ColumnName="NickName" />
+          <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Attributes">
+      <EntityTypeMapping TypeName="DistributionShopDBModel.Attribute">
+        <MappingFragment StoreEntitySet="Attribute">
+          <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Brands">
+      <EntityTypeMapping TypeName="DistributionShopDBModel.Brand">
+        <MappingFragment StoreEntitySet="Brand">
+          <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="DistributionShopDBModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="Depth" ColumnName="Depth" />
+          <ScalarProperty Name="ParentCategoryId" ColumnName="ParentCategoryId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ConfigInfos">
+      <EntityTypeMapping TypeName="DistributionShopDBModel.ConfigInfo">
+        <MappingFragment StoreEntitySet="ConfigInfos">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Describtion" ColumnName="Describtion" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Key" ColumnName="Key" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="DistributionShopDBModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+          <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+          <ScalarProperty Name="SendType" ColumnName="SendType" />
+          <ScalarProperty Name="MeasureUnit" ColumnName="MeasureUnit" />
+          <ScalarProperty Name="Measure" ColumnName="Measure" />
+          <ScalarProperty Name="VisitCounts" ColumnName="VisitCounts" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="PostType" ColumnName="PostType" />
+          <ScalarProperty Name="DisplaySequence" ColumnName="DisplaySequence" />
+          <ScalarProperty Name="AuditStatus" ColumnName="AuditStatus" />
+          <ScalarProperty Name="IsHomePage" ColumnName="IsHomePage" />
+          <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+          <ScalarProperty Name="IsTop" ColumnName="IsTop" />
+          <ScalarProperty Name="IsDiscount" ColumnName="IsDiscount" />
+          <ScalarProperty Name="WebPrice" ColumnName="WebPrice" />
+          <ScalarProperty Name="OriginalPrice" ColumnName="OriginalPrice" />
+          <ScalarProperty Name="CoverFileName" ColumnName="CoverFileName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductType" ColumnName="ProductType" />
+          <ScalarProperty Name="CategoryPath" ColumnName="CategoryPath" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+          <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductAttributes">
+      <EntityTypeMapping TypeName="DistributionShopDBModel.ProductAttribute">
+        <MappingFragment StoreEntitySet="ProductAttribute">
+          <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+          <ScalarProperty Name="AttributeParentName" ColumnName="AttributeParentName" />
+          <ScalarProperty Name="AttributeParentId" ColumnName="AttributeParentId" />
+          <ScalarProperty Name="AttributeName" ColumnName="AttributeName" />
+          <ScalarProperty Name="AttributeId" ColumnName="AttributeId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductAudits">
+      <EntityTypeMapping TypeName="DistributionShopDBModel.ProductAudit">
+        <MappingFragment StoreEntitySet="ProductAudit">
+          <ScalarProperty Name="OperatorName" ColumnName="OperatorName" />
+          <ScalarProperty Name="OperatorId" ColumnName="OperatorId" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+          <ScalarProperty Name="AuditStatus" ColumnName="AuditStatus" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductMedias">
+      <EntityTypeMapping TypeName="DistributionShopDBModel.ProductMedia">
+        <MappingFragment StoreEntitySet="ProductMedia">
+          <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+          <ScalarProperty Name="MediaCloudId" ColumnName="MediaCloudId" />
+          <ScalarProperty Name="MediaSort" ColumnName="MediaSort" />
+          <ScalarProperty Name="MediaSize" ColumnName="MediaSize" />
+          <ScalarProperty Name="OriginalFileName" ColumnName="OriginalFileName" />
+          <ScalarProperty Name="NewFileName" ColumnName="NewFileName" />
+          <ScalarProperty Name="MediaType" ColumnName="MediaType" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Shops">
+      <EntityTypeMapping TypeName="DistributionShopDBModel.Shop">
+        <MappingFragment StoreEntitySet="Shop">
+          <ScalarProperty Name="IsDel" ColumnName="IsDel" />
+          <ScalarProperty Name="ContactsTel" ColumnName="ContactsTel" />
+          <ScalarProperty Name="ContactsName" ColumnName="ContactsName" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="ShopStatus" ColumnName="ShopStatus" />
+          <ScalarProperty Name="IsSelf" ColumnName="IsSelf" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="ShopName" ColumnName="ShopName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShoppingCarts">
+      <EntityTypeMapping TypeName="DistributionShopDBModel.ShoppingCart">
+        <MappingFragment StoreEntitySet="ShoppingCart">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+          <ScalarProperty Name="GoodNum" ColumnName="GoodNum" />
+          <ScalarProperty Name="GoodsId" ColumnName="GoodsId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SMSMessageLogs">
+      <EntityTypeMapping TypeName="DistributionShopDBModel.SMSMessageLog">
+        <MappingFragment StoreEntitySet="SMSMessageLog">
+          <ScalarProperty Name="SendType" ColumnName="SendType" />
+          <ScalarProperty Name="Result" ColumnName="Result" />
+          <ScalarProperty Name="SendTime" ColumnName="SendTime" />
+          <ScalarProperty Name="SendFromGuid" ColumnName="SendFromGuid" />
+          <ScalarProperty Name="SendTo" ColumnName="SendTo" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Address">
+      <EntityTypeMapping TypeName="DistributionShopDBModel.T_Address">
+        <MappingFragment StoreEntitySet="T_Address">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+          <ScalarProperty Name="IDPhotoPositive" ColumnName="IDPhotoPositive" />
+          <ScalarProperty Name="IDPhotoNegative" ColumnName="IDPhotoNegative" />
+          <ScalarProperty Name="IdentityCard" ColumnName="IdentityCard" />
+          <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="TelPhone" ColumnName="TelPhone" />
+          <ScalarProperty Name="PrePhoneType" ColumnName="PrePhoneType" />
+          <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+          <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+          <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
+          <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="RealName" ColumnName="RealName" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_City">
+      <EntityTypeMapping TypeName="DistributionShopDBModel.T_City">
+        <MappingFragment StoreEntitySet="T_City">
+          <ScalarProperty Name="CitySort" ColumnName="CitySort" />
+          <ScalarProperty Name="ProID" ColumnName="ProID" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Country">
+      <EntityTypeMapping TypeName="DistributionShopDBModel.T_Country">
+        <MappingFragment StoreEntitySet="T_Country">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_District">
+      <EntityTypeMapping TypeName="DistributionShopDBModel.T_District">
+        <MappingFragment StoreEntitySet="T_District">
+          <ScalarProperty Name="DisSort" ColumnName="DisSort" />
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+          <ScalarProperty Name="DisName" ColumnName="DisName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Province">
+      <EntityTypeMapping TypeName="DistributionShopDBModel.T_Province">
+        <MappingFragment StoreEntitySet="T_Province">
+          <ScalarProperty Name="ProRemark" ColumnName="ProRemark" />
+          <ScalarProperty Name="ProSort" ColumnName="ProSort" />
+          <ScalarProperty Name="ProName" ColumnName="ProName" />
+          <ScalarProperty Name="ProID" ColumnName="ProID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TestUsers">
+      <EntityTypeMapping TypeName="DistributionShopDBModel.TestUser">
+        <MappingFragment StoreEntitySet="TestUser">
+          <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="AvatarUrl" ColumnName="AvatarUrl" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="NickName" ColumnName="NickName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductPrices">
+      <EntityTypeMapping TypeName="DistributionShopDBModel.ProductPrice">
+        <MappingFragment StoreEntitySet="ProductPrice">
+          <ScalarProperty Name="IsDel" ColumnName="IsDel" />
+          <ScalarProperty Name="DiscountEndTime" ColumnName="DiscountEndTime" />
+          <ScalarProperty Name="DiscountBeginTime" ColumnName="DiscountBeginTime" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="WebPrice" ColumnName="WebPrice" />
+          <ScalarProperty Name="OriginalPrice" ColumnName="OriginalPrice" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Order_Address">
+      <EntityTypeMapping TypeName="DistributionShopDBModel.Order_Address">
+        <MappingFragment StoreEntitySet="Order_Address">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+          <ScalarProperty Name="IDPhotoPositive" ColumnName="IDPhotoPositive" />
+          <ScalarProperty Name="IDPhotoNegative" ColumnName="IDPhotoNegative" />
+          <ScalarProperty Name="IdentityCard" ColumnName="IdentityCard" />
+          <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+          <ScalarProperty Name="RealName" ColumnName="RealName" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="TelPhone" ColumnName="TelPhone" />
+          <ScalarProperty Name="PrePhoneType" ColumnName="PrePhoneType" />
+          <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+          <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+          <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
+          <ScalarProperty Name="OrderSn" ColumnName="OrderSn" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderPayRecords">
+      <EntityTypeMapping TypeName="DistributionShopDBModel.OrderPayRecord">
+        <MappingFragment StoreEntitySet="OrderPayRecord">
+          <ScalarProperty Name="PayTime" ColumnName="PayTime" />
+          <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+          <ScalarProperty Name="PayChannel" ColumnName="PayChannel" />
+          <ScalarProperty Name="PayState" ColumnName="PayState" />
+          <ScalarProperty Name="RealFee" ColumnName="RealFee" />
+          <ScalarProperty Name="TotalFee" ColumnName="TotalFee" />
+          <ScalarProperty Name="ChannelOrderId" ColumnName="ChannelOrderId" />
+          <ScalarProperty Name="PartnerOrderId" ColumnName="PartnerOrderId" />
+          <ScalarProperty Name="NewOrderSn" ColumnName="NewOrderSn" />
+          <ScalarProperty Name="OrderSn" ColumnName="OrderSn" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderDetails">
+      <EntityTypeMapping TypeName="DistributionShopDBModel.OrderDetail">
+        <MappingFragment StoreEntitySet="OrderDetail">
+          <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+          <ScalarProperty Name="IsDel" ColumnName="IsDel" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="PostType" ColumnName="PostType" />
+          <ScalarProperty Name="OrderProductAmount" ColumnName="OrderProductAmount" />
+          <ScalarProperty Name="WebPrice" ColumnName="WebPrice" />
+          <ScalarProperty Name="OriginalPrice" ColumnName="OriginalPrice" />
+          <ScalarProperty Name="ShopName" ColumnName="ShopName" />
+          <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+          <ScalarProperty Name="ProductImagePath" ColumnName="ProductImagePath" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="OrderSn" ColumnName="OrderSn" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="DistributionShopDBModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="RefundTime" ColumnName="RefundTime" />
+          <ScalarProperty Name="RefundMethod" ColumnName="RefundMethod" />
+          <ScalarProperty Name="Refund_fee" ColumnName="Refund_fee" />
+          <ScalarProperty Name="PayTime" ColumnName="PayTime" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="IsDel" ColumnName="IsDel" />
+          <ScalarProperty Name="PayChannel" ColumnName="PayChannel" />
+          <ScalarProperty Name="Platform" ColumnName="Platform" />
+          <ScalarProperty Name="Postage" ColumnName="Postage" />
+          <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
+          <ScalarProperty Name="TotalPayPrice" ColumnName="TotalPayPrice" />
+          <ScalarProperty Name="PayState" ColumnName="PayState" />
+          <ScalarProperty Name="OrderSn" ColumnName="OrderSn" />
+          <ScalarProperty Name="RealName" ColumnName="RealName" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderReFunds">
+      <EntityTypeMapping TypeName="DistributionShopDBModel.OrderReFund">
+        <MappingFragment StoreEntitySet="OrderReFund">
+          <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+          <ScalarProperty Name="RefundTime" ColumnName="RefundTime" />
+          <ScalarProperty Name="AuditContent" ColumnName="AuditContent" />
+          <ScalarProperty Name="OperateName" ColumnName="OperateName" />
+          <ScalarProperty Name="Currency" ColumnName="Currency" />
+          <ScalarProperty Name="Refund_fee" ColumnName="Refund_fee" />
+          <ScalarProperty Name="Partner_refund_id" ColumnName="Partner_refund_id" />
+          <ScalarProperty Name="Refund_id" ColumnName="Refund_id" />
+          <ScalarProperty Name="Result_code" ColumnName="Result_code" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+          <ScalarProperty Name="IsDel" ColumnName="IsDel" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ReApplyFee" ColumnName="ReApplyFee" />
+          <ScalarProperty Name="ReUserName" ColumnName="ReUserName" />
+          <ScalarProperty Name="ReFundReason" ColumnName="ReFundReason" />
+          <ScalarProperty Name="ReFundMethod" ColumnName="ReFundMethod" />
+          <ScalarProperty Name="ReFundType" ColumnName="ReFundType" />
+          <ScalarProperty Name="ProductIds" ColumnName="ProductIds" />
+          <ScalarProperty Name="OrderSn" ColumnName="OrderSn" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,138 @@
+﻿@using DistributionShop.Models.Utils;
+@model DistributionShop.Models.ViewModels.GetOrderDetailViewModel
+@{
+    ViewBag.Title = "订单详情";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var address = Model?.OrderDetailViewModelData?.Address ?? string.Empty;
+    address = !string.IsNullOrWhiteSpace(address) && address.Length >32 ? address.Substring(0, 29) + "..." : address;
+}
+@section head{
+    <link rel="stylesheet" href="~/Assets/web/css/personal.css">
+}
+<!-- 内容 -->
+<div class="personalcon">
+    <div class="md1200">
+        <div class="breadnav"><a href="@Url.Action("MyOrder","UserCenter")">我的订单</a><span>&gt;</span><a href="javascript:;">订单详情</a></div>
+        <div class="ddxxcon obligationcon">
+            <div class="title">订单信息</div>
+            <div class="ddxxbox">
+                <div class="ddxxleft">
+                    <dl>
+                        <dt>收货人：</dt>
+                        <dd>
+                            <p>@(Model?.OrderDetailViewModelData?.RealName)</p>
+                            <p>@(Model?.OrderDetailViewModelData?.PrePhoneTypeStr)@(Model?.OrderDetailViewModelData?.TelPhone)</p>
+                            <p>@(address)</p>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>订单号：</dt>
+                        <dd><p>@(Model?.OrderDetailViewModelData?.OrderSn)</p></dd>
+                    </dl>
+                    <dl>
+                        <dt>下单时间：</dt>
+                        <dd><p>@(Model?.OrderDetailViewModelData?.AddTimeValue)</p></dd>
+                    </dl>
+                </div>
+                <div class="ddxxright">
+                    <div class="infobox">
+                        <p>订单状态：@(Model?.OrderDetailViewModelData?.PayStateStr)</p>
+                        <p>订单金额（含运费）：<span class="money">￥@(Model?.OrderDetailViewModelData?.TotalPayPriceStr)</span></p>
+                    </div>
+                    @if (Model.OrderDetailViewModelData.PayState == (int)PayStateEnums.未支付)
+                    {
+                        <div class="optbox">
+                            <a href="javascript:;" class="txtbtn cancelbtn" onclick="CancelOrder('@(Model?.OrderDetailViewModelData?.OrderSn)')">取消订单</a>
+                            <a href="@Url.Action("OrderPayment", "UserCenter")?orderSn=@(Model?.OrderDetailViewModelData?.OrderSn)" class="inputbtn paybtn">立刻付款</a>
+                        </div>
+                    }
+                    else if (Model.OrderDetailViewModelData.PayState == (int)PayStateEnums.已支付已发货)
+                    {
+                        <div class="optbox">
+                            <div class="showwl">物流号码：JIF09988</div>
+                            <a class="inputbtn checkbtn" href="personal_order_logistics.html">查看物流</a>
+                        </div>
+                    }
+                    else if (Model.OrderDetailViewModelData.PayState == (int)PayStateEnums.已完成) 
+                    { 
+                        <div class="optbox">
+                            <a class="txtbtn refundbtn" href="@Url.Content("~/UserCenter/OrderRefund?ordersn=")@Model.OrderDetailViewModelData.OrderSn">我要退款</a>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="ordertable">
+                <ul class="orderhead">
+                    <li class="detailbox">商品详情</li>
+                    <li class="pricebox">单价</li>
+                    <li class="numbox">数量</li>
+                    <li class="moneybox">金额</li>
+                </ul>
+                <div class="orderbody">
+                    <div class="ordertop">
+                        <span class="ordernum">订单号：@(Model?.OrderDetailViewModelData?.OrderSn)</span>
+                        <span class="ordertime">下单时间：@(Model?.OrderDetailViewModelData?.AddTimeValue)</span>
+                    </div>
+                    <ul class="orderblist">
+                        @if (Model.OrderDetailList != null && Model.OrderDetailList.Count > 0)
+                        {
+                            foreach (var OrderDetail in Model.OrderDetailList)
+                            {
+                                <li>
+                                    <div class="orderbli detailbox">
+                                        <div class="imgbox">
+                                            <img src="@Url.Content("~/api/MediaApi/GetCoverFileName?fileName="+OrderDetail.ProductImagePath)" onerror="onerror=null;src='../Images/banner1.png'" class="shopimg">
+                                        </div>
+                                        <div class="infobox">
+                                            <p class="name">@(OrderDetail.ProductName)</p>
+                                            <div class="type">@(OrderDetail.PostType==(int)PostTypeEnums.第二类? "非包邮商品" : "包邮商品")</div>
+                                        </div>
+                                    </div>
+                                    <div class="orderbli pricebox"><span class="nowprice">￥@(OrderDetail.WebPrice.ToMoney())</span><span class="preprice">￥@(OrderDetail.OriginalPrice.ToMoney())</span></div>
+                                    <div class="orderbli numbox">@(OrderDetail.OrderProductAmount)</div>
+                                    <div class="orderbli moneybox">￥@((OrderDetail.OrderProductAmount* OrderDetail.WebPrice).ToMoney())</div>
+                                </li>
+                            }
+                        }
+
+                    </ul>
+                    @*<div class="zzfw">
+                           <span class="word">增值服务奶粉罐底签字￥50.00</span>
+                           <input type="text" value="蕾蕾" class="qztxt">
+                        </div>*@
+                    <div class="ordertotal">
+                        合计（不含运费）：<span class="num">￥@((Model?.OrderDetailViewModelData?.TotalPayPrice- Model?.OrderDetailViewModelData ?.Postage).ToMoney())</span>
+                    </div>
+                </div>
+            </div>
+            <div class="processbox">
+                <div class="innerbox">
+                    <p>
+                    <span class="name">商品总价：</span> 
+                        <span class="num">￥@((Model?.OrderDetailViewModelData?.TotalPayPrice- Model?.OrderDetailViewModelData?.Postage).ToMoney())</span>
+                    </p>
+                    @*<p><span class="name">优惠券：</span><span class="num">-￥24.78</span></p>*@
+                    <p><span class="name">运费：</span><span class="num">￥@(Model?.OrderDetailViewModelData?.Postage)</span></p>
+                    <p><span class="name">订单总价：</span><span class="num totalnum">￥@(Model?.OrderDetailViewModelData?.TotalPayPriceStr)</span></p>
+                    <p class="nowp"><span class="name">应付款：</span><span class="num nownum">￥@(Model?.OrderDetailViewModelData?.TotalPayPriceStr)</span></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    //取消订单
+    function CancelOrder(orderSn)
+    {
+        $ajaxFunc("@Url.Content("~/UserCenter/CancelOrder")", { orderSn:orderSn}, function (res) {
+            if (res.code === 0) {
+                layer.msg(res.msg, function () {
+                    window.location.href = "@Url.Action("MyOrder","UserCenter")";
+                });
+            } else {
+                layer.msg(res.msg, { time: 1200, offset: 'auto', icon: 5 });
+            }
+        });
+    }
+</script>
